@@ -1,0 +1,243 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivityDP">
+
+    <ImageView
+        android:id="@+id/orangeLogoRegisterDp"
+        android:layout_width="71dp"
+        android:layout_height="52dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.048"
+        app:srcCompat="@drawable/logoensinarpequenolaranja" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.589"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.131">
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="70dp"
+            android:layout_height="20dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="8dp"
+            app:srcCompat="@drawable/linhapretapequena" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dados Pessoais"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="195dp"
+            android:layout_height="20dp"
+            android:paddingStart="10dp"
+            android:paddingTop="5dp"
+            app:srcCompat="@drawable/linhapreta" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/registerDpName"
+        android:layout_width="302dp"
+        android:layout_height="48dp"
+        android:background="@drawable/inputcadastro"
+        android:backgroundTint="#D4D4D4"
+        android:backgroundTintMode="multiply"
+        android:ems="10"
+        android:hint="Name:"
+        android:inputType="text"
+        android:paddingLeft="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.477"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.183" />
+
+    <EditText
+        android:id="@+id/registerDpCpf"
+        android:layout_width="302dp"
+        android:layout_height="48dp"
+        android:background="@drawable/inputcadastro"
+        android:backgroundTint="#D4D4D4"
+        android:backgroundTintMode="multiply"
+        android:ems="10"
+        android:hint="Cpf:"
+        android:inputType="number"
+        android:paddingLeft="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.477"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registerDpName"
+        app:layout_constraintVertical_bias="0.052" />
+
+    <EditText
+        android:id="@+id/registerDpStreet"
+        android:layout_width="302dp"
+        android:layout_height="48dp"
+        android:background="@drawable/inputcadastro"
+        android:backgroundTint="#D4D4D4"
+        android:backgroundTintMode="multiply"
+        android:ems="10"
+        android:hint="Rua:"
+        android:inputType="text"
+        android:paddingLeft="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registerDpCep"
+        app:layout_constraintVertical_bias="0.094" />
+
+    <EditText
+        android:id="@+id/registerDpCep"
+        android:layout_width="302dp"
+        android:layout_height="48dp"
+        android:background="@drawable/inputcadastro"
+        android:backgroundTint="#D4D4D4"
+        android:backgroundTintMode="multiply"
+        android:ems="10"
+        android:hint="Cep:"
+        android:inputType="number"
+        android:paddingLeft="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registerDpBirth"
+        app:layout_constraintVertical_bias="0.082" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="66dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stateSpinnerDpRegister"
+        app:layout_constraintVertical_bias="0.589">
+
+        <Button
+            android:id="@+id/registerDpBack"
+            android:layout_width="160dp"
+            android:layout_height="64dp"
+            android:layout_weight="1"
+            android:backgroundTint="#D5D5D5"
+            android:elevation="1000dp"
+            android:text="Voltar"
+            android:textColor="#4A4A4A"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/registerDpNext"
+            android:layout_width="160dp"
+            android:layout_height="64dp"
+            android:layout_weight="1"
+            android:backgroundTint="#A5F422"
+            android:elevation="8dp"
+            android:text="Proxímo"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <EditText
+        android:id="@+id/citySpinnerDpRegister"
+        android:layout_width="302dp"
+        android:layout_height="48dp"
+        android:background="@drawable/inputcadastro"
+        android:hint="Cidade:"
+        android:paddingLeft="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registerDpStreet"
+        app:layout_constraintVertical_bias="0.142" />
+
+    <Spinner
+        android:id="@+id/stateSpinnerDpRegister"
+        android:layout_width="302dp"
+        android:layout_height="48dp"
+        android:background="@drawable/inputcadastroselecao"
+        android:drawablePadding="8dp"
+        android:entries="@array/state"
+        android:paddingLeft="16dp"
+        android:prompt="@string/select_state"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/citySpinnerDpRegister"
+        app:layout_constraintVertical_bias="0.204" />
+
+    <LinearLayout
+        android:id="@+id/registerDpBirth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registerDpCpf"
+        app:layout_constraintVertical_bias="0.057">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:text="Data de Nascimento:"
+            android:textAlignment="center"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/editTextDate"
+            android:layout_width="140dp"
+            android:layout_height="48dp"
+            android:background="@drawable/inputcadastrodata"
+            android:backgroundTint="#D4D4D4"
+            android:backgroundTintMode="multiply"
+            android:ems="10"
+            android:hint="00/00/0000"
+            android:inputType="date"
+            android:textAlignment="center" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

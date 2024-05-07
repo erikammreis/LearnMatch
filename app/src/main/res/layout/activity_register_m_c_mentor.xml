@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivityMC">
+
+    <ImageView
+        android:id="@+id/logoOrangeRegisterEp"
+        android:layout_width="71dp"
+        android:layout_height="52dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.048"
+        app:srcCompat="@drawable/logoensinarpequenolaranja" />
+
+
+    <EditText
+        android:id="@+id/registrationMcOccupationArea"
+        android:layout_width="302dp"
+        android:layout_height="48dp"
+        android:background="@drawable/inputcadastro"
+        android:backgroundTint="#D4D4D4"
+        android:backgroundTintMode="multiply"
+        android:ems="10"
+        android:hint="Área de atuação:"
+        android:inputType="text"
+        android:paddingLeft="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerOperatingTimeMcRegister"
+        app:layout_constraintVertical_bias="0.027" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/buttonRegisterMC"
+        android:layout_width="match_parent"
+        android:layout_height="66dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registerMcExperience">
+
+        <Button
+            android:id="@+id/registerMCBack"
+            android:layout_width="160dp"
+            android:layout_height="64dp"
+            android:layout_weight="1"
+            android:backgroundTint="#D5D5D5"
+            android:elevation="1000dp"
+            android:text="Voltar"
+            android:textColor="#4A4A4A"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/registerMcNext"
+            android:layout_width="160dp"
+            android:layout_height="64dp"
+            android:layout_weight="1"
+            android:backgroundTint="#A5F422"
+            android:elevation="8dp"
+            android:text="Proxímo"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <Spinner
+        android:id="@+id/spinnerOperatingTimeMcRegister"
+        android:layout_width="302dp"
+        android:layout_height="48dp"
+        android:background="@drawable/inputcadastroselecao"
+        android:drawablePadding="8dp"
+        android:entries="@array/duration"
+        android:paddingLeft="16dp"
+        android:prompt="@string/select_duration"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.051" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout7"
+        app:layout_constraintVertical_bias="0.04000002">
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="90dp"
+            android:layout_height="20dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="8dp"
+            app:srcCompat="@drawable/linhapretapequena" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Carreira"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="230dp"
+            android:layout_height="20dp"
+            android:paddingStart="10dp"
+            android:paddingTop="5dp"
+            app:srcCompat="@drawable/linhapreta" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.129">
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="85dp"
+            android:layout_height="25dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="8dp"
+            app:srcCompat="@drawable/linhapretapequena" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mentorias"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="225dp"
+            android:layout_height="25dp"
+            android:paddingStart="10dp"
+            android:paddingTop="5dp"
+            app:srcCompat="@drawable/linhapreta" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/registerMcExperience"
+        android:layout_width="302dp"
+        android:layout_height="130dp"
+        android:background="@drawable/inputcadastrogrande"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="Experiência:"
+        android:inputType="textMultiLine"
+        android:paddingStart="15dp"
+        android:paddingTop="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registrationMcOccupationArea"
+        app:layout_constraintVertical_bias="0.084" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dia da Semana"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+        app:layout_constraintVertical_bias="0.01999998" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Período disponível para mentoria"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintVertical_bias="0.021" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        app:layout_constraintVertical_bias="0.00999999">
+
+        <CheckBox
+            android:id="@+id/orningMcCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="#F4A522"
+            android:paddingEnd="30dp"
+            android:text="Manhã" />
+
+        <CheckBox
+            android:id="@+id/nightMcCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="#F4A522"
+            android:paddingEnd="30dp"
+            android:text="Noite" />
+
+        <CheckBox
+            android:id="@+id/afternoonMcCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="#F4A522"
+            android:paddingEnd="30dp"
+            android:text="Tarde" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        app:layout_constraintVertical_bias="0.01999998">
+
+        <Button
+            android:id="@+id/buttonSundayMc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#A3DCDCDC"
+            android:onClick="onButtonClick"
+            android:text="Dom"
+            android:textColor="@color/orange" />
+
+        <Button
+            android:id="@+id/buttonMondayMC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#A3DCDCDC"
+            android:onClick="onButtonClick"
+            android:text="Seg"
+            android:textColor="@color/orange" />
+
+        <Button
+            android:id="@+id/buttonTuesdayMc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#A3DCDCDC"
+            android:onClick="onButtonClick"
+            android:text="Ter"
+            android:textColor="@color/orange" />
+
+        <Button
+            android:id="@+id/buttonWednesdayMc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#A3DCDCDC"
+            android:onClick="onButtonClick"
+            android:text="Qua"
+            android:textColor="@color/orange" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+
+        <Button
+            android:id="@+id/buttonThursdayMc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#A3DCDCDC"
+            android:onClick="onButtonClick"
+            android:text="Qui"
+            android:textColor="@color/orange" />
+
+        <Button
+            android:id="@+id/buttonFridayMc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#A3DCDCDC"
+            android:onClick="onButtonClick"
+            android:text="Sex"
+            android:textColor="@color/orange" />
+
+        <Button
+            android:id="@+id/buttonSaturdayMc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#A3DCDCDC"
+            android:onClick="onButtonClick"
+            android:text="Sab"
+            android:textColor="@color/orange" />
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

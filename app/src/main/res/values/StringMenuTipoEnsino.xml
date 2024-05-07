@@ -1,0 +1,15 @@
+<resources>
+    <string name="select_the_type_of_course">Selecione o tipo de curso</string>
+    <string-array name="TypeOfCourse">
+        <item>Bacharelado</item>
+        <item>Tecnólogo</item>
+        <item>Licenciatura</item>
+        <item>Cursos Sequenciais</item>
+        <item>Pós-graduação</item>
+        <item>Mestrado</item>
+        <item>Doutorado</item>
+        <item>Curso técnico</item>
+        <item>Especialização</item>
+    </string-array>
+</resources>
+

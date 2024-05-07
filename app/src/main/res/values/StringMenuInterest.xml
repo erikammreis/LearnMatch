@@ -1,0 +1,88 @@
+<resources>
+    <string name="select_interest">Selecione os assuntos de interesse:</string>
+    <string-array name="interest">
+        <item>Desenvolvimento de Software</item>
+        <item>Python</item>
+        <item>Java</item>
+        <item>JavaScript</item>
+        <item>Desenvolvimento Web</item>
+        <item>Desenvolvimento Mobile (iOS, Android)</item>
+        <item>UX/UI Design</item>
+        <item>Gestão de Projetos</item>
+        <item>Empreendedorismo</item>
+        <item>Marketing Digital</item>
+        <item>Finanças para Startups</item>
+        <item>Liderança e Gestão de Equipes</item>
+        <item>Inteligência Artificial e Machine Learning</item>
+        <item>Internet das Coisas (IoT)</item>
+        <item>Blockchain e Criptomoedas</item>
+        <item>Segurança da Informação</item>
+        <item>Design Thinking</item>
+        <item>Gestão de Produto</item>
+        <item>Análise de Dados e Business Intelligence</item>
+        <item>Desenvolvimento de Carreira</item>
+        <item>Inovação e Criatividade</item>
+        <item>Sustentabilidade e Responsabilidade Social</item>
+        <item>Biologia Molecular</item>
+        <item>Genética e Genômica</item>
+        <item>Ecologia</item>
+        <item>Biologia Marina</item>
+        <item>Botânica</item>
+        <item>Zoologia</item>
+        <item>Microbiologia</item>
+        <item>Fisiologia Humana</item>
+        <item>Biologia Evolutiva</item>
+        <item>Biologia Celular</item>
+        <item>Neurociência</item>
+        <item>Biotecnologia</item>
+        <item>Ecologia de Ecossistemas Terrestres</item>
+        <item>Biologia do Desenvolvimento</item>
+        <item>Ecologia Comportamental</item>
+        <item>Biologia de Conservação</item>
+        <item>Biologia Ambiental</item>
+        <item>Parasitologia</item>
+        <item>Imunologia</item>
+        <item>Biologia Forense</item>
+        <item>FísicaClássica</item>
+        <item>FísicaModerna</item>
+        <item>Mecânica</item>
+        <item>Termodinâmica</item>
+        <item>Eletromagnetismo</item>
+        <item>Óptica</item>
+        <item>FísicaQuântica</item>
+        <item>FísicadePartículas</item>
+        <item>Astrofísica</item>
+        <item>FísicaNuclear</item>
+        <item>FísicaComputacional</item>
+        <item>Acústica</item>
+        <item>FísicadoEstadoSólido</item>
+        <item>RelatividadeGeral</item>
+        <item>RelatividadeRestrita</item>
+        <item>Biofísica</item>
+        <item>Geofísica</item>
+        <item>FísicadePlasma</item>
+        <item>FísicadeFluidos</item>
+        <item>FísicaMédica</item>
+        <item>Sociologia</item>
+        <item>Psicologia</item>
+        <item>Antropologia</item>
+        <item>História</item>
+        <item>Geografia</item>
+        <item>Economia</item>
+        <item>CiênciaPolítica</item>
+        <item>Filosofia</item>
+        <item>Arqueologia</item>
+        <item>Linguística</item>
+        <item>Direito</item>
+        <item>Educação</item>
+        <item>ComunicaçãoSocial</item>
+        <item>AdministraçãoPública</item>
+        <item>ServiçoSocial</item>
+        <item>Teologia</item>
+        <item>EstudosCulturais</item>
+        <item>CiênciasdoConsumo</item>
+        <item>Criminologia</item>
+        <item>RelaçõesInternacionais</item>
+    </string-array>
+</resources>
+
