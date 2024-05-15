@@ -1,0 +1,8 @@
+<resources>
+    <string-array name="sex">
+        <item>@string/select_sex</item>
+        <item>Feminino</item>
+        <item>Masculino</item>
+    </string-array>
+</resources>
+

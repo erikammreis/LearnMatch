@@ -1,0 +1,51 @@
+<resources>
+    <string-array name="occupation_area">
+        <item>@string/occupation_area_hint</item>
+        <item>Engenharia Mecânica</item>
+        <item>Nutrição e Dietética</item>
+        <item>Desenvolvimento de Software</item>
+        <item>Engenharia Civil</item>
+        <item>Marketing e Publicidade</item>
+        <item>Medicina</item>
+        <item>Arquitetura</item>
+        <item>Administração de Empresas</item>
+        <item>Psicologia</item>
+        <item>Direito</item>
+        <item>Contabilidade</item>
+        <item>Design Gráfico</item>
+        <item>Engenharia Elétrica</item>
+        <item>Recursos Humanos</item>
+        <item>Educação Física</item>
+        <item>Jornalismo</item>
+        <item>Fisioterapia</item>
+        <item>Biologia</item>
+        <item>Engenharia de Produção</item>
+        <item>Gastronomia</item>
+        <item>Engenharia Química</item>
+        <item>Terapia Ocupacional</item>
+        <item>Design de Interiores</item>
+        <item>Engenharia de Alimentos</item>
+        <item>Engenharia Ambiental</item>
+        <item>Publicidade e Propaganda</item>
+        <item>Odontologia</item>
+        <item>Engenharia de Telecomunicações</item>
+        <item>Farmacologia</item>
+        <item>Engenharia de Minas</item>
+        <item>Engenharia Agrícola</item>
+        <item>Administração Hospitalar</item>
+        <item>Engenharia Biomédica</item>
+        <item>Ciências Sociais</item>
+        <item>Farmácia</item>
+        <item>Design de Moda</item>
+        <item>Engenharia de Petróleo</item>
+        <item>Relações Públicas</item>
+        <item>Engenharia Aeroespacial</item>
+        <item>Ciência da Computação</item>
+        <item>Engenharia</item>
+        <item>Engenharia de Sistemas</item>
+        <item>Programador</item>
+        <item>Medicina Veterinária</item>
+        <item>Sociologia</item>
+    </string-array>
+</resources>
+

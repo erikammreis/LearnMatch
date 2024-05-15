@@ -3,8 +3,10 @@
         android:type="linear"
         android:angle="270"
         android:centerX="25%"
-        android:startColor="#F4A522"
-        android:endColor="#A5F422"
+        android:startColor="@color/orange"
+        android:centerColor="@color/orange"
+        android:centerY="@color/orange"
+        android:endColor="@color/greenshadow"
         android:gradientRadius="100dp" />
 </shape>
 

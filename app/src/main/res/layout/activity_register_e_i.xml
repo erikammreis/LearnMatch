@@ -6,54 +6,44 @@
     android:layout_height="match_parent"
     tools:context=".RegisterActivityEI">
 
-    <ImageView
-        android:id="@+id/logoOrangeRegisterEi"
-        android:layout_width="71dp"
-        android:layout_height="52dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.048"
-        app:srcCompat="@drawable/logoensinarpequenolaranja" />
-
 
     <EditText
-        android:id="@+id/registrationEiEducationalInstitution"
+        android:id="@+id/registerEiEducationalInstitution"
         android:layout_width="302dp"
         android:layout_height="48dp"
-        android:background="@drawable/inputcadastro"
+        android:background="@drawable/input_background_edit_nor"
         android:backgroundTint="#D4D4D4"
         android:backgroundTintMode="multiply"
         android:ems="10"
-        android:hint="Instituição de ensino:"
+        android:hint="@string/institution_hint"
         android:inputType="text"
         android:paddingLeft="20dp"
+        android:paddingEnd="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.477"
+        app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.183" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout15"
+        app:layout_constraintVertical_bias="0.031" />
 
     <EditText
         android:id="@+id/registerEiCourse"
         android:layout_width="302dp"
         android:layout_height="48dp"
-        android:background="@drawable/inputcadastro"
+        android:background="@drawable/input_background_edit_nor"
         android:backgroundTint="#D4D4D4"
         android:backgroundTintMode="multiply"
         android:ems="10"
-        android:hint="Curso:"
-        android:inputType="number"
+        android:hint="@string/course_hint"
+        android:inputType="textAutoCorrect"
         android:paddingLeft="20dp"
+        android:paddingEnd="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.477"
+        app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registrationEiEducationalInstitution"
-        app:layout_constraintVertical_bias="0.032" />
+        app:layout_constraintTop_toBottomOf="@+id/registerEiEducationalInstitution"
+        app:layout_constraintVertical_bias="0.043" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/buttonRegisterEi"
@@ -72,7 +62,7 @@
             android:layout_weight="1"
             android:backgroundTint="#D5D5D5"
             android:elevation="1000dp"
-            android:text="Voltar"
+            android:text="@string/back_button_text"
             android:textColor="#4A4A4A"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -88,7 +78,7 @@
             android:layout_weight="1"
             android:backgroundTint="#A5F422"
             android:elevation="8dp"
-            android:text="Proxímo"
+            android:text="@string/next_button_text"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -111,17 +101,17 @@
         android:layout_width="302dp"
         android:layout_height="48dp"
         android:layout_marginBottom="208dp"
-        android:background="@drawable/inputcadastroselecao"
+        android:background="@drawable/selection_button_background"
         android:drawablePadding="8dp"
         android:entries="@array/TypeOfCourse"
         android:paddingLeft="16dp"
         android:prompt="@string/select_the_type_of_course"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/registerEiDateStart"
-        app:layout_constraintVertical_bias="0.073" />
+        app:layout_constraintVertical_bias="0.104" />
 
     <LinearLayout
         android:id="@+id/registerEiDateStart"
@@ -130,16 +120,16 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/registerEiCourse"
-        app:layout_constraintVertical_bias="0.034">
+        app:layout_constraintVertical_bias="0.042">
 
         <TextView
             android:id="@+id/registerEiDateStartLabel"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="Ano de Inicio:"
+            android:text="@string/start_year_hint"
             android:textAlignment="center"
             android:textSize="16sp" />
 
@@ -147,12 +137,13 @@
             android:id="@+id/registerEiDateStartEdit"
             android:layout_width="150dp"
             android:layout_height="48dp"
-            android:background="@drawable/inputcadastrodata"
+            android:background="@drawable/input_background_edit"
             android:backgroundTint="#D4D4D4"
             android:backgroundTintMode="multiply"
             android:ems="10"
-            android:hint="00/00/0000"
+            android:hint="dd/MM/yyyy"
             android:inputType="date"
+            android:paddingEnd="16dp"
             android:textAlignment="center" />
     </LinearLayout>
 
@@ -160,17 +151,17 @@
         android:id="@+id/spinnerDurationEiRegister"
         android:layout_width="302dp"
         android:layout_height="48dp"
-        android:background="@drawable/inputcadastroselecao"
+        android:background="@drawable/selection_button_background"
         android:drawablePadding="8dp"
         android:entries="@array/duration"
         android:paddingLeft="16dp"
         android:prompt="@string/select_duration"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.477"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerTypeTeachingEiRegister"
-        app:layout_constraintVertical_bias="0.051" />
+        app:layout_constraintVertical_bias="0.067" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -181,7 +172,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerDurationEiRegister"
-        app:layout_constraintVertical_bias="0.077">
+        app:layout_constraintVertical_bias="0.060000002">
 
         <ImageView
             android:id="@+id/imageView6"
@@ -189,13 +180,13 @@
             android:layout_height="20dp"
             android:paddingTop="5dp"
             android:paddingEnd="8dp"
-            app:srcCompat="@drawable/linhapretapequena" />
+            app:srcCompat="@drawable/line_black_small" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/textViewInterestSkill"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Interesses"
+            android:text="Habilidades"
             android:textSize="16sp" />
 
         <ImageView
@@ -204,10 +195,11 @@
             android:layout_height="20dp"
             android:paddingStart="10dp"
             android:paddingTop="5dp"
-            app:srcCompat="@drawable/linhapreta" />
+            app:srcCompat="@drawable/line_black" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -216,7 +208,7 @@
         app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.129">
+        app:layout_constraintVertical_bias="0.050000012">
 
         <ImageView
             android:id="@+id/imageView1"
@@ -224,13 +216,13 @@
             android:layout_height="20dp"
             android:paddingTop="5dp"
             android:paddingEnd="8dp"
-            app:srcCompat="@drawable/linhapretapequena" />
+            app:srcCompat="@drawable/line_black_small" />
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Escolaridade"
+            android:text="@string/education_hint"
             android:textSize="16sp" />
 
         <ImageView
@@ -239,7 +231,7 @@
             android:layout_height="20dp"
             android:paddingStart="10dp"
             android:paddingTop="5dp"
-            app:srcCompat="@drawable/linhapreta" />
+            app:srcCompat="@drawable/line_black" />
     </LinearLayout>
 
 
@@ -247,7 +239,7 @@
         android:id="@+id/linearLayout5"
         android:layout_width="317dp"
         android:layout_height="145dp"
-        android:background="@drawable/inputcadastrogrande"
+        android:background="@drawable/input_background_big_edit"
         android:orientation="horizontal"
         android:paddingStart="10dp"
         android:paddingTop="10dp"
@@ -256,18 +248,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.07999998">
+        app:layout_constraintVertical_bias="0.25">
 
         <EditText
-            android:id="@+id/edit_text_search"
-            android:layout_width="190dp"
-            android:layout_height="48dp"
+            android:id="@+id/editTextSearch"
+            android:layout_width="175dp"
+            android:layout_height="47dp"
             android:layout_weight="0.8"
             android:background="#00FDF6FE"
-            android:hint="Pesquisar..."
+            android:hint="@string/search_hint"
             android:inputType="text"
             android:maxLines="1"
             android:paddingStart="15dp"
+            android:paddingEnd="16dp"
             android:singleLine="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/button_add_chip"
@@ -282,7 +275,7 @@
             android:layout_height="48dp"
             android:layout_weight="0.2"
             android:backgroundTint="#89CE18"
-            android:text="Adicionar"
+            android:text="@string/add_text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.923"
@@ -305,10 +298,11 @@
                 android:id="@+id/linearLayout6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="10dp">
 
                 <com.google.android.material.chip.ChipGroup
-                    android:id="@+id/chip_group"
+                    android:id="@+id/chipGroup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal" />

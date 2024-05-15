@@ -1,5 +1,4 @@
 <resources>
-    <string name="select_interest">Selecione os assuntos de interesse:</string>
     <string-array name="interest">
         <item>Desenvolvimento de Software</item>
         <item>Python</item>

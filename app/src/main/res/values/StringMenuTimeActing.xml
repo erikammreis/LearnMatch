@@ -1,0 +1,16 @@
+<resources>
+    <string-array name="time_acting">
+        <item>@string/work_experience_hint</item>
+        <item>-1 ano</item>
+        <item>1 ano</item>
+        <item>2 anos</item>
+        <item>3 anos</item>
+        <item>4 anos</item>
+        <item>5 anos</item>
+        <item>6 anos</item>
+        <item>7 ano</item>
+        <item>8 anos</item>
+        <item>+9 anos</item>
+    </string-array>
+</resources>
+

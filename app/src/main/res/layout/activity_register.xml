@@ -18,23 +18,25 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/cadastroEmail"
+        android:id="@+id/registerEmail"
         android:layout_width="250dp"
         android:layout_height="48dp"
-        android:layout_marginTop="88dp"
         android:background="@drawable/rounded_texte_edit"
         android:ems="10"
         android:hint="Email:"
         android:inputType="textEmailAddress"
         android:paddingLeft="16dp"
+        android:paddingEnd="16dp"
         android:textColorHint="#424242"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.12" />
 
     <EditText
-        android:id="@+id/cadastroPassword"
+        android:id="@+id/registerPassword"
         android:layout_width="250dp"
         android:layout_height="48dp"
         android:background="@drawable/rounded_texte_edit"
@@ -42,13 +44,14 @@
         android:hint="Senha:"
         android:inputType="textPassword"
         android:paddingLeft="16dp"
+        android:paddingEnd="16dp"
         android:textColorHint="#424242"
         app:layout_constraintBottom_toBottomOf="@+id/backgroundView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cadastroEmail"
-        app:layout_constraintVertical_bias="0.069" />
+        app:layout_constraintTop_toBottomOf="@+id/registerEmail"
+        app:layout_constraintVertical_bias="0.068" />
 
     <TextView
         android:id="@+id/textView"
@@ -73,15 +76,15 @@
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/buttonTeach"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.485"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.926" />
+        app:layout_constraintTop_toBottomOf="@+id/registerPassword"
+        app:layout_constraintVertical_bias="0.051" />
 
     <ImageButton
-        android:id="@+id/buttonLearn"
+        android:id="@+id/buttonImagLearn"
         android:layout_width="164dp"
         android:layout_height="153dp"
         android:background="#00FDFDFD"
@@ -89,72 +92,37 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.485"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonTeach"
+        app:layout_constraintTop_toBottomOf="@+id/buttonImagTeach"
         app:layout_constraintVertical_bias="0.1"
-        app:srcCompat="@drawable/logoaprenderpretobut" />
+        app:srcCompat="@drawable/logo_learn_black_but" />
 
     <ImageButton
-        android:id="@+id/buttonTeach"
+        android:id="@+id/buttonImagTeach"
         android:layout_width="162dp"
         android:layout_height="148dp"
         android:background="#00FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/backgroundView"
-        app:layout_constraintVertical_bias="0.499"
-        app:srcCompat="@drawable/logoensinarpretobut" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewObjective"
+        app:layout_constraintVertical_bias="0.075"
+        app:srcCompat="@drawable/logo_teach_black_but" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="66dp"
+    <Button
+        android:id="@+id/registerback"
+        android:layout_width="160dp"
+        android:layout_height="64dp"
+        android:layout_weight="1"
+        android:backgroundTint="#D5D5D5"
+        android:elevation="1000dp"
+        android:text="Voltar"
+        android:textColor="#4A4A4A"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonLearn"
-        app:layout_constraintVertical_bias="0.576">
-
-        <Button
-            android:id="@+id/registerback"
-            android:layout_width="160dp"
-            android:layout_height="64dp"
-            android:layout_weight="1"
-            android:backgroundTint="#D5D5D5"
-            android:elevation="1000dp"
-            android:text="Voltar"
-            android:textColor="#4A4A4A"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/registerNext"
-            android:layout_width="160dp"
-            android:layout_height="64dp"
-            android:layout_weight="1"
-            android:backgroundTint="#A5F422"
-            android:elevation="8dp"
-            android:text="Proxímo"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.5" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintTop_toBottomOf="@+id/buttonImagLearn" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

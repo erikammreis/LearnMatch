@@ -1,6 +1,6 @@
 <resources>
-    <string name="select_the_type_of_course">Selecione o tipo de curso</string>
     <string-array name="TypeOfCourse">
+        <item>@string/education_type_select</item>
         <item>Bacharelado</item>
         <item>Tecnólogo</item>
         <item>Licenciatura</item>

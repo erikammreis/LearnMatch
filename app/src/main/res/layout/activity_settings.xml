@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SettingsActivity">
+
+
+    <Spinner
+        android:id="@+id/spinnerFieldOfWorkRegister"
+        android:layout_width="302dp"
+        android:layout_height="48dp"
+        android:background="@drawable/selection_button_background"
+        android:drawablePadding="8dp"
+        android:entries="@array/occupation_area"
+        android:paddingLeft="16dp"
+        android:prompt="@string/field_of_work_hint"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stateSpinnerSexo"
+        app:layout_constraintVertical_bias="0.121" />
+
+    <Spinner
+        android:id="@+id/stateSpinnerSexo"
+        android:layout_width="302dp"
+        android:layout_height="48dp"
+        android:background="@drawable/selection_button_background"
+        android:drawablePadding="8dp"
+        android:entries="@array/sex"
+        android:paddingLeft="16dp"
+        android:prompt="@string/select_sex"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerlocationRegister"
+        app:layout_constraintVertical_bias="0.106" />
+
+    <Spinner
+        android:id="@+id/spinnerlocationRegister"
+        android:layout_width="302dp"
+        android:layout_height="48dp"
+        android:background="@drawable/selection_button_background"
+        android:drawablePadding="8dp"
+        android:entries="@array/location"
+        android:paddingLeft="16dp"
+        android:prompt="@string/select_location"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout7"
+        app:layout_constraintVertical_bias="0.051" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/day_of_week_label"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+        app:layout_constraintVertical_bias="0.01999998" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
+        app:layout_constraintVertical_bias="0.0">
+
+        <Button
+            android:id="@+id/buttonThursday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#A3DCDCDC"
+            android:onClick="onButtonClick"
+            android:text="@string/weekday_thursday"
+            android:textColor="@color/orange" />
+
+        <Button
+            android:id="@+id/buttonFriday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#A3DCDCDC"
+            android:onClick="onButtonClick"
+            android:text="@string/weekday_friday"
+            android:textColor="@color/orange" />
+
+        <Button
+            android:id="@+id/buttonSaturday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#A3DCDCDC"
+            android:onClick="onButtonClick"
+            android:text="@string/weekday_saturday"
+            android:textColor="@color/orange" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView22"
+        app:layout_constraintVertical_bias="0.01999998">
+
+        <CheckBox
+            android:id="@+id/orningCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="#F4A522"
+            android:paddingEnd="30dp"
+            android:text="@string/hit_morning" />
+
+        <CheckBox
+            android:id="@+id/afternoonCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="#F4A522"
+            android:paddingEnd="30dp"
+            android:text="@string/hit_afternoon" />
+
+        <CheckBox
+            android:id="@+id/nightCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="#F4A522"
+            android:paddingEnd="30dp"
+            android:text="@string/hit_night" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        app:layout_constraintVertical_bias="0.01999998">
+
+        <Button
+            android:id="@+id/buttonSunday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#A3DCDCDC"
+            android:onClick="onButtonClick"
+            android:text="@string/weekday_sunday"
+            android:textColor="@color/orange" />
+
+        <Button
+            android:id="@+id/buttonMonday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#A3DCDCDC"
+            android:onClick="onButtonClick"
+            android:text="@string/weekday_monday"
+            android:textColor="@color/orange" />
+
+        <Button
+            android:id="@+id/buttonTuesday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#A3DCDCDC"
+            android:onClick="onButtonClick"
+            android:text="@string/weekday_tuesday"
+            android:textColor="@color/orange" />
+
+        <Button
+            android:id="@+id/buttonWednesday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#A3DCDCDC"
+            android:onClick="onButtonClick"
+            android:text="@string/weekday_wednesday"
+            android:textColor="@color/orange" />
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/buttonRegisterEi"
+        android:layout_width="match_parent"
+        android:layout_height="66dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerFieldOfWorkRegister"
+        app:layout_constraintVertical_bias="0.264">
+
+        <Button
+            android:id="@+id/buttonDefault"
+            android:layout_width="160dp"
+            android:layout_height="64dp"
+            android:layout_weight="1"
+            android:backgroundTint="#D5D5D5"
+            android:elevation="1000dp"
+            android:text="@string/default_"
+            android:textColor="#4A4A4A"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/buttonApply"
+            android:layout_width="160dp"
+            android:layout_height="64dp"
+            android:layout_weight="1"
+            android:backgroundTint="#A5F422"
+            android:elevation="8dp"
+            android:text="@string/apply"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="206dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center|center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout20">
+
+        <ImageButton
+            android:id="@+id/PerfilButtonMenu"
+            android:layout_width="63dp"
+            android:layout_height="63dp"
+            android:layout_gravity="center|center_horizontal|center_vertical"
+            android:layout_marginEnd="20dp"
+            android:background="#00FFFFFF"
+            app:srcCompat="@drawable/baseline_person_24_orange" />
+
+        <ImageButton
+            android:id="@+id/homeButtonMenu"
+            android:layout_width="63dp"
+            android:layout_height="63dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:background="#00FFFFFF"
+            app:srcCompat="@drawable/logo_teach_orange_small" />
+
+        <ImageButton
+            android:id="@+id/notifButtonMenu"
+            android:layout_width="63dp"
+            android:layout_height="63dp"
+            android:layout_marginStart="20dp"
+            android:background="#00FFFFFF"
+            app:srcCompat="@drawable/notifimenuorange" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.022">
+
+        <ImageView
+            android:id="@+id/imageView16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/baseline_settings_suggest_24_orange" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout17"
+        app:layout_constraintVertical_bias="0.01999998">
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingEnd="10dp"
+            android:text="@string/show_only" />
+
+        <TextView
+            android:id="@+id/typeUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingStart="10dp"
+            android:text="@string/with" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/availability_label"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout18"
+        app:layout_constraintVertical_bias="0.014" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/line_19"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonRegisterEi"
+        app:layout_constraintVertical_bias="0.0"></LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,13 +1,13 @@
 <resources>
-    <string name="select_duration">Selecione a duração do curso</string>
     <string-array name="duration">
+        <item>@string/duration_select</item>
         <item>6 meses</item>
         <item>18 meses</item>
         <item>1 ano</item>
         <item>2 anos</item>
         <item>3 anos</item>
         <item>4 anos</item>
-        <item>5 ano</item>
+        <item>5 anos</item>
         <item>2 anos</item>
         <item>4 anos</item>
     </string-array>
