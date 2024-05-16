@@ -20,6 +20,7 @@
     <EditText
         android:id="@+id/registerEmail"
         android:layout_width="250dp"
+        android:singleLine="true"
         android:layout_height="48dp"
         android:background="@drawable/rounded_texte_edit"
         android:ems="10"
@@ -42,6 +43,7 @@
         android:background="@drawable/rounded_texte_edit"
         android:ems="10"
         android:hint="Senha:"
+        android:singleLine="true"
         android:inputType="textPassword"
         android:paddingLeft="16dp"
         android:paddingEnd="16dp"
