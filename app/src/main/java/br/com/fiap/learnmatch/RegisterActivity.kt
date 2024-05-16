@@ -1,8 +1,8 @@
 package br.com.fiap.learnmatch
 
+import UserInfo
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
@@ -22,18 +22,18 @@ class RegisterActivity : AppCompatActivity() {
         initializeViews()
 
         buttonTeach.setOnClickListener {
-//            if (validateFields()) {
+            if (validateFields()) {
                 saveRegisterInfo("Mentor")
                 val intent = Intent(this@RegisterActivity, RegisterActivityDP::class.java)
                 startActivity(intent)
-//            }
+            }
         }
         buttonLearn.setOnClickListener {
-//            if (validateFields()) {
+            if (validateFields()) {
                 saveRegisterInfo("Student")
                 val intent = Intent(this@RegisterActivity, RegisterActivityDP::class.java)
                 startActivity(intent)
-//            }
+            }
         }
         registerback.setOnClickListener {
             finish()

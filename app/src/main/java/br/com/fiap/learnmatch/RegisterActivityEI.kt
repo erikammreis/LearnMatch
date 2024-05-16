@@ -6,7 +6,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.Button
@@ -56,6 +55,8 @@ class RegisterActivityEI : AppCompatActivity() {
             if(validateFields()){
                 saveRegisterInfo()
                 if(UserInfo.type.equals("Student")){
+                    val repository = Repository(this)
+                    val response = repository.addJsonToFile(UserInfo.toJson())
                     val intent = Intent(this@RegisterActivityEI, MatchScreenStudentActivity::class.java)
                     startActivity(intent)
                 }else if (UserInfo.type.equals("Mentor")) {
@@ -133,7 +134,7 @@ class RegisterActivityEI : AppCompatActivity() {
         UserInfo.educationalInstitution = registerEiEducationalInstitution.text.toString()
         UserInfo.durationCourse = spinnerDurationEiRegister.selectedItem.toString()
         UserInfo.course = registerEiCourse.text.toString()
-        UserInfo.dateStart = StaticMethods.parseDate(registerEiDateStartEdit.text.toString())
+        UserInfo.dateStart = registerEiDateStartEdit.text.toString()
         UserInfo.typeTeaching = spinnerTypeTeachingEiRegister.selectedItem.toString()
         UserInfo.interest = chipTexts.toTypedArray()
     }

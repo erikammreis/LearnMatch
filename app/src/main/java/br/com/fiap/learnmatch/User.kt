@@ -1,10 +1,8 @@
+package br.com.fiap.learnmatch
 
 import android.util.Log
-import br.com.fiap.learnmatch.User
-import com.google.gson.GsonBuilder
-import java.util.Date
 
-object UserInfo {
+class User {
     var id: Long = 0
     var email: String? = null
         get() = field
@@ -109,10 +107,10 @@ object UserInfo {
         }
 
     var durationCourse: String? = null
-    get() = field
-    set(value) {
-        field = value
-    }
+        get() = field
+        set(value) {
+            field = value
+        }
 
     var interest: Array<String>? = null
         get() = field
@@ -146,41 +144,59 @@ object UserInfo {
             field = value
         }
 
-    init {
-        id = Date().time
+
+    fun insertData(
+        id: Long?,
+        email: String?,
+        password: String?,
+        type: String?,
+        saveLoginCheckBox: Boolean?,
+        name: String?,
+        cpf: Int?,
+        dateOfBirth: String?,
+        cep: Int?,
+        street: String?,
+        city: String?,
+        state: String?,
+        sex: String?,
+        age: Int?,
+        educationalInstitution: String?,
+        course: String?,
+        dateStart: String?,
+        typeTeaching: String?,
+        durationCourse: String?,
+        interest: Array<String>?,
+        operatingTime: String?,
+        occupationArea: String?,
+        office: String?,
+        experience: String?
+    ) {
+        this.id = id ?: 0
+        this.email = email
+        this.password = password
+        this.type = type
+        this.saveLoginCheckBox = saveLoginCheckBox
+        this.name = name
+        this.cpf = cpf
+        this.dateOfBirth = dateOfBirth
+        this.cep = cep
+        this.street = street
+        this.city = city
+        this.state = state
+        this.sex = sex
+        this.age = age
+        this.educationalInstitution = educationalInstitution
+        this.course = course
+        this.dateStart = dateStart
+        this.typeTeaching = typeTeaching
+        this.durationCourse = durationCourse
+        this.interest = interest
+        this.operatingTime = operatingTime
+        this.occupationArea = occupationArea
+        this.office = office
+        this.experience = experience
     }
-    fun toJson(): String {
-        val user = User()
-        user.insertData(
-            id = id,
-            email = email,
-            password = password,
-            type = type,
-            saveLoginCheckBox = saveLoginCheckBox,
-            name = name,
-            cpf = cpf,
-            dateOfBirth = dateOfBirth,
-            cep = cep,
-            street = street,
-            city = city,
-            state = state,
-            sex = sex,
-            age = age,
-            educationalInstitution = educationalInstitution,
-            course = course,
-            dateStart = dateStart,
-            typeTeaching = typeTeaching,
-            durationCourse = durationCourse,
-            interest = interest,
-            operatingTime = operatingTime,
-            occupationArea = occupationArea,
-            office = office,
-            experience = experience
-        )
-        Log.i("@erika", email.toString() + " " + id.toString())
-        val gson = GsonBuilder().setPrettyPrinting().create()
-        return gson.toJson(user)
-    }
+
 
 
 }

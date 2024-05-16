@@ -7,7 +7,8 @@ import java.util.Locale
 
 object StaticMethods {
     public fun parseDate(dateString: String): Date? {
-        val dateFormat = SimpleDateFormat("dd/MM/yyyy")
+        val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        dateFormat.parse(dateString)
         return try {
             dateFormat.parse(dateString)
         } catch (e: Exception) {

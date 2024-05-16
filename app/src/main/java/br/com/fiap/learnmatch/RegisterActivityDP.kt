@@ -10,7 +10,6 @@ import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 
@@ -62,11 +61,11 @@ class RegisterActivityDP : AppCompatActivity() {
             finish()
         }
         registerDpNext.setOnClickListener {
-//            if (validateFields()) {
+            if (validateFields()) {
                 saveRegisterInfo()
                 val intent = Intent(this@RegisterActivityDP, RegisterActivityEI::class.java)
                 startActivity(intent)
-//            }
+            }
         }
     }
 
@@ -90,7 +89,7 @@ class RegisterActivityDP : AppCompatActivity() {
         UserInfo.street = registerDpStreet.text.toString()
         UserInfo.cep = registerDpCep.text.toString().toIntOrNull()
         UserInfo.city = registerDpCity.text.toString()
-        UserInfo.dateOfBirth = StaticMethods.parseDate(editTextDate.text.toString())
+        UserInfo.dateOfBirth = editTextDate.text.toString()
         UserInfo.state = stateSpinnerDpRegister.selectedItem.toString()
         UserInfo.sex = stateSpinnerDpSexo.selectedItem.toString()
     }
