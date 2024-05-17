@@ -85,9 +85,9 @@ class RegisterActivityDP : AppCompatActivity() {
 
     private fun saveRegisterInfo() {
         UserInfo.name = registerDpName.text.toString()
-        UserInfo.cpf = registerDpCpf.text.toString().toIntOrNull()
+        UserInfo.cpf = registerDpCpf.text.toString()
         UserInfo.street = registerDpStreet.text.toString()
-        UserInfo.cep = registerDpCep.text.toString().toIntOrNull()
+        UserInfo.cep = registerDpCep.text.toString()
         UserInfo.city = registerDpCity.text.toString()
         UserInfo.dateOfBirth = editTextDate.text.toString()
         UserInfo.state = stateSpinnerDpRegister.selectedItem.toString()

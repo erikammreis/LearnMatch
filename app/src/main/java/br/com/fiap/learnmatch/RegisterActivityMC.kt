@@ -28,7 +28,7 @@ class RegisterActivityMC : AppCompatActivity() {
         registerMcNext.setOnClickListener {
             saveRegisterInfo()
             val repository = Repository(this)
-            val response = repository.addJsonToFile(UserInfo.toJson())
+            val response = repository.addJsonToFile(UserInfo.salveAndGetJson(this))
             Log.i("@erika", "Mentor:repository.addJsonToFile(UserInfo.toJson()):" + response)
             val intent = Intent(this@RegisterActivityMC, MatchScreenMentorActivity::class.java)
             startActivity(intent)

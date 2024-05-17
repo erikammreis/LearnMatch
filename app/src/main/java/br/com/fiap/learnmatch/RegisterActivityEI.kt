@@ -56,7 +56,7 @@ class RegisterActivityEI : AppCompatActivity() {
                 saveRegisterInfo()
                 if(UserInfo.type.equals("Student")){
                     val repository = Repository(this)
-                    val response = repository.addJsonToFile(UserInfo.toJson())
+                    val response = repository.addJsonToFile(UserInfo.salveAndGetJson(this))
                     val intent = Intent(this@RegisterActivityEI, MatchScreenStudentActivity::class.java)
                     startActivity(intent)
                 }else if (UserInfo.type.equals("Mentor")) {

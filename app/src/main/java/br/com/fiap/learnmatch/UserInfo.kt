@@ -1,10 +1,16 @@
 
+import android.content.Context
 import android.util.Log
 import br.com.fiap.learnmatch.User
+import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import java.io.File
+import java.io.FileWriter
 import java.util.Date
 
 object UserInfo {
+    private const val USER_INFO_FILE_NAME = "userInfo.json"
+
     var id: Long = 0
     var email: String? = null
         get() = field
@@ -36,7 +42,7 @@ object UserInfo {
             field = value
         }
 
-    var cpf: Int? = null
+    var cpf: String? = null
         get() = field
         set(value) {
             field = value
@@ -48,7 +54,7 @@ object UserInfo {
             field = value
         }
 
-    var cep: Int? = null
+    var cep: String? = null
         get() = field
         set(value) {
             field = value
@@ -149,7 +155,58 @@ object UserInfo {
     init {
         id = Date().time
     }
-    fun toJson(): String {
+    var period: Array<String>? = null
+        get() = field
+        set(value) {
+            field = value
+        }
+
+    var dayOfTheWeek: Array<String>? = null
+        get() = field
+        set(value) {
+            field = value
+        }
+
+
+    var locationSettings: String? = null
+        get() = field
+        set(value) {
+            field = value
+        }
+
+    var sexSettings: String? = null
+        get() = field
+        set(value) {
+            field = value
+        }
+
+    var fieldOfWorkSettings: String? = null
+        get() = field
+        set(value) {
+            field = value
+        }
+
+    var evaluationNote: Int? = null
+        get() = field
+        set(value) {
+            field = value
+        }
+
+    var potentialMatch: Array<Long>? = null
+        get() = field
+        set(value) {
+            field = value
+            // Adiciona um log para imprimir o valor de interest
+            Log.i("@erika", "Interest: ${field?.contentToString()}")
+        }
+    var match: Array<Long>? = null
+        get() = field
+        set(value) {
+            field = value
+            // Adiciona um log para imprimir o valor de interest
+            Log.i("@erika", "Interest: ${field?.contentToString()}")
+        }
+    fun salveAndGetJson(context: Context):String {
         val user = User()
         user.insertData(
             id = id,
@@ -175,11 +232,53 @@ object UserInfo {
             operatingTime = operatingTime,
             occupationArea = occupationArea,
             office = office,
-            experience = experience
+            experience = experience,
+            period = arrayOf(""),
+            dayOfTheWeek = arrayOf(""),
+            locationSettings = "",
+            sexSettings = "",
+            fieldOfWorkSettings = "",
+            evaluationNote = 0 ,
+            potentialMatch = arrayOf(),
+            match = arrayOf(),
         )
-        Log.i("@erika", email.toString() + " " + id.toString())
+        setUserInf(context, user)
         val gson = GsonBuilder().setPrettyPrinting().create()
         return gson.toJson(user)
+
+    }
+
+    public fun getUserInf(context: Context): User {
+        val jsonString = readUserInfoFromFile(context)
+        return Gson().fromJson(jsonString, User::class.java) ?: User()
+    }
+
+    private  fun setUserInf(context: Context, userInfo: User) {
+        val json = Gson().toJson(userInfo)
+        writeUserInfoToFile(context, json)
+    }
+
+    private fun readUserInfoFromFile(context: Context): String {
+        return try {
+            val file = File(context.filesDir, USER_INFO_FILE_NAME)
+            if (file.exists()) {
+                file.readText()
+            } else {
+                ""
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            ""
+        }
+    }
+
+     private  fun writeUserInfoToFile(context: Context, json: String) {
+        try {
+            val file = File(context.filesDir, USER_INFO_FILE_NAME)
+            FileWriter(file).use { it.write(json) }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
 

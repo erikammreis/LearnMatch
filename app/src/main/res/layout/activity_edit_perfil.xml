@@ -149,7 +149,7 @@
             app:srcCompat="@drawable/logo_teach_orange_small" />
 
         <ImageButton
-            android:id="@+id/notifButtonMenu"
+            android:id="@+id/chatsButtonMenu"
             android:layout_width="63dp"
             android:layout_height="63dp"
             android:layout_marginStart="20dp"

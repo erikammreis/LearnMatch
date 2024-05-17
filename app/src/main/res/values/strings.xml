@@ -46,7 +46,7 @@
     <string name="position_hint">Cargo:</string>
     <string name="experience_hint">Experiência:</string>
     <string name="career_hint">Carreira:</string>
-    <string name="availability_label">Período disponível</string>
+    <string name="availability_label">Período disponível:</string>
     <string name="day_of_week_label">Dia da Semana</string>
     <string name="rating_label">Avaliação:</string>
     <string name="comments_label">Comentários:</string>

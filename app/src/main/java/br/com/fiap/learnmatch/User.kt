@@ -34,7 +34,7 @@ class User {
             field = value
         }
 
-    var cpf: Int? = null
+    var cpf: String? = null
         get() = field
         set(value) {
             field = value
@@ -46,7 +46,7 @@ class User {
             field = value
         }
 
-    var cep: Int? = null
+    var cep: String? = null
         get() = field
         set(value) {
             field = value
@@ -144,6 +144,55 @@ class User {
             field = value
         }
 
+    var period: Array<String>? = null
+        get() = field
+        set(value) {
+            field = value
+        }
+
+    var dayOfTheWeek: Array<String>? = null
+        get() = field
+        set(value) {
+            field = value
+        }
+
+
+    var locationSettings: String? = null
+        get() = field
+        set(value) {
+            field = value
+        }
+
+    var sexSettings: String? = null
+        get() = field
+        set(value) {
+            field = value
+        }
+
+    var fieldOfWorkSettings: String? = null
+        get() = field
+        set(value) {
+            field = value
+        }
+    var evaluationNote: Int? = null
+        get() = field
+        set(value) {
+            field = value
+        }
+    var potentialMatch: Array<Long>? = null
+        get() = field
+        set(value) {
+            field = value
+            // Adiciona um log para imprimir o valor de interest
+            Log.i("@erika", "Interest: ${field?.contentToString()}")
+        }
+    var match: Array<Long>? = null
+        get() = field
+        set(value) {
+            field = value
+            // Adiciona um log para imprimir o valor de interest
+            Log.i("@erika", "Interest: ${field?.contentToString()}")
+        }
 
     fun insertData(
         id: Long?,
@@ -152,9 +201,9 @@ class User {
         type: String?,
         saveLoginCheckBox: Boolean?,
         name: String?,
-        cpf: Int?,
+        cpf: String?,
         dateOfBirth: String?,
-        cep: Int?,
+        cep: String?,
         street: String?,
         city: String?,
         state: String?,
@@ -169,7 +218,15 @@ class User {
         operatingTime: String?,
         occupationArea: String?,
         office: String?,
-        experience: String?
+        experience: String?,
+        period: Array<String>?,
+        dayOfTheWeek: Array<String>?,
+        locationSettings: String?,
+        sexSettings: String?,
+        fieldOfWorkSettings: String?,
+        evaluationNote: Int?,
+        potentialMatch: Array<Long>?,
+        match: Array<Long>?,
     ) {
         this.id = id ?: 0
         this.email = email
@@ -195,8 +252,16 @@ class User {
         this.occupationArea = occupationArea
         this.office = office
         this.experience = experience
-    }
+        this.period = period
+        this.dayOfTheWeek = dayOfTheWeek
+        this.locationSettings = locationSettings
+        this.sexSettings = sexSettings
+        this.fieldOfWorkSettings = fieldOfWorkSettings
+        this.evaluationNote = evaluationNote
+        this.potentialMatch = potentialMatch
+        this.match = match
 
+    }
 
 
 }

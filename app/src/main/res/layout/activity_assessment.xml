@@ -21,23 +21,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/leaveYourComment"
-            android:layout_width="285dp"
-            android:layout_height="100dp"
-            android:background="@drawable/rounded_texte_edit"
-            android:ems="10"
-            android:gravity="start|top"
-            android:hint="@string/leave_comment"
-            android:inputType="textMultiLine"
-            android:paddingStart="15dp"
-            android:paddingTop="15dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout24"
-            app:layout_constraintVertical_bias="0.144" />
-
         <LinearLayout
             android:id="@+id/linearLayout23"
             android:layout_width="wrap_content"
@@ -134,7 +117,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView10"
-            app:layout_constraintVertical_bias="0.07999998">
+            app:layout_constraintVertical_bias="0.23000002">
 
             <ImageButton
                 android:id="@+id/start1Assess"
@@ -188,7 +171,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/leaveYourComment" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout24" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -221,7 +204,7 @@
             app:srcCompat="@drawable/logo_teach_white_small" />
 
         <ImageButton
-            android:id="@+id/notifButtonMenu"
+            android:id="@+id/chatsButtonMenu"
             android:layout_width="63dp"
             android:layout_height="63dp"
             android:layout_marginStart="20dp"
