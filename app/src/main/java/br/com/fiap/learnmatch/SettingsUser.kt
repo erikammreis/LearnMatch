@@ -41,8 +41,23 @@ class SettingsUser {
         fieldOfWorkSettings = null
     }
 
+     fun insertSettings(
+        period: Array<String>,
+        dayOfTheWeek: Array<String>,
+        locationSettings: String,
+        sexSettings: String,
+        fieldOfWorkSettings: String,
+    ) {
+        this.period = period
+        this.dayOfTheWeek = dayOfTheWeek
+        this.locationSettings = locationSettings
+        this.sexSettings = sexSettings
+        this.fieldOfWorkSettings = fieldOfWorkSettings
+
+    }
+
     public fun checkSetupDefault(): Boolean {
-        if ( period == null || dayOfTheWeek == null || locationSettings == null || sexSettings == null || fieldOfWorkSettings == null) {
+        if (period == null || dayOfTheWeek == null || locationSettings == null || sexSettings == null || fieldOfWorkSettings == null) {
             return true
         } else {
             return false
