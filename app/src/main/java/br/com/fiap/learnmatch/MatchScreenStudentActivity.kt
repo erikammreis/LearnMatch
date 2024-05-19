@@ -100,7 +100,7 @@ class MatchScreenStudentActivity : AppCompatActivity() {
             }
         }
         moreInformation.setOnClickListener {
-            val intent = Intent(this@MatchScreenStudentActivity, MatchScreenMentorMoreInfActivity::class.java)
+            val intent = Intent(this@MatchScreenStudentActivity, MatchScreenStudentMoreInfActivity::class.java)
             startActivity(intent)
         }
 
