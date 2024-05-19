@@ -71,7 +71,7 @@ class MatchScreenStudentMoreInfActivity : AppCompatActivity() {
         buttonMatchMentor.setOnClickListener {
             if (currentJsonIndex!! < mentorList.size - 1) {
                 currentJsonIndex = currentJsonIndex!! + 1
-                StaticVal.currentJsonIndex = currentJsonIndex
+                StaticStudentIndex.currentJsonIndex = currentJsonIndex
             }
             val intent = Intent(this@MatchScreenStudentMoreInfActivity, MatchScreenStudentActivity::class.java)
             startActivity(intent)
@@ -80,7 +80,7 @@ class MatchScreenStudentMoreInfActivity : AppCompatActivity() {
         noMatchMentor.setOnClickListener{
             if (currentJsonIndex!! < mentorList.size - 1) {
                 currentJsonIndex = currentJsonIndex!! + 1
-                StaticVal.currentJsonIndex = currentJsonIndex
+                StaticStudentIndex.currentJsonIndex = currentJsonIndex
             }
             val intent = Intent(this@MatchScreenStudentMoreInfActivity, MatchScreenStudentActivity::class.java)
             startActivity(intent)
