@@ -74,8 +74,20 @@ class MatchScreenStudentActivity : AppCompatActivity() {
         })
 
         buttonMatchMentor.setOnClickListener {
+            while(!displaySettings(mentorList[currentJsonIndex!!], settingUser, user) && currentJsonIndex!! < mentorList.size - 1 && interestEquals(mentorList[currentJsonIndex!!],user)) {
+                currentJsonIndex = currentJsonIndex!! + 1
+                StaticStudentIndex.currentJsonIndex = currentJsonIndex
+            }
+            if (currentJsonIndex!! < mentorList.size - 1) {
+                displayUserData(mentorList[currentJsonIndex!!])
+                currentJsonIndex = currentJsonIndex!! + 1
+                StaticStudentIndex.currentJsonIndex = currentJsonIndex
+            }else{
+                clearAndSetCenterText()
+            }
+        }
 
-//                    if(interestEquals(studentList[currentJsonIndex],user)) {
+        noMatchMentor.setOnClickListener {
             while(!displaySettings(mentorList[currentJsonIndex!!], settingUser, user) && currentJsonIndex!! < mentorList.size - 1) {
                 currentJsonIndex = currentJsonIndex!! + 1
                 StaticStudentIndex.currentJsonIndex = currentJsonIndex
@@ -84,18 +96,8 @@ class MatchScreenStudentActivity : AppCompatActivity() {
                 displayUserData(mentorList[currentJsonIndex!!])
                 currentJsonIndex = currentJsonIndex!! + 1
                 StaticStudentIndex.currentJsonIndex = currentJsonIndex
-
-
-//                    }
             }else{
                 clearAndSetCenterText()
-            }
-        }
-
-        noMatchMentor.setOnClickListener {
-            if (currentJsonIndex!! < mentorList.size - 1) {
-                currentJsonIndex = currentJsonIndex!! + 1
-                StaticStudentIndex.currentJsonIndex = currentJsonIndex
             }
         }
         moreIntomation.setOnClickListener {
@@ -113,11 +115,23 @@ class MatchScreenStudentActivity : AppCompatActivity() {
         }
 
     }
+
+    private fun interestEquals(userData: UserData, user: User): Boolean {
+        val interestS = userData.interest
+        val interestU = user.interest
+        if (interestS != null && interestU != null) {
+            if (interestS.any { interestU.contains(it) }) {
+                return true
+            }
+        }
+        return false
+    }
     private fun initializeViews() {
         nameUser = findViewById(R.id.nameUser)
         courseStudentMatch = findViewById(R.id.courseStudentMatch)
         periodAvailable = findViewById(R.id.periodAvailable)
         dayWeekLayout = findViewById(R.id.dayWeekLayout)
+        dayWeekLayout2 = findViewById(R.id.dayWeekLayout2)
         chipGroup = findViewById(R.id.chipGroup)
 
         evaluationNoteView = findViewById(R.id.evaluationNoteView)
@@ -374,9 +388,6 @@ class MatchScreenStudentActivity : AppCompatActivity() {
     }
 
     private fun daysOfWeek(daysOfWeek: Array<String>) {
-        val linearLayout = findViewById<LinearLayout>(R.id.dayWeekLayout)
-        val linearLayout2 = findViewById<LinearLayout>(R.id.dayWeekLayout2)
-
         val layoutParams = LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.WRAP_CONTENT,
             LinearLayout.LayoutParams.WRAP_CONTENT
@@ -389,8 +400,8 @@ class MatchScreenStudentActivity : AppCompatActivity() {
 
         layoutParams.setMargins(0, 0, 16, 0)
         layoutParams2.setMargins(0, 0, 16, 0)
-        linearLayout.removeAllViews()
-        linearLayout2.removeAllViews()
+        dayWeekLayout.removeAllViews()
+        dayWeekLayout2.removeAllViews()
 
         if (daysOfWeek != null) {
             var cont = 0
@@ -403,9 +414,9 @@ class MatchScreenStudentActivity : AppCompatActivity() {
                 textView.setTextColor(Color.parseColor("#FFA500"))
                 textView.gravity = Gravity.CENTER
                 if (cont > 4) {
-                    linearLayout.addView(textView)
+                    dayWeekLayout.addView(textView)
                 } else {
-                    linearLayout2.addView(textView)
+                    dayWeekLayout2.addView(textView)
                 }
                 cont = cont + 1
 
