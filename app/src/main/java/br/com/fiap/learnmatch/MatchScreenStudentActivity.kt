@@ -1,5 +1,6 @@
 package br.com.fiap.learnmatch
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -11,8 +12,13 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MatchScreenStudentActivity : AppCompatActivity() {
     private lateinit var nameUser: TextView
@@ -32,13 +38,79 @@ class MatchScreenStudentActivity : AppCompatActivity() {
     private var currentJsonIndex = StaticStudentIndex.currentJsonIndex
     private lateinit var dayWeekLayout: LinearLayout
     private lateinit var dayWeekLayout2: LinearLayout
-    private lateinit var studentList: List<UserData>
+    private lateinit var mentorList: List<UserData>
     private lateinit var repository: Repository
     private lateinit var chipGroup: ChipGroup
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_match_screen_student)
         initializeViews()
+
+        currentJsonIndex = StaticStudentIndex.currentJsonIndex
+
+        val settingUser = SettingsManager.getSettings(this)
+        val user = UserInfo.getUserInf(this)
+
+        repository = Repository(this)
+        repository.getMentorsFromApi(object : Callback<List<UserData>> {
+            override fun onResponse(
+                call: Call<List<UserData>>,
+                response: Response<List<UserData>>
+            ) {
+                if (response.isSuccessful) {
+                    mentorList = response.body() ?: emptyList()
+                    while(!displaySettings(mentorList[currentJsonIndex!!], settingUser, user) &&  currentJsonIndex!! < mentorList.size - 1) {
+                        currentJsonIndex = currentJsonIndex!! + 1
+                        StaticStudentIndex.currentJsonIndex = currentJsonIndex
+                    }
+                    displayUserData(mentorList[currentJsonIndex!!])
+                } else {
+                    Log.e("@erika" ,"Erro")
+                }
+            }
+
+            override fun onFailure(call: Call<List<UserData>>, t: Throwable) {
+            }
+        })
+
+        buttonMatchMentor.setOnClickListener {
+
+//                    if(interestEquals(studentList[currentJsonIndex],user)) {
+            while(!displaySettings(mentorList[currentJsonIndex!!], settingUser, user) && currentJsonIndex!! < mentorList.size - 1) {
+                currentJsonIndex = currentJsonIndex!! + 1
+                StaticStudentIndex.currentJsonIndex = currentJsonIndex
+            }
+            if (currentJsonIndex!! < mentorList.size - 1) {
+                displayUserData(mentorList[currentJsonIndex!!])
+                currentJsonIndex = currentJsonIndex!! + 1
+                StaticStudentIndex.currentJsonIndex = currentJsonIndex
+
+
+//                    }
+            }else{
+                clearAndSetCenterText()
+            }
+        }
+
+        noMatchMentor.setOnClickListener {
+            if (currentJsonIndex!! < mentorList.size - 1) {
+                currentJsonIndex = currentJsonIndex!! + 1
+                StaticStudentIndex.currentJsonIndex = currentJsonIndex
+            }
+        }
+        moreIntomation.setOnClickListener {
+            val intent = Intent(this@MatchScreenStudentActivity, MatchScreenMentorMoreInfActivity::class.java)
+            startActivity(intent)
+        }
+
+        PerfilButtonMenu.setOnClickListener {
+            val intent = Intent(this@MatchScreenStudentActivity, PerfilActivity::class.java)
+            startActivity(intent)
+        }
+        chatsButtonMenu.setOnClickListener {
+            val intent = Intent(this@MatchScreenStudentActivity, ChatsActivity::class.java)
+            startActivity(intent)
+        }
 
     }
     private fun initializeViews() {
@@ -57,7 +129,7 @@ class MatchScreenStudentActivity : AppCompatActivity() {
 
         PerfilButtonMenu = findViewById(R.id.PerfilButtonMenu)
         chatsButtonMenu = findViewById(R.id.chatsButtonMenu)
-        moreIntomation = findViewById(R.id.moreIntomation)
+        moreIntomation = findViewById(R.id.moreInforMentorMatch)
         buttonMatchMentor = findViewById(R.id.buttonMatchMentor)
         noMatchMentor = findViewById(R.id.noMatchMentor)
     }
@@ -219,6 +291,39 @@ class MatchScreenStudentActivity : AppCompatActivity() {
             start4.setImageResource(R.drawable.start_empty_orange)
             start5.setImageResource(R.drawable.start_empty_orange)
         }
+    }
+
+    private fun clearAndSetCenterText() {
+        // Obtém a referência ao ConstraintLayout
+        val constraintLayout: ConstraintLayout = findViewById(R.id.constraintLayout1)
+
+        // Remove todas as views filhas
+        constraintLayout.removeAllViews()
+
+        // Cria um novo TextView
+        val textView = TextView(this).apply {
+            id = View.generateViewId()
+            text = "Texto Centralizado"
+            textSize = 18f // Tamanho do texto
+            setTextColor(resources.getColor(android.R.color.black, theme)) // Cor do texto
+        }
+
+        // Adiciona o TextView ao ConstraintLayout
+        constraintLayout.addView(textView)
+
+        // Configura as restrições para centralizar o TextView
+        val constraintSet = ConstraintSet().apply {
+            clone(constraintLayout)
+            connect(textView.id, ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP)
+            connect(textView.id, ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM)
+            connect(textView.id, ConstraintSet.START, ConstraintSet.PARENT_ID, ConstraintSet.START)
+            connect(textView.id, ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END)
+            setHorizontalBias(textView.id, 0.5f) // Centraliza horizontalmente
+            setVerticalBias(textView.id, 0.5f) // Centraliza verticalmente
+        }
+
+        // Aplica as restrições
+        constraintSet.applyTo(constraintLayout)
     }
 
     private fun visibilityView(Nota: Int) {

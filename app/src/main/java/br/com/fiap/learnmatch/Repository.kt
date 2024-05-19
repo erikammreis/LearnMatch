@@ -21,6 +21,11 @@ class Repository(private val context: Context) {
         val call = apiService.getStudents()
         call.enqueue(callback)
     }
+
+    fun getMentorsFromApi(callback: Callback<List<UserData>>) {
+        val call = apiService.getMentors()
+        call.enqueue(callback)
+    }
     fun addJsonToFile(json: String){
         try {
             val userData = Gson().fromJson(json, UserData::class.java)
