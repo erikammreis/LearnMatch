@@ -60,9 +60,9 @@ class SettingsActivity : AppCompatActivity() {
     fun setViewTypeUser(){
         val user = UserInfo.getUserInf(this)
      if(user.type.equals("Mentor")){
-         typeUser.setText("Mentor")
-     }else if(user.type.equals("Student")){
          typeUser.setText("Estudante")
+     }else if(user.type.equals("Student")){
+         typeUser.setText("Mentor")
      }
     }
 

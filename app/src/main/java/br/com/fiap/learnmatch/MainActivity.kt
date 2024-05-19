@@ -12,8 +12,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        // Cria um novo Handler
         Handler().postDelayed({
             val intent = Intent(this@MainActivity, LoginActivity::class.java)
             startActivity(intent)
