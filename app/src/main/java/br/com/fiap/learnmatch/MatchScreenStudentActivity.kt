@@ -303,7 +303,7 @@ class MatchScreenStudentActivity : AppCompatActivity() {
         // Cria um novo TextView
         val textView = TextView(this).apply {
             id = View.generateViewId()
-            text = "Texto Centralizado"
+            text = "Não há mais mentores para o filtro selecionado."
             textSize = 18f // Tamanho do texto
             setTextColor(resources.getColor(android.R.color.black, theme)) // Cor do texto
         }
