@@ -1,8 +1,10 @@
 package br.com.fiap.learnmatch
 
+import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.PUT
 
 interface ApiService {
     @GET("students")
@@ -12,7 +14,10 @@ interface ApiService {
     fun getMentors(): Call<List<UserData>>
 
     @POST("register")
-    fun putRegister(): Boolean
+    fun postRegister(json: Gson ): Boolean
+
+    @PUT("register")
+    fun putUpdateUser(json: Gson): Boolean
 
 
 

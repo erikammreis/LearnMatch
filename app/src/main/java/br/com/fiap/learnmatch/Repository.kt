@@ -34,5 +34,10 @@ class Repository(private val context: Context) {
         //Methodo validar o login
     }
 
+    public  fun UpdateUser(json : String ) : Boolean{
+        //atulizar usuario
+        return true
+    }
+
 
 }

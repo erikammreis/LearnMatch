@@ -202,10 +202,17 @@ object UserInfo {
             // Adiciona um log para imprimir o valor de interest
             Log.i("@erika", "Interest: ${field?.contentToString()}")
         }
+    fun valorId() : Long{
+        if(type.equals("Mentor")){
+            return 9
+        }else{
+            return 1
+        }
+    }
     fun salveAndGetJson(context: Context):String {
         val user = User()
         user.insertData(
-            id = id,
+            id = valorId(),
             email = email,
             password = password,
             type = type,

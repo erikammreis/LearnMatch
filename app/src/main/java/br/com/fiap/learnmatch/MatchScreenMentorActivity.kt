@@ -73,9 +73,18 @@ class MatchScreenMentorActivity : AppCompatActivity() {
             override fun onFailure(call: Call<List<UserData>>, t: Throwable) {
             }
         })
-        buttonMatchMentor.setOnClickListener {
 
-                while(interestEquals(studentList[currentJsonIndex!!],user) && !displaySettings(studentList[currentJsonIndex!!], settingUser, user) && currentJsonIndex!! < studentList.size - 1) {
+        buttonMatchMentor.setOnClickListener {
+            if(macthChenk(studentList[currentJsonIndex!!], user)){
+                addMatch()
+                val intent = Intent(this@MatchScreenMentorActivity, MatchScreenActivity::class.java)
+                startActivity(intent)
+                currentJsonIndex = currentJsonIndex!! + 1
+                StaticVal.currentJsonIndex = currentJsonIndex
+            }else{
+                addPotentialMatch()
+            }
+            while(interestEquals(studentList[currentJsonIndex!!],user) && !displaySettings(studentList[currentJsonIndex!!], settingUser, user) && currentJsonIndex!! < studentList.size - 1) {
                     currentJsonIndex = currentJsonIndex!! + 1
                     StaticVal.currentJsonIndex = currentJsonIndex
                 }
@@ -84,8 +93,6 @@ class MatchScreenMentorActivity : AppCompatActivity() {
                 currentJsonIndex = currentJsonIndex!! + 1
                 StaticVal.currentJsonIndex = currentJsonIndex
 
-
-//                    }
             }else{
                 clearAndSetCenterText()
             }
@@ -135,6 +142,56 @@ class MatchScreenMentorActivity : AppCompatActivity() {
         buttonMatchMentor = findViewById(R.id.buttonMatchMentor)
         noMatchMentor = findViewById(R.id.noMatchMentor)
         constraintLayout1 = findViewById(R.id.constraintLayout1)
+    }
+    private fun addMatch(){
+        val repository = Repository(this)
+        val user = UserInfo.getUserInf(this)
+        val  userData = studentList[currentJsonIndex!!]
+        var match = userData.match?.toMutableList()
+        var  newpotentialMatch = mutableListOf<Long>()
+        if (match != null) {
+            newpotentialMatch.addAll(match)
+            newpotentialMatch.add(user.id)
+        }
+        val arrayList: Array<Long> = newpotentialMatch.toTypedArray()
+        userData.match = arrayList
+        repository.UpdateUser(StaticMethods.getJsonUserDate(this,userData))
+
+        var matchUser = user.match?.toMutableList()
+        var  newpotentialMatchUser = mutableListOf<Long>()
+        if (matchUser != null) {
+            newpotentialMatchUser.addAll(matchUser)
+            newpotentialMatchUser.add(user.id)
+        }
+        val arrayListUser: Array<Long> = newpotentialMatchUser.toTypedArray()
+        user.match = arrayListUser
+        repository.UpdateUser(StaticMethods.getJsonUser(this,user))
+
+
+    }
+
+    private fun addPotentialMatch(){
+        val repository = Repository(this)
+        val user = UserInfo.getUserInf(this)
+        val  userData = studentList[currentJsonIndex!!]
+        var potentialMatch = userData.potentialMatch?.toMutableList()
+        var  newpotentialMatch = mutableListOf<Long>()
+        if (potentialMatch != null) {
+            newpotentialMatch.addAll(potentialMatch)
+            newpotentialMatch.add(user.id)
+        }
+        val arrayList: Array<Long> = newpotentialMatch.toTypedArray()
+        userData.potentialMatch = arrayList
+        repository.UpdateUser(StaticMethods.getJsonUserDate(this,userData))
+    }
+    private fun macthChenk(userData: UserData, user: User):Boolean {
+        val potentialMatch = userData.potentialMatch
+        if (potentialMatch != null) {
+            if (potentialMatch.contains(user.id)) {
+                return true
+            }
+        }
+        return false
     }
 
     private fun displaySettings(userData: UserData, setting: SettingsUser, user: User): Boolean {

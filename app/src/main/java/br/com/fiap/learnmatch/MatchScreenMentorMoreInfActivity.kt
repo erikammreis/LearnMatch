@@ -25,10 +25,10 @@ class MatchScreenMentorMoreInfActivity : AppCompatActivity() {
     private lateinit var duration: TextView
     private lateinit var evaluationNoteView: TextView
     private lateinit var PerfilButtonMenu: ImageButton
-    private lateinit var noMatchMentor: ImageButton
     private lateinit var chatsButtonMenu: ImageButton
-    private lateinit var buttonMatchMentor: ImageButton
     private lateinit var homeButtonMenu: ImageButton
+    private lateinit var buttonMatchMentor: ImageButton
+    private lateinit var noMatchMentor: ImageButton
     private lateinit var start1: ImageView
     private lateinit var start2: ImageView
     private lateinit var start3: ImageView
