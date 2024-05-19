@@ -271,35 +271,23 @@ class MatchScreenMentorActivity : AppCompatActivity() {
     }
 
     private fun clearAndSetCenterText() {
-        // Obtém a referência ao ConstraintLayout
         val constraintLayout: ConstraintLayout = findViewById(R.id.constraintLayout1)
-
-        // Remove todas as views filhas
         constraintLayout.removeAllViews()
-
-        // Cria um novo TextView
         val textView = TextView(this).apply {
             id = View.generateViewId()
-            text = "Texto Centralizado"
-            textSize = 18f // Tamanho do texto
-            setTextColor(resources.getColor(android.R.color.black, theme)) // Cor do texto
+            text = "Não há mais estudantes para o filtro selecionado"
+            setTextColor(resources.getColor(android.R.color.black, theme))
         }
-
-        // Adiciona o TextView ao ConstraintLayout
         constraintLayout.addView(textView)
-
-        // Configura as restrições para centralizar o TextView
         val constraintSet = ConstraintSet().apply {
             clone(constraintLayout)
             connect(textView.id, ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP)
             connect(textView.id, ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM)
             connect(textView.id, ConstraintSet.START, ConstraintSet.PARENT_ID, ConstraintSet.START)
             connect(textView.id, ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END)
-            setHorizontalBias(textView.id, 0.5f) // Centraliza horizontalmente
-            setVerticalBias(textView.id, 0.5f) // Centraliza verticalmente
+            setHorizontalBias(textView.id, 0.5f)
+            setVerticalBias(textView.id, 0.5f)
         }
-
-        // Aplica as restrições
         constraintSet.applyTo(constraintLayout)
     }
 

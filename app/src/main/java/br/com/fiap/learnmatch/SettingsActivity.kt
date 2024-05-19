@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.Spinner
@@ -34,16 +35,21 @@ class SettingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
+        var teste = SettingsManager.getSettings(this)
+        Log.i(
+            "@erika", "period " + teste.period?.joinToString() +
+                    "\ndayOfTheWeek  " + teste.dayOfTheWeek?.joinToString() +
+                    "\nlocationSettings " + teste.locationSettings.toString() +
+                    "\nsexSettings " + teste.sexSettings.toString() +
+                    "\nfieldOfWorkSettings " + teste.fieldOfWorkSettings.toString()
+        )
         setupViews()
+        setViewStandard()
         visibilityView()
 
         buttonApply.setOnClickListener {
             savePeriod()
-            Log.i("@erika", "savePeriod" + period.toString())
             setSettings()
-             var  teste = SettingsManager.getSettings(this)
-            Log.i("@erika", " save: " + teste.period.toString() + " save: "
-                    + teste.fieldOfWorkSettings +" save: " + teste.locationSettings +" save: " + teste.sexSettings +" save: " + teste.dayOfTheWeek.toString())
             finish()
             val intent = Intent(this@SettingsActivity, MatchScreenMentorActivity::class.java)
             startActivity(intent)
@@ -51,8 +57,9 @@ class SettingsActivity : AppCompatActivity() {
         }
         buttonDefault.setOnClickListener {
             default()
-//            val intent = Intent(this@SettingsActivity, LoginActivity::class.java)
-//            startActivity(intent)
+            finish()
+            val intent = Intent(this@SettingsActivity, MatchScreenMentorActivity::class.java)
+            startActivity(intent)
         }
 
     }
@@ -77,17 +84,18 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     fun savePeriod() {
-       if(morningCheckBox.isChecked){
-           period.add(morningCheckBox.text.toString())
-       }
-        if(afternoonCheckBox.isChecked){
+        if (morningCheckBox.isChecked) {
+            period.add(morningCheckBox.text.toString())
+        }
+        if (afternoonCheckBox.isChecked) {
             period.add(afternoonCheckBox.text.toString())
         }
-        if(nightCheckBox.isChecked){
+        if (nightCheckBox.isChecked) {
             period.add(nightCheckBox.text.toString())
         }
         sortPeriod(period)
     }
+
     fun sortPeriod(period: List<String>): List<String> {
         val order = listOf("Manhã", "Tarde", "Noite")
         return period.sortedWith(compareBy { order.indexOf(it) })
@@ -129,6 +137,7 @@ class SettingsActivity : AppCompatActivity() {
         val order = listOf("Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab")
         return dayOfTheWeek.sortedWith(compareBy { order.indexOf(it) })
     }
+
     private fun visibilityView() {
         val user = UserInfo.getUserInf(this)
         if (user.type.equals("Mentor")) {
@@ -137,25 +146,131 @@ class SettingsActivity : AppCompatActivity() {
         }
     }
 
-
-    fun default(){
+    fun default() {
         settingsUser.default()
         SettingsManager.setSettings(this, settingsUser)
         var teste = SettingsManager.getSettings(this)
-        Log.i("@erika" , "period " + (teste.period?.joinToString()) +
-                "\ndayOfTheWeek  " +teste.dayOfTheWeek?.joinToString()+
-                "\nlocationSettings " + teste.locationSettings.toString()+
-                "\nsexSettings " + teste.sexSettings.toString() +
-                "\nfieldOfWorkSettings " + teste.fieldOfWorkSettings.toString())
+        Log.i(
+            "@erika", "period " + (teste.period?.joinToString()) +
+                    "\ndayOfTheWeek  " + teste.dayOfTheWeek?.joinToString() +
+                    "\nlocationSettings " + teste.locationSettings.toString() +
+                    "\nsexSettings " + teste.sexSettings.toString() +
+                    "\nfieldOfWorkSettings " + teste.fieldOfWorkSettings.toString()
+        )
+    }
+
+    fun setViewStandard() {
+        var settingsUserView = SettingsManager.getSettings(this)
+        var selectedColor: Int
+        var textColor: Int
+
+        val period = settingsUserView.period
+        if (period != null) {
+            if (period.contains(morningCheckBox.text)) {
+                morningCheckBox.isChecked = true
+            }
+            if (period.contains(afternoonCheckBox.text)) {
+                afternoonCheckBox.isChecked = true
+            }
+            if (period.contains(nightCheckBox.text)) {
+                nightCheckBox.isChecked = true
+            }
+        }
+
+        val dayOfTheWeek = settingsUserView.dayOfTheWeek
+        if (dayOfTheWeek != null) {
+            if (dayOfTheWeek.contains(buttonSunday.text)) {
+                selectedColor = resources.getColor(R.color.orange)
+                textColor = resources.getColor(R.color.white)
+                buttonSunday.tag = 1
+                buttonSunday.setBackgroundColor(selectedColor)
+                buttonSunday.setTextColor(textColor)
+            }
+            if (dayOfTheWeek.contains(buttonMonday.text)) {
+                selectedColor = resources.getColor(R.color.orange)
+                textColor = resources.getColor(R.color.white)
+                buttonMonday.tag = 1
+                buttonMonday.setBackgroundColor(selectedColor)
+                buttonMonday.setTextColor(textColor)
+            }
+            if (dayOfTheWeek.contains(buttonSaturday.text)) {
+                selectedColor = resources.getColor(R.color.orange)
+                textColor = resources.getColor(R.color.white)
+                buttonSaturday.tag = 1
+                buttonSaturday.setBackgroundColor(selectedColor)
+                buttonSaturday.setTextColor(textColor)
+            }
+            if (dayOfTheWeek.contains(buttonWednesday.text)) {
+                selectedColor = resources.getColor(R.color.orange)
+                textColor = resources.getColor(R.color.white)
+                buttonWednesday.tag = 1
+                buttonWednesday.setBackgroundColor(selectedColor)
+                buttonWednesday.setTextColor(textColor)
+            }
+            if (dayOfTheWeek.contains(buttonThursday.text)) {
+                selectedColor = resources.getColor(R.color.orange)
+                textColor = resources.getColor(R.color.white)
+                buttonThursday.tag = 1
+                buttonThursday.setBackgroundColor(selectedColor)
+                buttonThursday.setTextColor(textColor)
+            }
+            if (dayOfTheWeek.contains(buttonTuesday.text)) {
+                selectedColor = resources.getColor(R.color.orange)
+                textColor = resources.getColor(R.color.white)
+                buttonTuesday.tag = 1
+                buttonTuesday.setBackgroundColor(selectedColor)
+                buttonTuesday.setTextColor(textColor)
+            }
+            if (dayOfTheWeek.contains(buttonFriday.text)) {
+                selectedColor = resources.getColor(R.color.orange)
+                textColor = resources.getColor(R.color.white)
+                buttonFriday.tag = 1
+                buttonFriday.setBackgroundColor(selectedColor)
+                buttonFriday.setTextColor(textColor)
+            }
+
+        }
+        adapterSpinner(
+            spinnerlocationRegister,
+            settingsUserView.locationSettings.toString(),
+            R.array.location
+        )
+        adapterSpinner(
+            settingsSpinnerSexo,
+            settingsUserView.sexSettings.toString(),
+            R.array.sexSetting
+        )
+        adapterSpinner(
+            settingsSpinnerFieldOfWork,
+            settingsUserView.fieldOfWorkSettings.toString(),
+            R.array.occupation_area_settings
+        )
+    }
+
+    fun adapterSpinner(spinner: Spinner, value: String, arrayResId: Int) {
+        ArrayAdapter.createFromResource(
+            this,
+            arrayResId,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spinner.adapter = adapter
+        }
+
+        selectSpinnerItemByValue(spinner, value)
+
+    }
+
+    private fun selectSpinnerItemByValue(spinner: Spinner, value: String) {
+        val adapter = spinner.adapter as ArrayAdapter<CharSequence>
+        val position = adapter.getPosition(value)
+        if (position >= 0) {
+            spinner.setSelection(position)
+        }
     }
 
     fun setSettings() {
-        Log.i("@erika" , "sortDaysOfWeek(period).toTypedArray() " +sortDaysOfWeek(period).toString() +
-        "\nsortDaysOfWeek(dayOfTheWeek).toTypedArray()   " +sortDaysOfWeek(dayOfTheWeek).toString()+
-        "\nspinnerlocationRegister " + spinnerlocationRegister.selectedItem.toString()+
-        "\nsettingsSpinnerFieldOfWork " +settingsSpinnerFieldOfWork.selectedItem.toString())
         settingsUser.insertSettings(
-
             period = sortDaysOfWeek(period).toTypedArray(),
             dayOfTheWeek = sortDaysOfWeek(dayOfTheWeek).toTypedArray(),
             locationSettings = spinnerlocationRegister.selectedItem.toString(),
@@ -164,14 +279,13 @@ class SettingsActivity : AppCompatActivity() {
         )
         SettingsManager.setSettings(this, settingsUser)
         var teste = SettingsManager.getSettings(this)
-        Log.i("@erika" , "period " +teste.period?.joinToString() +
-                "\ndayOfTheWeek  " +teste.dayOfTheWeek?.joinToString()+
-                "\nlocationSettings " + teste.locationSettings.toString()+
-                "\nsexSettings " + teste.sexSettings.toString() +
-                "\nfieldOfWorkSettings " + teste.fieldOfWorkSettings.toString())
-    }
-    fun isValidete(){
-
+        Log.i(
+            "@erika", "period " + teste.period?.joinToString() +
+                    "\ndayOfTheWeek  " + teste.dayOfTheWeek?.joinToString() +
+                    "\nlocationSettings " + teste.locationSettings.toString() +
+                    "\nsexSettings " + teste.sexSettings.toString() +
+                    "\nfieldOfWorkSettings " + teste.fieldOfWorkSettings.toString()
+        )
     }
 
 
