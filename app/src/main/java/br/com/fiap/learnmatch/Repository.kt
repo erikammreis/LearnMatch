@@ -21,6 +21,11 @@ class Repository(private val context: Context) {
         call.enqueue(callback)
     }
 
+    fun getNotificationsFromApi(callback: Callback<List<NotificationData>>) {
+        val call = apiService.getNotifications()
+        call.enqueue(callback)
+    }
+
     fun getMentorsFromApi(callback: Callback<List<UserData>>) {
         val call = apiService.getMentors()
         call.enqueue(callback)
