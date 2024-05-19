@@ -32,18 +32,12 @@ class SettingsActivity : AppCompatActivity() {
     private lateinit var afternoonCheckBox: CheckBox
     private lateinit var nightCheckBox: CheckBox
     private lateinit var occupationArea: TextView
+    private lateinit var typeUser: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
-        var teste = SettingsManager.getSettings(this)
-        Log.i(
-            "@erika", "period " + teste.period?.joinToString() +
-                    "\ndayOfTheWeek  " + teste.dayOfTheWeek?.joinToString() +
-                    "\nlocationSettings " + teste.locationSettings.toString() +
-                    "\nsexSettings " + teste.sexSettings.toString() +
-                    "\nfieldOfWorkSettings " + teste.fieldOfWorkSettings.toString()
-        )
         setupViews()
+        setViewTypeUser()
         setViewStandard()
         visibilityView()
 
@@ -62,6 +56,14 @@ class SettingsActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+    }
+    fun setViewTypeUser(){
+        val user = UserInfo.getUserInf(this)
+     if(user.type.equals("Mentor")){
+         typeUser.setText("Mentor")
+     }else if(user.type.equals("Student")){
+         typeUser.setText("Estudante")
+     }
     }
 
     private fun setupViews() {
@@ -270,9 +272,20 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     fun setSettings() {
+
+        var period = sortDaysOfWeek(period).toTypedArray()
+        if(period.isEmpty()){
+            period =  arrayOf("Manhã","Tarde","Noite")
+        }
+
+        var dayOfTheWeek = sortDaysOfWeek(dayOfTheWeek).toTypedArray()
+        if(dayOfTheWeek.isEmpty()){
+            dayOfTheWeek =  arrayOf("Seg", "Ter", "Qua", "Qui", "Sex", "Sab", "Dom")
+        }
+
         settingsUser.insertSettings(
-            period = sortDaysOfWeek(period).toTypedArray(),
-            dayOfTheWeek = sortDaysOfWeek(dayOfTheWeek).toTypedArray(),
+            period = period,
+            dayOfTheWeek = dayOfTheWeek,
             locationSettings = spinnerlocationRegister.selectedItem.toString(),
             sexSettings = settingsSpinnerSexo.selectedItem.toString(),
             fieldOfWorkSettings = settingsSpinnerFieldOfWork.selectedItem.toString(),

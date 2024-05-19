@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.Button
@@ -57,6 +58,7 @@ class RegisterActivityEI : AppCompatActivity() {
                 if(UserInfo.type.equals("Student")){
                     val repository = Repository(this)
                     val response = repository.addJsonToFile(UserInfo.salveAndGetJson(this))
+                    Log.i("@erika", "Student:repository.addJsonToFile(UserInfo.toJson()):" + response)
                     val intent = Intent(this@RegisterActivityEI, MatchScreenStudentActivity::class.java)
                     startActivity(intent)
                 }else if (UserInfo.type.equals("Mentor")) {

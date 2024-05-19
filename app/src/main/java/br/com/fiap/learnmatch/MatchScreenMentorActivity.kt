@@ -93,7 +93,7 @@ class MatchScreenMentorActivity : AppCompatActivity() {
         }
 
         noMatchMentor.setOnClickListener {
-            if (currentJsonIndex!! < studentList.size - 1) {
+            while(!displaySettings(studentList[currentJsonIndex!!], settingUser, user) && currentJsonIndex!! < studentList.size - 1) {
                 currentJsonIndex = currentJsonIndex!! + 1
                 StaticVal.currentJsonIndex = currentJsonIndex
             }
