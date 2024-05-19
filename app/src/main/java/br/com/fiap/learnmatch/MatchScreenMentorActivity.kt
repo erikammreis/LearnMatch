@@ -56,7 +56,7 @@ class MatchScreenMentorActivity : AppCompatActivity() {
             ) {
                 if (response.isSuccessful) {
                     studentList = response.body() ?: emptyList()
-                    while(!displaySettings(studentList[currentJsonIndex!!], settingUser, user)) {
+                    while(!displaySettings(studentList[currentJsonIndex!!], settingUser, user) &&  currentJsonIndex!! < studentList.size - 1) {
                        currentJsonIndex = currentJsonIndex!! + 1
                        StaticVal.currentJsonIndex = currentJsonIndex
                     }
