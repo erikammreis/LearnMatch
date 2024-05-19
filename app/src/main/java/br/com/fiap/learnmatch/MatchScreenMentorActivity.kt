@@ -45,6 +45,8 @@ class MatchScreenMentorActivity : AppCompatActivity() {
         setContentView(R.layout.activity_match_screen_mentor)
         currentJsonIndex = StaticVal.currentJsonIndex
         initializeViews()
+        val settingUser = SettingsManager.getSettings(this)
+        val user = UserInfo.getUserInf(this)
 
         repository = Repository(this)
         repository.getStudentsFromApi(object : Callback<List<UserData>> {
@@ -54,38 +56,37 @@ class MatchScreenMentorActivity : AppCompatActivity() {
             ) {
                 if (response.isSuccessful) {
                     studentList = response.body() ?: emptyList()
-                    displayUserData(studentList[currentJsonIndex!!])
+                    while(!displaySettings(studentList[currentJsonIndex!!], settingUser, user)) {
+                       currentJsonIndex = currentJsonIndex!! + 1
+                       StaticVal.currentJsonIndex = currentJsonIndex
+                    }
+                        displayUserData(studentList[currentJsonIndex!!])
+                        currentJsonIndex = currentJsonIndex!! + 1
+                        StaticVal.currentJsonIndex = currentJsonIndex
                 } else {
+                    Log.e("@erika" ,"Erro")
                 }
             }
 
             override fun onFailure(call: Call<List<UserData>>, t: Throwable) {
             }
         })
-
-        val settingUser = SettingsManager.getSettings(this)
-        val user = UserInfo.getUserInf(this)
         buttonMatchMentor.setOnClickListener {
+              Log.i("@erika" , "teste" +(currentJsonIndex!! < studentList.size - 1))
             if (currentJsonIndex!! < studentList.size - 1) {
-
-                if (settingUser.checkSetupDefault()) {
 //                    if(interestEquals(studentList[currentJsonIndex],user)) {
+                while(!displaySettings(studentList[currentJsonIndex!!], settingUser, user) && currentJsonIndex!! < studentList.size - 1) {
                     currentJsonIndex = currentJsonIndex!! + 1
                     StaticVal.currentJsonIndex = currentJsonIndex
-                    displayUserData(studentList[currentJsonIndex!!])
-//                    }
-                } else {
-//                    if(interestEquals(studentList[currentJsonIndex],user)) {
-                    if (displaySettings(studentList[currentJsonIndex!!], settingUser, user)) {
-                        currentJsonIndex = currentJsonIndex!! + 1
-                        StaticVal.currentJsonIndex = currentJsonIndex
-                        displayUserData(studentList[currentJsonIndex!!])
-                    } else {
-                        currentJsonIndex = currentJsonIndex!! + 1
-                        StaticVal.currentJsonIndex = currentJsonIndex
-                    }
-//                    }
                 }
+                displayUserData(studentList[currentJsonIndex!!])
+                currentJsonIndex = currentJsonIndex!! + 1
+                StaticVal.currentJsonIndex = currentJsonIndex
+
+
+//                    }
+            }else{
+
             }
         }
 
@@ -96,7 +97,8 @@ class MatchScreenMentorActivity : AppCompatActivity() {
             }
         }
         moreIntomation.setOnClickListener {
-            val intent = Intent(this@MatchScreenMentorActivity, MatchScreenMentorMoreInfActivity::class.java)
+            val intent =
+                Intent(this@MatchScreenMentorActivity, MatchScreenMentorMoreInfActivity::class.java)
             startActivity(intent)
         }
 
@@ -137,32 +139,77 @@ class MatchScreenMentorActivity : AppCompatActivity() {
     private fun displaySettings(userData: UserData, setting: SettingsUser, user: User): Boolean {
         val periodS = setting?.period
         val periodU = userData?.period
+        var cont = 0
+        Log.i(
+            "@erika", userData.name + "\n"
+        )
+
+        Log.i(
+            "@erika", "periodS " + periodS?.joinToString() +
+                    "periodU " + periodU?.joinToString()
+        )
         if (periodS != null && periodU != null) {
             if (periodS.any { periodU.contains(it) }) {
-                return true
+                cont = cont + 1
             }
         }
-
-        if ((setting?.sexSettings == userData.sex && user.sex != userData.sexSettings) ||
-            setting?.sexSettings.equals("Todas") && user.sex != userData.sexSettings
-        ) {
-            return true
+        Log.i(
+            "@erika", "setting.sexSettings " + setting.sexSettings +
+                    "userData.sex " + userData.sex
+        )
+        if (setting.sexSettings != null) {
+            if ((setting?.sexSettings == userData.sex && user.sex != userData.sexSettings) ||
+                setting?.sexSettings.equals("Todos") && (user.sex != userData.sexSettings
+                        || userData.sexSettings.equals("Todos"))
+            ) {
+                cont = cont + 1
+                Log.i(
+                    "@erika", "setting.sexSettings " + setting.sexSettings +
+                            "userData.sex " + userData.sex
+                )
+            }
         }
-
         val dayOfTheWeekS = setting?.dayOfTheWeek
         val dayOfTheWeekU = userData?.dayOfTheWeek
+        Log.i(
+            "@erika", "dayOfTheWeekS " + dayOfTheWeekS?.joinToString() +
+                    "dayOfTheWeekU " + dayOfTheWeekU?.joinToString()
+        )
         if (dayOfTheWeekS != null && dayOfTheWeekU != null) {
             if (dayOfTheWeekS.any { dayOfTheWeekU.contains(it) }) {
-                return true
+                cont = cont + 1
+                Log.i(
+                    "@erika", "dayOfTheWeekS " + dayOfTheWeekS.joinToString() +
+                            "dayOfTheWeekU " + dayOfTheWeekU.joinToString()
+                )
             }
         }
 
-        if (setting.locationSettings == userData.locationSettings) {
-            if ((userData.city == user.city && setting.locationSettings == "mesma cidade") ||
-                (userData.state == user.state && setting.locationSettings == "mesmo estado")
+        if (setting.locationSettings != null) {
+            Log.i(
+                "@erika", "setting.locationSettings " + setting.locationSettings +
+                        "userData.locationSettings " + userData.locationSettings
+            )
+            if (setting.locationSettings == userData.locationSettings || setting.locationSettings.equals(
+                    "Todas"
+                )
             ) {
-                return true
+                if ((userData.city == user.city && setting.locationSettings == "mesma cidade") ||
+                    (userData.state == user.state && setting.locationSettings == "mesmo estado" || (
+                            setting.locationSettings.equals("Todas") || userData.locationSettings.equals(
+                                "Todas"
+                            )))
+                ) {
+                    Log.i(
+                        "@erika", "setting.locationSettings " + setting.locationSettings +
+                                "userData.locationSettings " + userData.locationSettings
+                    )
+                    cont = cont + 1
+                }
             }
+        }
+        if (cont == 3) {
+            return true
         }
 
         return false
@@ -241,7 +288,7 @@ class MatchScreenMentorActivity : AppCompatActivity() {
             start3.setImageResource(R.drawable.start_empty_orange)
             start4.setImageResource(R.drawable.start_empty_orange)
             start5.setImageResource(R.drawable.start_empty_orange)
-        }else if(nota == 0){
+        } else if (nota == 0) {
             start1.setImageResource(R.drawable.start_empty_orange)
             start2.setImageResource(R.drawable.start_empty_orange)
             start3.setImageResource(R.drawable.start_empty_orange)
@@ -250,7 +297,7 @@ class MatchScreenMentorActivity : AppCompatActivity() {
         }
     }
 
-    private fun visibilityView(Nota: Int){
+    private fun visibilityView(Nota: Int) {
         if (Nota == 0) {
             evaluationNoteView.visibility = View.GONE
             start1.visibility = View.GONE
@@ -271,6 +318,7 @@ class MatchScreenMentorActivity : AppCompatActivity() {
         } else {
             periodAvailable.text = userData.period?.joinToString()
         }
+
         val daysOfWeek = userData.dayOfTheWeek
         if (daysOfWeek != null) {
             daysOfWeek(daysOfWeek)
@@ -285,11 +333,12 @@ class MatchScreenMentorActivity : AppCompatActivity() {
         } else {
             Log.e("@Erika", "Error ")
         }
+
         val evaluationNote = userData.evaluationNote
         if (evaluationNote != null) {
-            if(evaluationNote == 0) {
+            if (evaluationNote == 0) {
                 visibilityView(0)
-            }else{
+            } else {
                 assessment(evaluationNote)
             }
         }

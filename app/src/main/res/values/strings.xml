@@ -33,10 +33,12 @@
     <string name="select_duration">Selecione a duração do curso</string>
     <string name="select_interest">Selecione os assuntos de interesse</string>
     <string name="select_sex">Sexo</string>
-    <string name="select_location">Selecione a localização</string>
+    <string name="select_location">Localização</string>
+    <string name="Text_location">Localização:</string>
     <string name="duration_hint">Duração:</string>
     <string name="duration_select">Duração:</string>
-    <string name="occupation_area_hint">Área de atuação:</string>
+    <string name="occupation_area_hint">Área de atuação</string>
+    <string name="occupation_area_Text">Área de atuação:</string>
     <string name="gender_hint">Sexo:</string>
     <string name="state_hint">Estado:</string>
     <string name="select_state">Estado</string>

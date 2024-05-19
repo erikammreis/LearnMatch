@@ -1,9 +1,8 @@
 <resources>
     <string-array name="sexSetting">
-        <item>@string/select_sex</item>
+        <item>Todos</item>
         <item>Feminino</item>
         <item>Masculino</item>
-        <item>Todas</item>
     </string-array>
 </resources>
 

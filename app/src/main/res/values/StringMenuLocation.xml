@@ -1,8 +1,9 @@
 <resources>
     <string-array name="location">
-        <item>Localização</item>
+        <item>Todas</item>
         <item>Mesma cidade</item>
         <item>Mesmo estado</item>
+
     </string-array>
 </resources>
 
