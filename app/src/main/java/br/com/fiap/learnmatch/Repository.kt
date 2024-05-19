@@ -1,7 +1,6 @@
 package br.com.fiap.learnmatch
 
 import android.content.Context
-import com.google.gson.Gson
 import retrofit2.Callback
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -27,12 +26,12 @@ class Repository(private val context: Context) {
         call.enqueue(callback)
     }
     fun addJsonToFile(json: String){
-        try {
-            val userData = Gson().fromJson(json, UserData::class.java)
+       //Methodo para cadastrar o usuario
+    }
 
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+    public  fun ValidateLogin(email : String , Password : String) : Boolean{
+        return true
+        //Methodo validar o login
     }
 
 

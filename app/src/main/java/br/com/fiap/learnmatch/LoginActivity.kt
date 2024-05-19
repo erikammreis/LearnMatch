@@ -1,10 +1,12 @@
 package br.com.fiap.learnmatch
 
+import UserInfo
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class LoginActivity : AppCompatActivity() {
@@ -20,18 +22,27 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
         initializeViews()
         loadSavedLoginInfo()
-
+        val user = UserInfo.getUserInf(this)
         loginButton.setOnClickListener {
             saveLoginInfo()
+            val repository = Repository(this)
+            if (repository.ValidateLogin(emailEditText.text.toString(),
+                    passwordEditText.text.toString()
+                )) {
+                val intent = Intent(this@LoginActivity, getTypeUser())
+                startActivity(intent)
+            } else {
+                Toast.makeText(this, "email ou senha inválidos", Toast.LENGTH_SHORT).show()
 
-            val intent = Intent(this@LoginActivity, getTypeUser())
-            startActivity(intent)
+            }
         }
         registerButton.setOnClickListener {
             val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
             startActivity(intent)
         }
     }
+
+
 
     private fun initializeViews() {
         saveLoginCheckBox = findViewById(R.id.saveLoginCheckBox)
@@ -50,7 +61,8 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun getTypeUser(): Class<*> {
-        return if (UserInfo.type == "Student") {
+        val user = UserInfo.getUserInf(this)
+        return if (user.type == "Student") {
             MatchScreenStudentActivity::class.java
         } else {
             MatchScreenMentorActivity::class.java

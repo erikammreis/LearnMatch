@@ -60,9 +60,9 @@ class SettingsActivity : AppCompatActivity() {
     fun setViewTypeUser(){
         val user = UserInfo.getUserInf(this)
      if(user.type.equals("Mentor")){
-         typeUser.setText("Estudante")
+         typeUser.setText("estudante")
      }else if(user.type.equals("Student")){
-         typeUser.setText("Mentor")
+         typeUser.setText("mentor")
      }
     }
 
@@ -83,6 +83,7 @@ class SettingsActivity : AppCompatActivity() {
         afternoonCheckBox = findViewById(R.id.afternoonCheckBox)
         nightCheckBox = findViewById(R.id.nightCheckBox)
         occupationArea = findViewById(R.id.occupationArea)
+        typeUser = findViewById(R.id.typeUser)
     }
 
     fun savePeriod() {

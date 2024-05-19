@@ -75,8 +75,7 @@ class MatchScreenMentorActivity : AppCompatActivity() {
         })
         buttonMatchMentor.setOnClickListener {
 
-//                    if(interestEquals(studentList[currentJsonIndex],user)) {
-                while(!displaySettings(studentList[currentJsonIndex!!], settingUser, user) && currentJsonIndex!! < studentList.size - 1) {
+                while(interestEquals(studentList[currentJsonIndex!!],user) && !displaySettings(studentList[currentJsonIndex!!], settingUser, user) && currentJsonIndex!! < studentList.size - 1) {
                     currentJsonIndex = currentJsonIndex!! + 1
                     StaticVal.currentJsonIndex = currentJsonIndex
                 }
@@ -93,7 +92,7 @@ class MatchScreenMentorActivity : AppCompatActivity() {
         }
 
         noMatchMentor.setOnClickListener {
-            while(!displaySettings(studentList[currentJsonIndex!!], settingUser, user) && currentJsonIndex!! < studentList.size - 1) {
+            while(interestEquals(studentList[currentJsonIndex!!],user) &&!displaySettings(studentList[currentJsonIndex!!], settingUser, user) && currentJsonIndex!! < studentList.size - 1) {
                 currentJsonIndex = currentJsonIndex!! + 1
                 StaticVal.currentJsonIndex = currentJsonIndex
             }
