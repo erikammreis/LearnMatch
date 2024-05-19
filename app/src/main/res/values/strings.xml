@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MacthSchool</string>
+    <string name="app_name">MatchSchool</string>
     <string name="textMatchSchool">MatchSchool</string>
     <string name="email_hint">Email:</string>
     <string name="personal_data">Dados Pessoais</string>

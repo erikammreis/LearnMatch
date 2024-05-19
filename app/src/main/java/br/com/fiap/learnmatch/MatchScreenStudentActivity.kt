@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
 import android.view.View
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -25,7 +24,7 @@ class MatchScreenStudentActivity : AppCompatActivity() {
     private lateinit var courseStudentMatch: TextView
     private lateinit var periodAvailable: TextView
     private lateinit var evaluationNoteView: TextView
-    private lateinit var moreIntomation: ImageButton
+    private lateinit var moreInformation: ImageButton
     private lateinit var PerfilButtonMenu: ImageButton
     private lateinit var chatsButtonMenu: ImageButton
     private lateinit var buttonMatchMentor: ImageButton
@@ -100,7 +99,7 @@ class MatchScreenStudentActivity : AppCompatActivity() {
                 clearAndSetCenterText()
             }
         }
-        moreIntomation.setOnClickListener {
+        moreInformation.setOnClickListener {
             val intent = Intent(this@MatchScreenStudentActivity, MatchScreenMentorMoreInfActivity::class.java)
             startActivity(intent)
         }
@@ -143,7 +142,7 @@ class MatchScreenStudentActivity : AppCompatActivity() {
 
         PerfilButtonMenu = findViewById(R.id.PerfilButtonMenu)
         chatsButtonMenu = findViewById(R.id.chatsButtonMenu)
-        moreIntomation = findViewById(R.id.moreInforMentorMatch)
+        moreInformation = findViewById(R.id.moreInforMentorMatch)
         buttonMatchMentor = findViewById(R.id.buttonMatchMentor)
         noMatchMentor = findViewById(R.id.noMatchMentor)
     }
