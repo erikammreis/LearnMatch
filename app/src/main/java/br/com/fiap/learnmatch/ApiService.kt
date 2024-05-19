@@ -9,4 +9,7 @@ interface ApiService {
 
     @GET("mentors")
     fun getMentors(): Call<List<UserData>>
+
+    @GET("notification")
+    fun getNotifications(): Call<List<NotificationData>>
 }
