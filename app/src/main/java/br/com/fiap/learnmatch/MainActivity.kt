@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
 
         // Cria um novo Handler
         Handler().postDelayed({
-            val intent = Intent(this@MainActivity, MatchScreenMentorActivity::class.java)
+            val intent = Intent(this@MainActivity, MatchScreenStudentActivity::class.java)
             startActivity(intent)
             finish()
         }, delayMillis)
