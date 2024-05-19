@@ -44,9 +44,10 @@ class SettingsActivity : AppCompatActivity() {
              var  teste = SettingsManager.getSettings(this)
             Log.i("@erika", " save: " + teste.period.toString() + " save: "
                     + teste.fieldOfWorkSettings +" save: " + teste.locationSettings +" save: " + teste.sexSettings +" save: " + teste.dayOfTheWeek.toString())
+            finish()
             val intent = Intent(this@SettingsActivity, MatchScreenMentorActivity::class.java)
             startActivity(intent)
-            finish()
+
         }
         buttonDefault.setOnClickListener {
             default()
@@ -135,6 +136,8 @@ class SettingsActivity : AppCompatActivity() {
             settingsSpinnerFieldOfWork.visibility = View.GONE
         }
     }
+
+
     fun default(){
         settingsUser.default()
         SettingsManager.setSettings(this, settingsUser)

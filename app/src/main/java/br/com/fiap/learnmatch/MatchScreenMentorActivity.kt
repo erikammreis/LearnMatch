@@ -12,6 +12,8 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import retrofit2.Call
@@ -39,6 +41,8 @@ class MatchScreenMentorActivity : AppCompatActivity() {
     private lateinit var studentList: List<UserData>
     private lateinit var repository: Repository
     private lateinit var chipGroup: ChipGroup
+    private lateinit var constraintLayout1: ConstraintLayout
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,8 +65,6 @@ class MatchScreenMentorActivity : AppCompatActivity() {
                        StaticVal.currentJsonIndex = currentJsonIndex
                     }
                         displayUserData(studentList[currentJsonIndex!!])
-                        currentJsonIndex = currentJsonIndex!! + 1
-                        StaticVal.currentJsonIndex = currentJsonIndex
                 } else {
                     Log.e("@erika" ,"Erro")
                 }
@@ -72,13 +74,13 @@ class MatchScreenMentorActivity : AppCompatActivity() {
             }
         })
         buttonMatchMentor.setOnClickListener {
-              Log.i("@erika" , "teste" +(currentJsonIndex!! < studentList.size - 1))
-            if (currentJsonIndex!! < studentList.size - 1) {
+
 //                    if(interestEquals(studentList[currentJsonIndex],user)) {
                 while(!displaySettings(studentList[currentJsonIndex!!], settingUser, user) && currentJsonIndex!! < studentList.size - 1) {
                     currentJsonIndex = currentJsonIndex!! + 1
                     StaticVal.currentJsonIndex = currentJsonIndex
                 }
+            if (currentJsonIndex!! < studentList.size - 1) {
                 displayUserData(studentList[currentJsonIndex!!])
                 currentJsonIndex = currentJsonIndex!! + 1
                 StaticVal.currentJsonIndex = currentJsonIndex
@@ -86,7 +88,7 @@ class MatchScreenMentorActivity : AppCompatActivity() {
 
 //                    }
             }else{
-
+                clearAndSetCenterText()
             }
         }
 
@@ -97,8 +99,7 @@ class MatchScreenMentorActivity : AppCompatActivity() {
             }
         }
         moreIntomation.setOnClickListener {
-            val intent =
-                Intent(this@MatchScreenMentorActivity, MatchScreenMentorMoreInfActivity::class.java)
+            val intent = Intent(this@MatchScreenMentorActivity, MatchScreenMentorMoreInfActivity::class.java)
             startActivity(intent)
         }
 
@@ -134,6 +135,7 @@ class MatchScreenMentorActivity : AppCompatActivity() {
         moreIntomation = findViewById(R.id.moreIntomation)
         buttonMatchMentor = findViewById(R.id.buttonMatchMentor)
         noMatchMentor = findViewById(R.id.noMatchMentor)
+        constraintLayout1 = findViewById(R.id.constraintLayout1)
     }
 
     private fun displaySettings(userData: UserData, setting: SettingsUser, user: User): Boolean {
@@ -143,53 +145,28 @@ class MatchScreenMentorActivity : AppCompatActivity() {
         Log.i(
             "@erika", userData.name + "\n"
         )
-
-        Log.i(
-            "@erika", "periodS " + periodS?.joinToString() +
-                    "periodU " + periodU?.joinToString()
-        )
         if (periodS != null && periodU != null) {
             if (periodS.any { periodU.contains(it) }) {
                 cont = cont + 1
             }
         }
-        Log.i(
-            "@erika", "setting.sexSettings " + setting.sexSettings +
-                    "userData.sex " + userData.sex
-        )
         if (setting.sexSettings != null) {
             if ((setting?.sexSettings == userData.sex && user.sex != userData.sexSettings) ||
                 setting?.sexSettings.equals("Todos") && (user.sex != userData.sexSettings
                         || userData.sexSettings.equals("Todos"))
             ) {
                 cont = cont + 1
-                Log.i(
-                    "@erika", "setting.sexSettings " + setting.sexSettings +
-                            "userData.sex " + userData.sex
-                )
             }
         }
         val dayOfTheWeekS = setting?.dayOfTheWeek
         val dayOfTheWeekU = userData?.dayOfTheWeek
-        Log.i(
-            "@erika", "dayOfTheWeekS " + dayOfTheWeekS?.joinToString() +
-                    "dayOfTheWeekU " + dayOfTheWeekU?.joinToString()
-        )
         if (dayOfTheWeekS != null && dayOfTheWeekU != null) {
             if (dayOfTheWeekS.any { dayOfTheWeekU.contains(it) }) {
                 cont = cont + 1
-                Log.i(
-                    "@erika", "dayOfTheWeekS " + dayOfTheWeekS.joinToString() +
-                            "dayOfTheWeekU " + dayOfTheWeekU.joinToString()
-                )
             }
         }
 
         if (setting.locationSettings != null) {
-            Log.i(
-                "@erika", "setting.locationSettings " + setting.locationSettings +
-                        "userData.locationSettings " + userData.locationSettings
-            )
             if (setting.locationSettings == userData.locationSettings || setting.locationSettings.equals(
                     "Todas"
                 )
@@ -200,10 +177,6 @@ class MatchScreenMentorActivity : AppCompatActivity() {
                                 "Todas"
                             )))
                 ) {
-                    Log.i(
-                        "@erika", "setting.locationSettings " + setting.locationSettings +
-                                "userData.locationSettings " + userData.locationSettings
-                    )
                     cont = cont + 1
                 }
             }
@@ -295,6 +268,39 @@ class MatchScreenMentorActivity : AppCompatActivity() {
             start4.setImageResource(R.drawable.start_empty_orange)
             start5.setImageResource(R.drawable.start_empty_orange)
         }
+    }
+
+    private fun clearAndSetCenterText() {
+        // Obtém a referência ao ConstraintLayout
+        val constraintLayout: ConstraintLayout = findViewById(R.id.constraintLayout1)
+
+        // Remove todas as views filhas
+        constraintLayout.removeAllViews()
+
+        // Cria um novo TextView
+        val textView = TextView(this).apply {
+            id = View.generateViewId()
+            text = "Texto Centralizado"
+            textSize = 18f // Tamanho do texto
+            setTextColor(resources.getColor(android.R.color.black, theme)) // Cor do texto
+        }
+
+        // Adiciona o TextView ao ConstraintLayout
+        constraintLayout.addView(textView)
+
+        // Configura as restrições para centralizar o TextView
+        val constraintSet = ConstraintSet().apply {
+            clone(constraintLayout)
+            connect(textView.id, ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP)
+            connect(textView.id, ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM)
+            connect(textView.id, ConstraintSet.START, ConstraintSet.PARENT_ID, ConstraintSet.START)
+            connect(textView.id, ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END)
+            setHorizontalBias(textView.id, 0.5f) // Centraliza horizontalmente
+            setVerticalBias(textView.id, 0.5f) // Centraliza verticalmente
+        }
+
+        // Aplica as restrições
+        constraintSet.applyTo(constraintLayout)
     }
 
     private fun visibilityView(Nota: Int) {

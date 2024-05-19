@@ -3,7 +3,7 @@ package br.com.fiap.learnmatch
 import android.util.Log
 
 class User {
-    var id: Long = 0
+    var id: Long = 1
     var email: String? = null
         get() = field
         set(value) {

@@ -6,12 +6,11 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import java.io.File
 import java.io.FileWriter
-import java.util.Date
 
 object UserInfo {
     private const val USER_INFO_FILE_NAME = "userInfo.json"
 
-    var id: Long = 0
+    var id: Long = 1
     var email: String? = null
         get() = field
         set(value) {
@@ -152,9 +151,6 @@ object UserInfo {
             field = value
         }
 
-    init {
-        id = Date().time
-    }
     var period: Array<String>? = null
         get() = field
         set(value) {
