@@ -3,6 +3,7 @@ package br.com.fiap.learnmatch
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
@@ -19,14 +20,22 @@ class NotificationAdapter(notificationList: List<NotificationData>) : RecyclerVi
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.notificationText.text = notifications[position].text
+        var notification = notifications[position]
+        holder.notificationText.text = notification.text
+        if (notification.type == "match") {
+            holder.notificationIcon.setImageResource(R.drawable.match_icon)
+        } else {
+            holder.notificationIcon.setImageResource(R.drawable.notifimenugreen)
+        }
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var notificationText: TextView
+        var notificationIcon: ImageView
 
         init {
             notificationText = itemView.findViewById(R.id.notification_title)
+            notificationIcon = itemView.findViewById(R.id.notification_icon)
         }
     }
 }

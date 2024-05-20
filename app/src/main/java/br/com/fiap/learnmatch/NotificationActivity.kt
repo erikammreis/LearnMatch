@@ -1,7 +1,9 @@
 package br.com.fiap.learnmatch
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import retrofit2.Call
@@ -12,13 +14,15 @@ class NotificationActivity : AppCompatActivity() {
 
     private lateinit var notificationView: RecyclerView
     private lateinit var notificationAdapter: NotificationAdapter
+    private lateinit var PerfilButtonMenu: ImageButton
+    private lateinit var chatsButtonMenu: ImageButton
+    private lateinit var homeButtonMenu: ImageButton
 
 //    private var notificationList = mutableListOf("Notification 1", "Notification 2", "Notification 3")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notification)
-
-        notificationView = findViewById(R.id.notificationView)
+        initializeViews()
 
         var repository = Repository(this)
         repository.getNotificationsFromApi(object : Callback<List<NotificationData>> {
@@ -41,6 +45,24 @@ class NotificationActivity : AppCompatActivity() {
             }
         })
 
+        homeButtonMenu.setOnClickListener{
+            val intent = Intent(this@NotificationActivity, MatchScreenMentorActivity::class.java)
+            startActivity(intent)
+        }
+        PerfilButtonMenu.setOnClickListener{
+            val intent = Intent(this@NotificationActivity, PerfilActivity::class.java)
+            startActivity(intent)
+        }
+        chatsButtonMenu.setOnClickListener{
+            val intent = Intent(this@NotificationActivity, ChatsActivity::class.java)
+            startActivity(intent)
+        }
+    }
 
+    private fun initializeViews() {
+        homeButtonMenu = findViewById(R.id.homeButtonMenu)
+        PerfilButtonMenu = findViewById(R.id.PerfilButtonMenu)
+        chatsButtonMenu = findViewById(R.id.chatsButtonMenu)
+        notificationView = findViewById(R.id.notificationView)
     }
 }
