@@ -32,7 +32,6 @@ class ChatActivity : AppCompatActivity() {
         }
     }
     private fun initializeViews() {
-
         homeButtonMenu = findViewById(R.id.homeButtonMenu)
         PerfilButtonMenu = findViewById(R.id.PerfilButtonMenu)
         chatsButtonMenu = findViewById(R.id.chatsButtonMenu)

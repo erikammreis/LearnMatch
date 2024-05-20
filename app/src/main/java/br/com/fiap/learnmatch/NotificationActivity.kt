@@ -13,7 +13,6 @@ class NotificationActivity : AppCompatActivity() {
     private lateinit var notificationView: RecyclerView
     private lateinit var notificationAdapter: NotificationAdapter
 
-//    private var notificationList = mutableListOf("Notification 1", "Notification 2", "Notification 3")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notification)
