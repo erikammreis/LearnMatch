@@ -61,9 +61,11 @@ class RegisterActivityEI : AppCompatActivity() {
                     Log.i("@erika", "Student:repository.addJsonToFile(UserInfo.toJson()):" + response)
                     val intent = Intent(this@RegisterActivityEI, MatchScreenStudentActivity::class.java)
                     startActivity(intent)
+                    finish()
                 }else if (UserInfo.type.equals("Mentor")) {
                     val intent = Intent(this@RegisterActivityEI, RegisterActivityMC::class.java)
                     startActivity(intent)
+                    finish()
                 }
             }
         }

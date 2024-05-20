@@ -32,6 +32,7 @@ class RegisterActivityMC : AppCompatActivity() {
             Log.i("@erika", "Mentor:repository.addJsonToFile(UserInfo.toJson()):" + response)
             val intent = Intent(this@RegisterActivityMC, MatchScreenMentorActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
     private fun initializeViews() {

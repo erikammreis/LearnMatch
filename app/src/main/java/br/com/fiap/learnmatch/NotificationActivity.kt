@@ -42,23 +42,5 @@ class NotificationActivity : AppCompatActivity() {
         })
 
 
-//        repository.getNotificationsFromApi(object : Callback<List<NotificationData>> {
-//            override fun onResponse(
-//                call: Call<List<UserData>>,
-//                response: Response<List<NotificationData>>
-//            ) {
-//                if (response.isSuccessful) {
-//                    var notificationList = response.body() ?: emptyList()
-//                    notificationAdapter = NotificationAdapter(notificationList)
-//                    notificationView.adapter = notificationAdapter
-//
-//                } else {
-//                    Log.e("@erika" ,"Erro")
-//                }
-//            }
-//
-//            override  fun onFailure(call: Call<List<UserData>>, t: Throwable) {
-//            }
-//        })
     }
 }
