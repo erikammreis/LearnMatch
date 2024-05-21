@@ -59,6 +59,8 @@ class MatchScreenMentorActivity : AppCompatActivity() {
                 response: Response<List<UserData>>
             ) {
                 if (response.isSuccessful) {
+                    StaticIndex.currentJsonIndex = 0
+                    currentJsonIndex = StaticIndex.currentJsonIndex
                     studentList = response.body() ?: emptyList()
                     while(currentJsonIndex!! < studentList.size - 1) {
                         Log.i("@erika" ,"Erro interestEquals teste: " + interestEquals(studentList[currentJsonIndex!!], user))
@@ -254,10 +256,10 @@ class MatchScreenMentorActivity : AppCompatActivity() {
     }
 
     private fun interestEquals(userData: UserData, user: User): Boolean {
-        val interestS = userData.interest
-        val interestU = user.interest
+        val interestS = userData.interest?.map { it.toLowerCase() }
+        val interestU = user.interest?.map { it.toLowerCase() }
         if (interestS != null && interestU != null) {
-            if (interestS.any { interestU.contains(it) }) {
+            if (interestS.any { it in interestU } || interestU.any { it in interestS }) {
                 return true
             }
         }
