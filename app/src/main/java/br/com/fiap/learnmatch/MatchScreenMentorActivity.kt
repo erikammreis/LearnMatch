@@ -59,6 +59,8 @@ class MatchScreenMentorActivity : AppCompatActivity() {
                 response: Response<List<UserData>>
             ) {
                 if (response.isSuccessful) {
+                    StaticIndex.currentJsonIndex = 0
+                    currentJsonIndex = StaticIndex.currentJsonIndex
                     studentList = response.body() ?: emptyList()
                     while(currentJsonIndex!! < studentList.size - 1) {
                         Log.i("@erika" ,"Erro interestEquals teste: " + interestEquals(studentList[currentJsonIndex!!], user))

@@ -59,11 +59,20 @@ class MatchScreenStudentActivity : AppCompatActivity() {
             ) {
                 if (response.isSuccessful) {
                     mentorList = response.body() ?: emptyList()
-                    while(!displaySettings(mentorList[currentJsonIndex!!], settingUser, user) &&  currentJsonIndex!! < mentorList.size - 1) {
-                        currentJsonIndex = currentJsonIndex!! + 1
-                        StaticIndex.currentJsonIndex = currentJsonIndex
+                    while(currentJsonIndex!! < mentorList.size - 1) {
+                        Log.i("@erika" ,"Erro interestEquals teste: " + interestEquals(mentorList[currentJsonIndex!!], user))
+                        Log.i("@erika" ,"Erro displaySettings: " + displaySettings(mentorList[currentJsonIndex!!], settingUser, user))
+                        if(interestEquals(mentorList[currentJsonIndex!!], user) && displaySettings(mentorList[currentJsonIndex!!], settingUser, user)){
+                            displayUserData(mentorList[currentJsonIndex!!])
+                            break
+                        }else{
+                            currentJsonIndex = currentJsonIndex!! + 1
+                            StaticIndex.currentJsonIndex = currentJsonIndex
+                        }
                     }
-                    displayUserData(mentorList[currentJsonIndex!!])
+                    if(!(currentJsonIndex!! < mentorList.size - 1)){
+                        clearAndSetCenterText()
+                    }
                 } else {
                     Log.e("@erika" ,"Erro")
                 }
@@ -83,15 +92,18 @@ class MatchScreenStudentActivity : AppCompatActivity() {
             }else{
                 addPotentialMatch()
             }
-            while(!displaySettings(mentorList[currentJsonIndex!!], settingUser, user) && currentJsonIndex!! < mentorList.size - 1 && interestEquals(mentorList[currentJsonIndex!!],user)) {
-                currentJsonIndex = currentJsonIndex!! + 1
-                StaticIndex.currentJsonIndex = currentJsonIndex
+            while(currentJsonIndex!! < mentorList.size - 1) {
+                if(interestEquals(mentorList[currentJsonIndex!!], user) && displaySettings(mentorList[currentJsonIndex!!], settingUser, user)){
+                    displayUserData(mentorList[currentJsonIndex!!])
+                    currentJsonIndex = currentJsonIndex!! + 1
+                    StaticIndex.currentJsonIndex = currentJsonIndex
+                    break
+                }else{
+                    currentJsonIndex = currentJsonIndex!! + 1
+                    StaticIndex.currentJsonIndex = currentJsonIndex
+                }
             }
-            if (currentJsonIndex!! < mentorList.size - 1) {
-                displayUserData(mentorList[currentJsonIndex!!])
-                currentJsonIndex = currentJsonIndex!! + 1
-                StaticIndex.currentJsonIndex = currentJsonIndex
-            }else{
+            if(!(currentJsonIndex!! < mentorList.size - 1)){
                 clearAndSetCenterText()
             }
         }
