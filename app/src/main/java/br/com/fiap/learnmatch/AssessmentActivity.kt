@@ -30,17 +30,20 @@ class AssessmentActivity : AppCompatActivity() {
         initializeViews()
 
         var userData: UserData? =  null
+        val user = UserInfo.getUserInf(this)
         var repository = Repository(this)
+        if (user.type.equals("Mentor")) {
         repository.getStudentsFromApi(object : Callback<List<UserData>> {
             override fun onResponse(
                 call: Call<List<UserData>>,
                 response: Response<List<UserData>>
             ) {
+                imageView20.setImageResource(R.drawable.icon_black_teach)
                 if (response.isSuccessful) {
-                    var studentLists = response.body() ?: emptyList()
-                    for (studentList in studentLists) {
-                        if(StaticIndex.idUserDatar!!.equals(studentList.id)){
-                            userData = studentList
+                    var userDataLists = response.body() ?: emptyList()
+                    for (userDataList in userDataLists) {
+                        if(userDataList.id == StaticIndex.idUserDatar?.toLong()) {
+                            assessmentNameMentorStudent.text = userData!!.name
                         }
                     }
                 } else {
@@ -50,12 +53,31 @@ class AssessmentActivity : AppCompatActivity() {
             override fun onFailure(call: Call<List<UserData>>, t: Throwable) {
             }
         })
-        if(userData!!.type.equals("Studente")){
-            imageView20.setImageResource(R.drawable.icon_black_teach)
-        }else if(userData!!.type.equals("Mentor")){
+        } else if(user.type.equals("Student")){
             imageView20.setImageResource(R.drawable.icon_black_learn)
+            repository.getMentorsFromApi(object : Callback<List<UserData>> {
+                override fun onResponse(
+                    call: Call<List<UserData>>,
+                    response: Response<List<UserData>>
+                ) {
+                    imageView20.setImageResource(R.drawable.icon_black_teach)
+                    if (response.isSuccessful) {
+                        var userDataLists = response.body() ?: emptyList()
+                        for (userDataList in userDataLists) {
+                            if(userDataList.id == StaticIndex.idUserDatar?.toLong()) {
+                                assessmentNameMentorStudent.text = userData!!.name
+                            }
+                        }
+                    } else {
+                    }
+                }
+
+                override fun onFailure(call: Call<List<UserData>>, t: Throwable) {
+                }
+            })
         }
-        assessmentNameMentorStudent.text = userData!!.name
+
+
         homeButtonMenu.setOnClickListener {
             val intent = Intent(this@AssessmentActivity, MatchScreenMentorActivity::class.java)
             startActivity(intent)

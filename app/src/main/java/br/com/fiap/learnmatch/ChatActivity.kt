@@ -24,26 +24,54 @@ class ChatActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
         initializeViews()
-        var userData: UserData? =  null
-        var repository = Repository(this)
-        repository.getStudentsFromApi(object : Callback<List<UserData>> {
-            override fun onResponse(
-                call: Call<List<UserData>>,
-                response: Response<List<UserData>>
-            ) {
-                if (response.isSuccessful) {
-                    var studentLists = response.body() ?: emptyList()
-                    for (studentList in studentLists){
-                        if(studentList.id == StaticIndex.idUserDatar?.toLong())
-                            displayUserData(studentList)
-                    }
-                } else {
-                }
-            }
 
-            override fun onFailure(call: Call<List<UserData>>, t: Throwable) {
-            }
-        })
+        var userData: UserData? = null
+        var repository = Repository(this)
+        val user = UserInfo.getUserInf(this)
+        if (user.type.equals("Mentor")) {
+            repository.getStudentsFromApi(object : Callback<List<UserData>> {
+                override fun onResponse(
+                    call: Call<List<UserData>>,
+                    response: Response<List<UserData>>
+                ) {
+                    if (response.isSuccessful) {
+                        var userDataLists = response.body() ?: emptyList()
+                        for (userDataList in userDataLists) {
+                            if (userDataList.id == StaticIndex.idUserDatar?.toLong()) {
+                                userData = userDataList
+                                displayUserData(userDataList)
+                            }
+                        }
+                    } else {
+                    }
+                }
+
+                override fun onFailure(call: Call<List<UserData>>, t: Throwable) {
+                }
+            })
+        } else if (user.type.equals("Student")) {
+            repository.getMentorsFromApi(object : Callback<List<UserData>> {
+                override fun onResponse(
+                    call: Call<List<UserData>>,
+                    response: Response<List<UserData>>
+                ) {
+                    if (response.isSuccessful) {
+                        var userDataLists = response.body() ?: emptyList()
+                        for (userDataList in userDataLists) {
+                            if (userDataList.id == StaticIndex.idUserDatar?.toLong()) {
+                                userData = userDataList
+                                displayUserData(userDataList)
+                            }
+                        }
+                    } else {
+                    }
+                }
+
+                override fun onFailure(call: Call<List<UserData>>, t: Throwable) {
+                }
+            })
+        }
+
 
         closeChat.setOnClickListener {
             showCloseMatchDialog(userData!!)
@@ -89,11 +117,10 @@ class ChatActivity : AppCompatActivity() {
         builder.setTitle("Encerrar Match")
         builder.setMessage("Você deseja encerrar o match?")
 
-        builder.setPositiveButton("Sim") {
-            dialog, which ->
-            removeMatch(userData)
+        builder.setPositiveButton("Sim") { dialog, which ->
             val intent = Intent(this@ChatActivity, ChatsActivity::class.java)
             startActivity(intent)
+            removeMatch(userData)
             finish()
         }
 
@@ -119,12 +146,12 @@ class ChatActivity : AppCompatActivity() {
 
     private fun displayUserData(userData: UserData) {
         nameChat.text = userData.name
-        chatMentorStudent.text= userData.name
+        chatMentorStudent.text = userData.name
 
-        if(userData.type.equals("Student")){
+        if (userData.type.equals("Student")) {
             chatTeachLearn.text = "Ensinar"
         }
-        if(userData.type.equals("Mentor")){
+        if (userData.type.equals("Mentor")) {
             chatTeachLearn.text = "Aprender"
         }
 

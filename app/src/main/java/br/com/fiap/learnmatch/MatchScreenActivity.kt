@@ -1,5 +1,6 @@
 package br.com.fiap.learnmatch
 
+import UserInfo
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageButton
@@ -22,19 +23,22 @@ class MatchScreenActivity : AppCompatActivity() {
         setContentView(R.layout.activity_match_screen)
         initializeViews()
         var repository = Repository(this)
-        var studentListId: Int? = null
+        val user = UserInfo.getUserInf(this)
+        var userDataListId: Int? = null
+        if(user.type.equals("Mentor")){
         repository.getStudentsFromApi(object : Callback<List<UserData>> {
             override fun onResponse(
                 call: Call<List<UserData>>,
                 response: Response<List<UserData>>
             ) {
                 if (response.isSuccessful) {
-                    var studentLists = response.body() ?: emptyList()
-                        for (studentList in studentLists){
-                            if(studentList.id == StaticIndex.idUserDatar?.toLong())
-                                displayUserData(studentList)
-                            studentListId = studentList.id.toInt()
-                            }
+                    var userDataLists = response.body() ?: emptyList()
+                    for (userData in userDataLists) {
+                        if (userData.id == StaticIndex.idUserDatar?.toLong()) {
+                            displayUserData(userData)
+                            userDataListId = userData.id.toInt()
+                        }
+                    }
                 } else {
                 }
             }
@@ -42,25 +46,48 @@ class MatchScreenActivity : AppCompatActivity() {
             override fun onFailure(call: Call<List<UserData>>, t: Throwable) {
             }
         })
-        homeButtonMenu.setOnClickListener{
+        }else if(user.type.equals("Student")){
+            repository.getMentorsFromApi(object : Callback<List<UserData>> {
+                override fun onResponse(
+                    call: Call<List<UserData>>,
+                    response: Response<List<UserData>>
+                ) {
+                    if (response.isSuccessful) {
+                        var userDataLists = response.body() ?: emptyList()
+                        for (userData in userDataLists) {
+                            if (userData.id == StaticIndex.idUserDatar?.toLong()) {
+                                displayUserData(userData)
+                                userDataListId = userData.id.toInt()
+                            }
+                        }
+                    } else {
+                    }
+                }
+
+                override fun onFailure(call: Call<List<UserData>>, t: Throwable) {
+                }
+            })
+        }
+        homeButtonMenu.setOnClickListener {
             val intent = Intent(this@MatchScreenActivity, MatchScreenMentorActivity::class.java)
             startActivity(intent)
         }
-        PerfilButtonMenu.setOnClickListener{
+        PerfilButtonMenu.setOnClickListener {
             val intent = Intent(this@MatchScreenActivity, PerfilActivity::class.java)
             startActivity(intent)
         }
-        chatsButtonMenu.setOnClickListener{
+        chatsButtonMenu.setOnClickListener {
             val intent = Intent(this@MatchScreenActivity, ChatsActivity::class.java)
             startActivity(intent)
         }
-        ButtonChat.setOnClickListener{
-            StaticIndex.idUserDatar = studentListId
+        ButtonChat.setOnClickListener {
+            StaticIndex.idUserDatar = userDataListId
             val intent = Intent(this@MatchScreenActivity, ChatActivity::class.java)
             startActivity(intent)
             finish()
         }
     }
+
     private fun initializeViews() {
         nameUserData = findViewById(R.id.nameUserData)
         learnTeach = findViewById(R.id.learnTeach)
@@ -74,22 +101,22 @@ class MatchScreenActivity : AppCompatActivity() {
 
     private fun displayUserData(userData: UserData) {
         nameUserData.text = userData.name
-        if(userData.type.equals("Student")){
+        if (userData.type.equals("Student")) {
             learnTeach.text = "ensinar:"
-            if(userData.sex.equals("Feminino")){
-                sheHe.text= "ela"
+            if (userData.sex.equals("Feminino")) {
+                sheHe.text = "ela"
             }
-            if(userData.sex.equals("Masculino")){
-                sheHe.text= "ele"
+            if (userData.sex.equals("Masculino")) {
+                sheHe.text = "ele"
             }
         }
-        if(userData.type.equals("Mentor")){
+        if (userData.type.equals("Mentor")) {
             learnTeach.text = "aprender com:"
-            if(userData.sex.equals("Feminino")){
-                sheHe.text= "ela"
+            if (userData.sex.equals("Feminino")) {
+                sheHe.text = "ela"
             }
-            if(userData.sex.equals("Masculino")){
-                sheHe.text= "ele"
+            if (userData.sex.equals("Masculino")) {
+                sheHe.text = "ele"
             }
         }
 
