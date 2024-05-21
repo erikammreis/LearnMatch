@@ -25,8 +25,8 @@ class ChatsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_chats)
         initializeViews()
         val user = UserInfo.getUserInf(this)
-        Log.i("@erika","ChatsActivity" + user.match)
-        Log.i("@erika","ChatsActivity" + user.chats)
+        Log.i("@erika","ChatsActivity" + user.match!!.joinToString())
+        Log.i("@erika","ChatsActivity" + user.chats!!.joinToString())
         addImageButtonsToLayout(user.match!!)
         var repository = Repository(this)
         repository.getStudentsFromApi(object : Callback<List<UserData>> {

@@ -33,11 +33,9 @@ class ChatActivity : AppCompatActivity() {
             ) {
                 if (response.isSuccessful) {
                     var studentLists = response.body() ?: emptyList()
-                    for (studentList in studentLists) {
-                        if(StaticIndex.idUserDatar!!.equals(studentList.id)){
-                            userData = studentList
-                            displayUserData(userData!!)
-                        }
+                    for (studentList in studentLists){
+                        if(studentList.id == StaticIndex.idUserDatar?.toLong())
+                            displayUserData(studentList)
                     }
                 } else {
                 }

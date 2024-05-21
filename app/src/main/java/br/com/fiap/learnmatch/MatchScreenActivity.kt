@@ -22,15 +22,19 @@ class MatchScreenActivity : AppCompatActivity() {
         setContentView(R.layout.activity_match_screen)
         initializeViews()
         var repository = Repository(this)
-
+        var studentListId: Int? = null
         repository.getStudentsFromApi(object : Callback<List<UserData>> {
             override fun onResponse(
                 call: Call<List<UserData>>,
                 response: Response<List<UserData>>
             ) {
                 if (response.isSuccessful) {
-                    var studentList = response.body() ?: emptyList()
-
+                    var studentLists = response.body() ?: emptyList()
+                        for (studentList in studentLists){
+                            if(studentList.id == StaticIndex.idUserDatar?.toLong())
+                                displayUserData(studentList)
+                            studentListId = studentList.id.toInt()
+                            }
                 } else {
                 }
             }
@@ -51,6 +55,7 @@ class MatchScreenActivity : AppCompatActivity() {
             startActivity(intent)
         }
         ButtonChat.setOnClickListener{
+            StaticIndex.idUserDatar = studentListId
             val intent = Intent(this@MatchScreenActivity, ChatActivity::class.java)
             startActivity(intent)
             finish()

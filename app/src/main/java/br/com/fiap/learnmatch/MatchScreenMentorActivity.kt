@@ -92,20 +92,20 @@ class MatchScreenMentorActivity : AppCompatActivity() {
                 Log.e("@erika" ,"StaticIndex.idUserDatar: " + StaticIndex.idUserDatar)
                 val intent = Intent(this@MatchScreenMentorActivity, MatchScreenActivity::class.java)
                 startActivity(intent)
-                currentJsonIndex = currentJsonIndex!! + 1
-                StaticIndex.currentJsonIndex = currentJsonIndex
+//                currentJsonIndex = currentJsonIndex!! + 1
+//                StaticIndex.currentJsonIndex = currentJsonIndex
             }else{
                 addPotentialMatch()
             }
             while(currentJsonIndex!! < studentList.size - 1) {
                 if(interestEquals(studentList[currentJsonIndex!!], user) && displaySettings(studentList[currentJsonIndex!!], settingUser, user)){
                     displayUserData(studentList[currentJsonIndex!!])
-                    currentJsonIndex = currentJsonIndex!! + 1
-                    StaticIndex.currentJsonIndex = currentJsonIndex
+//                    currentJsonIndex = currentJsonIndex!! + 1
+//                    StaticIndex.currentJsonIndex = currentJsonIndex
                     break
                 }else{
-                    currentJsonIndex = currentJsonIndex!! + 1
-                    StaticIndex.currentJsonIndex = currentJsonIndex
+//                    currentJsonIndex = currentJsonIndex!! + 1
+//                    StaticIndex.currentJsonIndex = currentJsonIndex
                 }
             }
             if(!(currentJsonIndex!! < studentList.size - 1)){
@@ -254,10 +254,10 @@ class MatchScreenMentorActivity : AppCompatActivity() {
     }
 
     private fun interestEquals(userData: UserData, user: User): Boolean {
-        val interestS = userData.interest
-        val interestU = user.interest
+        val interestS = userData.interest?.map { it.toLowerCase() }
+        val interestU = user.interest?.map { it.toLowerCase() }
         if (interestS != null && interestU != null) {
-            if (interestS.any { interestU.contains(it) }) {
+            if (interestS.any { it in interestU } || interestU.any { it in interestS }) {
                 return true
             }
         }
