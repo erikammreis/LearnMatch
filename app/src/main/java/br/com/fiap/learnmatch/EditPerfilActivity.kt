@@ -18,6 +18,7 @@ class EditPerfilActivity : AppCompatActivity() {
     private lateinit var nomeUser: TextView
     private lateinit var cpfUser: TextView
     private lateinit var dtUser: TextView
+    private lateinit var stateUser: TextView
     private lateinit var sexUser: TextView
     private lateinit var cityPerfil: TextView
     private lateinit var cepUser: TextView
@@ -69,6 +70,7 @@ class EditPerfilActivity : AppCompatActivity() {
         homeButtonMenu = findViewById(R.id.homeButtonMenu)
         PerfilButtonMenu = findViewById(R.id.PerfilButtonMenu)
         chatsButtonMenu = findViewById(R.id.chatsButtonMenu)
+        stateUser = findViewById(R.id.stateUser)
     }
 
     private fun inicializeView(user: User){
@@ -78,6 +80,7 @@ class EditPerfilActivity : AppCompatActivity() {
         sexUser.text = user.sex
         cityPerfil.text = user.city
         cepUser.text = user.cep
+        stateUser.text = user.state
         streetUser.text = user.street
         ensino.text = user.educationalInstitution
         typeEsn.text = user.typeTeaching
