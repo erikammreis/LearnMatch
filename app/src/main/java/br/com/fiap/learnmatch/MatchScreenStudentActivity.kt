@@ -208,54 +208,48 @@ class MatchScreenStudentActivity : AppCompatActivity() {
     }
 
     private fun displaySettings(userData: UserData, setting: SettingsUser, user: User): Boolean {
-        val periodS = setting?.period
-        val periodU = userData?.period
+        val periodS = setting?.period?.map { it.toLowerCase() }
+        val periodU = userData?.period?.map { it.toLowerCase() }
         var cont = 0
-        Log.i(
-            "@erika", userData.name + "\n"
-        )
 
-        Log.i(
-            "@erika", "periodS " + periodS?.joinToString() +
-                    "periodU " + periodU?.joinToString()
-        )
+
         if (periodS != null && periodU != null) {
-            if (periodS.any { periodU.contains(it) }) {
-                cont = cont + 1
+            Log.i(
+                "@erika", "cont periodS:  " + periodS.joinToString()
+            )
+            Log.i(
+                "@erika", "cont periodU:  " + periodU.joinToString()
+            )
+            if (periodS.any { it in periodU }) {
+                Log.i("@erika", "cont periodS:  " + cont)
+                cont += 1
             }
         }
-        Log.i(
-            "@erika", "setting.sexSettings " + setting.sexSettings +
-                    "userData.sex " + userData.sex
-        )
         if (setting.sexSettings != null) {
             if ((setting?.sexSettings == userData.sex && user.sex != userData.sexSettings) ||
-                setting?.sexSettings.equals("Todos") && (user.sex != userData.sexSettings
+                setting?.sexSettings.equals("Todos") && (user.sex == userData.sexSettings
                         || userData.sexSettings.equals("Todos"))
             ) {
-                cont = cont + 1
                 Log.i(
-                    "@erika", "setting.sexSettings " + setting.sexSettings +
-                            "userData.sex " + userData.sex
+                    "@erika", "cont sexSettings:  " + cont
                 )
+                cont = cont + 1
             }
         }
-        val dayOfTheWeekS = setting?.dayOfTheWeek
-        val dayOfTheWeekU = userData?.dayOfTheWeek
-        Log.i(
-            "@erika", "dayOfTheWeekS " + dayOfTheWeekS?.joinToString() +
-                    "dayOfTheWeekU " + dayOfTheWeekU?.joinToString()
-        )
+        val dayOfTheWeekS = setting?.dayOfTheWeek?.map { it.toLowerCase() }
+        val dayOfTheWeekU = userData?.dayOfTheWeek?.map { it.toLowerCase() }
         if (dayOfTheWeekS != null && dayOfTheWeekU != null) {
-            if (dayOfTheWeekS.any { dayOfTheWeekU.contains(it) }) {
-                cont = cont + 1
-                Log.i(
-                    "@erika", "dayOfTheWeekS " + dayOfTheWeekS.joinToString() +
-                            "dayOfTheWeekU " + dayOfTheWeekU.joinToString()
-                )
+            Log.i(
+                "@erika", "cont dayOfTheWeekS:  " + dayOfTheWeekS.joinToString()
+            )
+            Log.i(
+                "@erika", "cont dayOfTheWeekS:  " + dayOfTheWeekU.joinToString()
+            )
+            if (dayOfTheWeekS.any { it in dayOfTheWeekU } || dayOfTheWeekU.any { it in dayOfTheWeekS }) {
+                Log.i("@erika", "cont dayOfTheWeek:  " + cont)
+                cont += 1
             }
         }
-
         if (setting.fieldOfWorkSettings != null) {
             if (setting.fieldOfWorkSettings == userData.fieldOfWorkSettings || setting.fieldOfWorkSettings.equals(
                     "Todas"
@@ -266,29 +260,21 @@ class MatchScreenStudentActivity : AppCompatActivity() {
         }
 
         if (setting.locationSettings != null) {
-            Log.i(
-                "@erika", "setting.locationSettings " + setting.locationSettings +
-                        "userData.locationSettings " + userData.locationSettings
-            )
-            if (setting.locationSettings == userData.locationSettings || setting.locationSettings.equals(
-                    "Todas"
-                )
-            ) {
+            if (setting.locationSettings == userData.locationSettings || setting.locationSettings.equals("Todas")) {
                 if ((userData.city == user.city && setting.locationSettings == "mesma cidade") ||
                     (userData.state == user.state && setting.locationSettings == "mesmo estado" || (
-                            setting.locationSettings.equals("Todas") || userData.locationSettings.equals(
-                                "Todas"
-                            )))
-                ) {
+                            setting.locationSettings.equals("Todas") || userData.locationSettings.equals("Todas")))) {
                     Log.i(
-                        "@erika", "setting.locationSettings " + setting.locationSettings +
-                                "userData.locationSettings " + userData.locationSettings
+                        "@erika", "cont locationSettings:  " + cont
                     )
                     cont = cont + 1
                 }
             }
         }
-        if (cont == 3) {
+        Log.i(
+            "@erika", "cont:  " + cont
+        )
+        if (cont == 5) {
             return true
         }
 

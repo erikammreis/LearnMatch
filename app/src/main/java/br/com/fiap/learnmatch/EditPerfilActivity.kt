@@ -1,5 +1,6 @@
 package br.com.fiap.learnmatch
 
+import UserInfo
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -34,7 +35,8 @@ class EditPerfilActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_perfil)
         initializeViews()
-
+        val user = UserInfo.getUserInf(this)
+        inicializeView(user)
         homeButtonMenu.setOnClickListener {
             val intent = Intent(this@EditPerfilActivity, MatchScreenMentorActivity::class.java)
             startActivity(intent)
@@ -94,7 +96,7 @@ class EditPerfilActivity : AppCompatActivity() {
     }
 
     private fun addChipGroups(items: Array<String>) {
-        val linearLayout = findViewById<LinearLayout>(R.id.interestsSkills)
+        val linearLayout = findViewById<LinearLayout>(R.id.interestsSkillsPerfil)
         val chipGroup = findViewById<ChipGroup>(R.id.chipGroup)
         linearLayout.removeAllViews()
         chipGroup.removeAllViews()

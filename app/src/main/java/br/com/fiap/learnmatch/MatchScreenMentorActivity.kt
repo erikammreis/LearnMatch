@@ -60,11 +60,21 @@ class MatchScreenMentorActivity : AppCompatActivity() {
             ) {
                 if (response.isSuccessful) {
                     studentList = response.body() ?: emptyList()
-                    while(!displaySettings(studentList[currentJsonIndex!!], settingUser, user) &&  currentJsonIndex!! < studentList.size - 1) {
-                       currentJsonIndex = currentJsonIndex!! + 1
-                        StaticIndex.currentJsonIndex = currentJsonIndex
+                    while(currentJsonIndex!! < studentList.size - 1) {
+                        Log.i("@erika" ,"Erro interestEquals teste: " + interestEquals(studentList[currentJsonIndex!!], user))
+                        Log.i("@erika" ,"Erro displaySettings: " + displaySettings(studentList[currentJsonIndex!!], settingUser, user))
+                          if(interestEquals(studentList[currentJsonIndex!!], user) && displaySettings(studentList[currentJsonIndex!!], settingUser, user)){
+                              displayUserData(studentList[currentJsonIndex!!])
+                              break
+                          }else{
+                              currentJsonIndex = currentJsonIndex!! + 1
+                              StaticIndex.currentJsonIndex = currentJsonIndex
+                          }
                     }
-                        displayUserData(studentList[currentJsonIndex!!])
+                    if(!(currentJsonIndex!! < studentList.size - 1)){
+                        clearAndSetCenterText()
+                    }
+
                 } else {
                     Log.e("@erika" ,"Erro")
                 }
@@ -86,16 +96,18 @@ class MatchScreenMentorActivity : AppCompatActivity() {
             }else{
                 addPotentialMatch()
             }
-            while(interestEquals(studentList[currentJsonIndex!!],user) && !displaySettings(studentList[currentJsonIndex!!], settingUser, user) && currentJsonIndex!! < studentList.size - 1) {
+            while(currentJsonIndex!! < studentList.size - 1) {
+                if(interestEquals(studentList[currentJsonIndex!!], user) && displaySettings(studentList[currentJsonIndex!!], settingUser, user)){
+                    displayUserData(studentList[currentJsonIndex!!])
                     currentJsonIndex = currentJsonIndex!! + 1
-                StaticIndex.currentJsonIndex = currentJsonIndex
+                    StaticIndex.currentJsonIndex = currentJsonIndex
+                    break
+                }else{
+                    currentJsonIndex = currentJsonIndex!! + 1
+                    StaticIndex.currentJsonIndex = currentJsonIndex
                 }
-            if (currentJsonIndex!! < studentList.size - 1) {
-                displayUserData(studentList[currentJsonIndex!!])
-                currentJsonIndex = currentJsonIndex!! + 1
-                StaticIndex.currentJsonIndex = currentJsonIndex
-
-            }else{
+            }
+            if(!(currentJsonIndex!! < studentList.size - 1)){
                 clearAndSetCenterText()
             }
         }
@@ -197,49 +209,43 @@ class MatchScreenMentorActivity : AppCompatActivity() {
     }
 
     private fun displaySettings(userData: UserData, setting: SettingsUser, user: User): Boolean {
-        val periodS = setting?.period
-        val periodU = userData?.period
+        val periodS = setting?.period?.map { it.toLowerCase() }
+        val periodU = userData?.period?.map { it.toLowerCase() }
         var cont = 0
-        Log.i(
-            "@erika", userData.name + "\n"
-        )
+
+
         if (periodS != null && periodU != null) {
-            if (periodS.any { periodU.contains(it) }) {
-                cont = cont + 1
+            if (periodS.any { it in periodU }) {
+                cont += 1
             }
         }
         if (setting.sexSettings != null) {
             if ((setting?.sexSettings == userData.sex && user.sex != userData.sexSettings) ||
-                setting?.sexSettings.equals("Todos") && (user.sex != userData.sexSettings
+                setting?.sexSettings.equals("Todos") && (user.sex == userData.sexSettings
                         || userData.sexSettings.equals("Todos"))
             ) {
                 cont = cont + 1
             }
         }
-        val dayOfTheWeekS = setting?.dayOfTheWeek
-        val dayOfTheWeekU = userData?.dayOfTheWeek
+        val dayOfTheWeekS = setting?.dayOfTheWeek?.map { it.toLowerCase() }
+        val dayOfTheWeekU = userData?.dayOfTheWeek?.map { it.toLowerCase() }
         if (dayOfTheWeekS != null && dayOfTheWeekU != null) {
-            if (dayOfTheWeekS.any { dayOfTheWeekU.contains(it) }) {
-                cont = cont + 1
+            if (dayOfTheWeekS.any { it in dayOfTheWeekU } || dayOfTheWeekU.any { it in dayOfTheWeekS }) {
+                cont += 1
             }
         }
 
+
         if (setting.locationSettings != null) {
-            if (setting.locationSettings == userData.locationSettings || setting.locationSettings.equals(
-                    "Todas"
-                )
-            ) {
+            if (setting.locationSettings == userData.locationSettings || setting.locationSettings.equals("Todas")) {
                 if ((userData.city == user.city && setting.locationSettings == "mesma cidade") ||
                     (userData.state == user.state && setting.locationSettings == "mesmo estado" || (
-                            setting.locationSettings.equals("Todas") || userData.locationSettings.equals(
-                                "Todas"
-                            )))
-                ) {
+                            setting.locationSettings.equals("Todas") || userData.locationSettings.equals("Todas")))) {
                     cont = cont + 1
                 }
             }
         }
-        if (cont == 3) {
+        if (cont == 4) {
             return true
         }
 

@@ -4,6 +4,7 @@ import UserInfo
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.widget.Button
 import android.widget.ImageButton
@@ -24,6 +25,8 @@ class ChatsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_chats)
         initializeViews()
         val user = UserInfo.getUserInf(this)
+        Log.i("@erika","ChatsActivity" + user.match)
+        Log.i("@erika","ChatsActivity" + user.chats)
         addImageButtonsToLayout(user.match!!)
         var repository = Repository(this)
         repository.getStudentsFromApi(object : Callback<List<UserData>> {
