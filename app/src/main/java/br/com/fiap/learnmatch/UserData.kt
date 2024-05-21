@@ -32,8 +32,10 @@ data class UserData(
     var fieldOfWorkSettings: String? = null,
     var evaluationNote: Int? = null,
     var potentialMatch: Array<Long>?,
-    var match: Array<Long>?
+    var match: Array<Long>?,
+    var chats: Array<Long>?
 
     ) {
+
 }
 

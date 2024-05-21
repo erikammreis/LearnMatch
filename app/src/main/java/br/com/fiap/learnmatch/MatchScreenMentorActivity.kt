@@ -35,7 +35,7 @@ class MatchScreenMentorActivity : AppCompatActivity() {
     private lateinit var start3: ImageView
     private lateinit var start4: ImageView
     private lateinit var start5: ImageView
-    private var currentJsonIndex = StaticVal.currentJsonIndex
+    private var currentJsonIndex = StaticIndex.currentJsonIndex
     private lateinit var dayWeekLayout: LinearLayout
     private lateinit var dayWeekLayout2: LinearLayout
     private lateinit var studentList: List<UserData>
@@ -47,7 +47,7 @@ class MatchScreenMentorActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_match_screen_mentor)
-        currentJsonIndex = StaticVal.currentJsonIndex
+        currentJsonIndex = StaticIndex.currentJsonIndex
         initializeViews()
         val settingUser = SettingsManager.getSettings(this)
         val user = UserInfo.getUserInf(this)
@@ -62,7 +62,7 @@ class MatchScreenMentorActivity : AppCompatActivity() {
                     studentList = response.body() ?: emptyList()
                     while(!displaySettings(studentList[currentJsonIndex!!], settingUser, user) &&  currentJsonIndex!! < studentList.size - 1) {
                        currentJsonIndex = currentJsonIndex!! + 1
-                       StaticVal.currentJsonIndex = currentJsonIndex
+                        StaticIndex.currentJsonIndex = currentJsonIndex
                     }
                         displayUserData(studentList[currentJsonIndex!!])
                 } else {
@@ -77,21 +77,23 @@ class MatchScreenMentorActivity : AppCompatActivity() {
         buttonMatchMentor.setOnClickListener {
             if(macthChenk(studentList[currentJsonIndex!!], user)){
                 addMatch()
+                var addUser = studentList[currentJsonIndex!!]
+                StaticIndex.idUserDatar = addUser.id.toInt()
                 val intent = Intent(this@MatchScreenMentorActivity, MatchScreenActivity::class.java)
                 startActivity(intent)
                 currentJsonIndex = currentJsonIndex!! + 1
-                StaticVal.currentJsonIndex = currentJsonIndex
+                StaticIndex.currentJsonIndex = currentJsonIndex
             }else{
                 addPotentialMatch()
             }
             while(interestEquals(studentList[currentJsonIndex!!],user) && !displaySettings(studentList[currentJsonIndex!!], settingUser, user) && currentJsonIndex!! < studentList.size - 1) {
                     currentJsonIndex = currentJsonIndex!! + 1
-                    StaticVal.currentJsonIndex = currentJsonIndex
+                StaticIndex.currentJsonIndex = currentJsonIndex
                 }
             if (currentJsonIndex!! < studentList.size - 1) {
                 displayUserData(studentList[currentJsonIndex!!])
                 currentJsonIndex = currentJsonIndex!! + 1
-                StaticVal.currentJsonIndex = currentJsonIndex
+                StaticIndex.currentJsonIndex = currentJsonIndex
 
             }else{
                 clearAndSetCenterText()
@@ -101,7 +103,7 @@ class MatchScreenMentorActivity : AppCompatActivity() {
         noMatchMentor.setOnClickListener {
             while(interestEquals(studentList[currentJsonIndex!!],user) &&!displaySettings(studentList[currentJsonIndex!!], settingUser, user) && currentJsonIndex!! < studentList.size - 1) {
                 currentJsonIndex = currentJsonIndex!! + 1
-                StaticVal.currentJsonIndex = currentJsonIndex
+                StaticIndex.currentJsonIndex = currentJsonIndex
             }
         }
         moreIntomation.setOnClickListener {

@@ -25,24 +25,35 @@ class Repository(private val context: Context) {
         val call = apiService.getNotifications()
         call.enqueue(callback)
     }
-
+    fun getFeed(callback: Callback<List<FeedData>>) {
+        val call = apiService.getfeed()
+        call.enqueue(callback)
+    }
     fun getMentorsFromApi(callback: Callback<List<UserData>>) {
         val call = apiService.getMentors()
         call.enqueue(callback)
     }
-    fun addJsonToFile(json: String){
+    fun registerUser(json: String){
+//        apiService.postRegister(json)
        //Methodo para cadastrar o usuario
     }
-
-    public  fun ValidateLogin(email : String , Password : String) : Boolean{
-        return true
-        //Methodo validar o login
+    fun getUser(id:Long): User{
+        return apiService.getUser(id)
     }
 
-    public  fun UpdateUser(json : String ) : Boolean{
-        //atulizar usuario
+    fun ValidateLogin(email : String , Password : String) : Boolean{
+//        pegar getUser()
+
+        return true
+        //Methodo validar o login, escreve no arquivo interno para trabalhar com ele usando os methodos do UserInfo
+    }
+
+    fun UpdateUser(json : String ) : Boolean{
+//        apiService.putUpdateUser(json)
         return true
     }
+
+
 
 
 }

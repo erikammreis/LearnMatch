@@ -202,6 +202,14 @@ object UserInfo {
             // Adiciona um log para imprimir o valor de interest
             Log.i("@erika", "Interest: ${field?.contentToString()}")
         }
+
+    var chats: Array<Long>? = arrayOf(3,2,4,12,11,10)
+        get() = field
+        set(value) {
+            field = value
+            // Adiciona um log para imprimir o valor de interest
+            Log.i("@erika", "Interest: ${field?.contentToString()}")
+        }
     fun valorId() : Long{
         if(type.equals("Mentor")){
             return 9
@@ -244,6 +252,7 @@ object UserInfo {
             evaluationNote = 0 ,
             potentialMatch = arrayOf(),
             match = arrayOf(),
+            chats = arrayOf(),
         )
         setUserInf(context, user)
         val gson = GsonBuilder().setPrettyPrinting().create()

@@ -9,7 +9,7 @@ class PerfilActivity : AppCompatActivity() {
     private lateinit var perfilButtonMenu: ImageButton
     private lateinit var chatsButtonMenu: ImageButton
     private lateinit var homeButtonMenu: ImageButton
-    private lateinit var buttonPerfilEdit: ImageButton
+    private lateinit var buttonPerfilVer: ImageButton
     private lateinit var buttonPerfilFeed: ImageButton
     private lateinit var buttonPerfilSettings: ImageButton
     private lateinit var notificaButton: ImageButton
@@ -23,7 +23,7 @@ class PerfilActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        buttonPerfilEdit.setOnClickListener {
+        buttonPerfilVer.setOnClickListener {
             val intent = Intent(this@PerfilActivity, EditPerfilActivity::class.java)
             startActivity(intent)
         }
@@ -54,7 +54,7 @@ class PerfilActivity : AppCompatActivity() {
         perfilButtonMenu = findViewById(R.id.perfilButtonMenu)
         chatsButtonMenu = findViewById(R.id.chatsButtonMenu)
         homeButtonMenu = findViewById(R.id.homeButtonMenu)
-        buttonPerfilEdit = findViewById(R.id.buttonPerfilEdit)
+        buttonPerfilVer = findViewById(R.id.buttonPerfilVer)
         buttonPerfilFeed = findViewById(R.id.buttonPerfilFeed)
         buttonPerfilSettings = findViewById(R.id.buttonPerfilSettings)
         notificaButton = findViewById(R.id.notificaButton)

@@ -139,5 +139,24 @@
             android:layout_height="wrap_content"
             android:text="@string/conversations"
             android:textSize="16sp" />
+
+        <LinearLayout
+            android:id="@+id/LinearLayoutchats"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:background="#00FFFFFF"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:backgroundTint="#4FFD9E00"
+                android:gravity="center_vertical"
+                android:text="Button"
+                android:textColor="#272727" />
+
+        </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

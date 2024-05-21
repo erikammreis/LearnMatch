@@ -123,7 +123,7 @@
                 android:text="@string/start_conversation" />
 
             <TextView
-                android:id="@+id/chatEnsinarAprender"
+                android:id="@+id/chatTeachLearn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView" />
@@ -136,25 +136,27 @@
             android:layout_weight="1"
             android:text="@string/start_conversation_with" />
 
+        <TextView
+            android:id="@+id/chatMentorStudent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TextView" />
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/chatMentorAluno"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="TextView" />
-
-            <TextView
                 android:id="@+id/textView51"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:paddingStart="4dp"
                 android:text="@string/send_message" />
         </LinearLayout>
+
     </LinearLayout>
 
     <ImageButton

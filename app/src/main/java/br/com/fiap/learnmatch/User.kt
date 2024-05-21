@@ -193,6 +193,13 @@ class User {
             // Adiciona um log para imprimir o valor de interest
             Log.i("@erika", "Interest: ${field?.contentToString()}")
         }
+    var chats: Array<Long>? = null
+        get() = field
+        set(value) {
+            field = value
+            // Adiciona um log para imprimir o valor de interest
+            Log.i("@erika", "Interest: ${field?.contentToString()}")
+        }
 
     fun insertData(
         id: Long?,
@@ -227,6 +234,7 @@ class User {
         evaluationNote: Int?,
         potentialMatch: Array<Long>?,
         match: Array<Long>?,
+        chats: Array<Long>?,
     ) {
         this.id = id ?: 0
         this.email = email
@@ -260,6 +268,7 @@ class User {
         this.evaluationNote = evaluationNote
         this.potentialMatch = potentialMatch
         this.match = match
+        this.chats = chats
 
     }
 

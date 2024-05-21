@@ -30,7 +30,7 @@ class MatchScreenActivity : AppCompatActivity() {
             ) {
                 if (response.isSuccessful) {
                     var studentList = response.body() ?: emptyList()
-                    displayUserData(studentList[StaticStudentIndex.currentJsonIndex!!])
+                    displayUserData(studentList[StaticIndex.currentJsonIndex!!])
                 } else {
                 }
             }
