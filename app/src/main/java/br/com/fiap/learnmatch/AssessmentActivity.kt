@@ -43,7 +43,8 @@ class AssessmentActivity : AppCompatActivity() {
                     var userDataLists = response.body() ?: emptyList()
                     for (userDataList in userDataLists) {
                         if(userDataList.id == StaticIndex.idUserDatar?.toLong()) {
-                            assessmentNameMentorStudent.text = userData!!.name
+                            assessmentNameMentorStudent.text = userDataList!!.name
+                            userData = userDataList
                         }
                     }
                 } else {
@@ -65,7 +66,8 @@ class AssessmentActivity : AppCompatActivity() {
                         var userDataLists = response.body() ?: emptyList()
                         for (userDataList in userDataLists) {
                             if(userDataList.id == StaticIndex.idUserDatar?.toLong()) {
-                                assessmentNameMentorStudent.text = userData!!.name
+                                assessmentNameMentorStudent.text = userDataList!!.name
+                                userData = userDataList
                             }
                         }
                     } else {
@@ -92,43 +94,43 @@ class AssessmentActivity : AppCompatActivity() {
         }
         var note = 0
         start1Assess.setOnClickListener {
-            start1Assess.setImageResource(R.drawable.star_full_orange)
-            start2Assess.setImageResource(R.drawable.start_empty_orange)
-            start3Assess.setImageResource(R.drawable.start_empty_orange)
-            start4Assess.setImageResource(R.drawable.start_empty_orange)
-            start5Assess.setImageResource(R.drawable.start_empty_orange)
+            start1Assess.setImageResource(R.drawable.baseline_star_24_white)
+            start2Assess.setImageResource(R.drawable.baseline_star_border_24)
+            start3Assess.setImageResource(R.drawable.baseline_star_border_24)
+            start4Assess.setImageResource(R.drawable.baseline_star_border_24)
+            start5Assess.setImageResource(R.drawable.baseline_star_border_24)
             note = 2
         }
         start2Assess.setOnClickListener {
-            start1Assess.setImageResource(R.drawable.star_full_orange)
-            start2Assess.setImageResource(R.drawable.star_full_orange)
-            start3Assess.setImageResource(R.drawable.start_empty_orange)
-            start4Assess.setImageResource(R.drawable.start_empty_orange)
-            start5Assess.setImageResource(R.drawable.start_empty_orange)
+            start1Assess.setImageResource(R.drawable.baseline_star_24_white)
+            start2Assess.setImageResource(R.drawable.baseline_star_24_white)
+            start3Assess.setImageResource(R.drawable.baseline_star_border_24)
+            start4Assess.setImageResource(R.drawable.baseline_star_border_24)
+            start5Assess.setImageResource(R.drawable.baseline_star_border_24)
             note = 4
         }
         start3Assess.setOnClickListener {
-            start1Assess.setImageResource(R.drawable.star_full_orange)
-            start2Assess.setImageResource(R.drawable.star_full_orange)
-            start3Assess.setImageResource(R.drawable.star_full_orange)
-            start4Assess.setImageResource(R.drawable.start_empty_orange)
-            start5Assess.setImageResource(R.drawable.start_empty_orange)
+            start1Assess.setImageResource(R.drawable.baseline_star_24_white)
+            start2Assess.setImageResource(R.drawable.baseline_star_24_white)
+            start3Assess.setImageResource(R.drawable.baseline_star_24_white)
+            start4Assess.setImageResource(R.drawable.baseline_star_border_24)
+            start5Assess.setImageResource(R.drawable.baseline_star_border_24)
             note = 6
         }
         start4Assess.setOnClickListener {
-            start1Assess.setImageResource(R.drawable.star_full_orange)
-            start2Assess.setImageResource(R.drawable.star_full_orange)
-            start3Assess.setImageResource(R.drawable.star_full_orange)
-            start4Assess.setImageResource(R.drawable.star_full_orange)
-            start5Assess.setImageResource(R.drawable.start_empty_orange)
+            start1Assess.setImageResource(R.drawable.baseline_star_24_white)
+            start2Assess.setImageResource(R.drawable.baseline_star_24_white)
+            start3Assess.setImageResource(R.drawable.baseline_star_24_white)
+            start4Assess.setImageResource(R.drawable.baseline_star_24_white)
+            start5Assess.setImageResource(R.drawable.baseline_star_border_24)
             note = 8
         }
         start5Assess.setOnClickListener {
-            start1Assess.setImageResource(R.drawable.star_full_orange)
-            start2Assess.setImageResource(R.drawable.star_full_orange)
-            start3Assess.setImageResource(R.drawable.star_full_orange)
-            start4Assess.setImageResource(R.drawable.star_full_orange)
-            start5Assess.setImageResource(R.drawable.star_full_orange)
+            start1Assess.setImageResource(R.drawable.baseline_star_24_white)
+            start2Assess.setImageResource(R.drawable.baseline_star_24_white)
+            start3Assess.setImageResource(R.drawable.baseline_star_24_white)
+            start4Assess.setImageResource(R.drawable.baseline_star_24_white)
+            start5Assess.setImageResource(R.drawable.baseline_star_24_white)
             note = 10
         }
         buttonSend.setOnClickListener {
@@ -141,6 +143,7 @@ class AssessmentActivity : AppCompatActivity() {
 
     }
     private fun initializeViews() {
+        imageView20 = findViewById(R.id.imageView20)
         assessmentNameMentorStudent = findViewById(R.id.assessmentNameMentorStudent)
         start1Assess = findViewById(R.id.start1Assess)
         start2Assess = findViewById(R.id.start2Assess)
