@@ -72,7 +72,7 @@ class MatchScreenMentorMoreInfActivity : AppCompatActivity() {
             }else{
                 addPotentialMatch()
             }
-            if (currentJsonIndex!! < studentList.size - 1) {
+            if (currentJsonIndex!! < studentList.size) {
                 currentJsonIndex = currentJsonIndex!! + 1
                 StaticIndex.currentJsonIndex = currentJsonIndex
             }else{
@@ -83,7 +83,7 @@ class MatchScreenMentorMoreInfActivity : AppCompatActivity() {
             finish()
         }
         noMatchMentor.setOnClickListener{
-            if (currentJsonIndex!! < studentList.size - 1) {
+            if (currentJsonIndex!! < studentList.size) {
                 currentJsonIndex = currentJsonIndex!! + 1
                 StaticIndex.currentJsonIndex = currentJsonIndex
             }
