@@ -14,8 +14,6 @@ import retrofit2.Response
 
 class AssessmentActivity : AppCompatActivity() {
     private lateinit var assessmentNameMentorStudent: TextView
-    private lateinit var learnTeach: TextView
-    private lateinit var sheHe: TextView
     private lateinit var PerfilButtonMenu: ImageButton
     private lateinit var chatsButtonMenu: ImageButton
     private lateinit var homeButtonMenu: ImageButton
@@ -46,12 +44,6 @@ class AssessmentActivity : AppCompatActivity() {
                     for (userDataList in userDataLists) {
                         if(userDataList.id == StaticIndex.idUserDatar?.toLong()) {
                             assessmentNameMentorStudent.text = userDataList!!.name
-                            if(userDataList.sex.equals("Feminino")){
-                                sheHe.text ="ela"
-                            }else{
-                                sheHe.text ="ele"
-                            }
-                            learnTeach.text ="ensinar"
                             userData = userDataList
                         }
                     }
@@ -74,12 +66,6 @@ class AssessmentActivity : AppCompatActivity() {
                         for (userDataList in userDataLists) {
                             if(userDataList.id == StaticIndex.idUserDatar?.toLong()) {
                                 assessmentNameMentorStudent.text = userDataList!!.name
-                                if(userDataList.sex.equals("Feminino")){
-                                    sheHe.text = "ela"
-                                }else{
-                                    sheHe.text ="ele"
-                                }
-                                learnTeach.text ="aprender com"
                                 userData = userDataList
                             }
                         }
@@ -172,8 +158,6 @@ class AssessmentActivity : AppCompatActivity() {
         PerfilButtonMenu = findViewById(R.id.PerfilButtonMenu)
         chatsButtonMenu = findViewById(R.id.chatsButtonMenu)
         buttonSend = findViewById(R.id.buttonSend)
-        learnTeach = findViewById(R.id.learnTeach)
-        sheHe = findViewById(R.id.sheHe)
     }
     private fun removeMatch(userData: UserData) {
         val repository = Repository(this)
