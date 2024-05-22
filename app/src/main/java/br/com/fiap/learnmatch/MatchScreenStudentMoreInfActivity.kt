@@ -74,8 +74,6 @@ class MatchScreenStudentMoreInfActivity : AppCompatActivity() {
                 addMatch()
                 val intent = Intent(this@MatchScreenStudentMoreInfActivity, MatchScreenActivity::class.java)
                 startActivity(intent)
-                currentJsonIndex = currentJsonIndex!! + 1
-                StaticIndex.currentJsonIndex = currentJsonIndex
             }else{
                 addPotentialMatch()
             }

@@ -37,10 +37,10 @@ class ChatsActivity : AppCompatActivity() {
                     if (response.isSuccessful) {
                         var userDataLists = response.body() ?: emptyList()
                         for (userDataList in userDataLists) {
-                            if(userDataList.chats!!.contains(user.id)) {
+                            if(userDataList.chats!!.contains(9)) {
                                 mapa.put(userDataList.id.toInt(), userDataList.name.toString())
                             }
-                            if(userDataList.match!!.contains(user.id)) {
+                            if(userDataList.match!!.contains(9)) {
                                 mapaMath.put(userDataList.id.toInt(), userDataList.name.toString())
                             }
                         }
@@ -60,10 +60,10 @@ class ChatsActivity : AppCompatActivity() {
                     if (response.isSuccessful) {
                         var userDataLists = response.body() ?: emptyList()
                         for (userDataList in userDataLists) {
-                            if(userDataList.chats!!.contains(user.id)) {
+                            if(userDataList.chats!!.contains(1)) {
                                 mapa.put(userDataList.id.toInt(), userDataList.name.toString())
                             }
-                            if(userDataList.match!!.contains(user.id)) {
+                            if(userDataList.match!!.contains(1)) {
                                 mapaMath.put(userDataList.id.toInt(), userDataList.name.toString())
                             }
                         }
