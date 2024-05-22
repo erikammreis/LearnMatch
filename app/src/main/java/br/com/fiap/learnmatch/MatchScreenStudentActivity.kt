@@ -190,10 +190,10 @@ class MatchScreenStudentActivity : AppCompatActivity() {
     }
 
     private fun interestEquals(userData: UserData, user: User): Boolean {
-        val interestS = userData.interest
-        val interestU = user.interest
+        val interestS = userData.interest?.map { it.toLowerCase() }
+        val interestU = user.interest?.map { it.toLowerCase() }
         if (interestS != null && interestU != null) {
-            if (interestS.any { interestU.contains(it) }) {
+            if (interestS.any { it in interestU } || interestU.any { it in interestS }) {
                 return true
             }
         }
