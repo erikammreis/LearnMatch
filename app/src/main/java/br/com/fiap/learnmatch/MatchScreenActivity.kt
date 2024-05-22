@@ -1,7 +1,6 @@
 package br.com.fiap.learnmatch
 
 import UserInfo
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageButton
@@ -70,8 +69,13 @@ class MatchScreenActivity : AppCompatActivity() {
             })
         }
         homeButtonMenu.setOnClickListener {
-            val intent = Intent(this@MatchScreenActivity, MatchScreenMentorActivity::class.java)
-            startActivity(intent)
+            if(user.type.equals("Mentor")) {
+                val intent = Intent(this@MatchScreenActivity, MatchScreenMentorActivity::class.java)
+                startActivity(intent)
+            }else if(user.type.equals("Student")){
+                val intent = Intent(this@MatchScreenActivity, MatchScreenStudentActivity::class.java)
+                startActivity(intent)
+            }
         }
         PerfilButtonMenu.setOnClickListener {
             val intent = Intent(this@MatchScreenActivity, PerfilActivity::class.java)
@@ -90,21 +94,7 @@ class MatchScreenActivity : AppCompatActivity() {
         }
     }
 
-    private fun addChat(context: Context,user: User){
-        val repository = Repository(this)
-        var matchUser = user.match?.toMutableList()
-        var  newpotentialMatchUser = mutableListOf<Long>()
-        if (matchUser != null) {
-            newpotentialMatchUser.addAll(matchUser)
-            newpotentialMatchUser.add(user.id)
-        }
-        val arrayListUser: Array<Long> = newpotentialMatchUser.toTypedArray()
-        user.match = arrayListUser
 
-        repository.UpdateUser(UserInfo.salveAndGetJsonUser(context,user))
-
-
-    }
 
     private fun initializeViews() {
         nameUserData = findViewById(R.id.nameUserData)

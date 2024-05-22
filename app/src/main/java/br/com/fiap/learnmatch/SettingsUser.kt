@@ -27,7 +27,7 @@ class SettingsUser {
             field = value
         }
 
-    var fieldOfWorkSettings: String? = null
+    var fieldOfWorkSettings: String? = "Todas"
         get() = field
         set(value) {
             field = value

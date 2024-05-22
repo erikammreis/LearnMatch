@@ -1,5 +1,6 @@
 package br.com.fiap.learnmatch
 
+import UserInfo
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageButton
@@ -17,7 +18,7 @@ class PerfilActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_perfil)
         initializeViews()
-
+        val user = UserInfo.getUserInf(this)
         notificaButton.setOnClickListener {
             val intent = Intent(this@PerfilActivity, NotificationActivity::class.java)
             startActivity(intent)
@@ -37,8 +38,13 @@ class PerfilActivity : AppCompatActivity() {
         }
 
         homeButtonMenu.setOnClickListener{
-            val intent = Intent(this@PerfilActivity, MatchScreenMentorActivity::class.java)
-            startActivity(intent)
+            if(user.type.equals("Mentor")) {
+                val intent = Intent(this@PerfilActivity, MatchScreenMentorActivity::class.java)
+                startActivity(intent)
+            }else if(user.type.equals("Student")){
+                val intent = Intent(this@PerfilActivity, MatchScreenStudentActivity::class.java)
+                startActivity(intent)
+            }
         }
 
         perfilButtonMenu.setOnClickListener {

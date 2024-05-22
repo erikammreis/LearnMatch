@@ -264,10 +264,14 @@ class MatchScreenStudentActivity : AppCompatActivity() {
                 cont += 1
             }
         }
+        Log.i("@erika", "cont fieldOfWorkSettings:  " + setting.fieldOfWorkSettings )
         if (setting.fieldOfWorkSettings != null) {
+            Log.i("@erika", "cont dayOfTheWeek:  " + setting.fieldOfWorkSettings.equals(
+                "Todas"
+            ) + " " + setting.fieldOfWorkSettings.toString() )
             if (setting.fieldOfWorkSettings == userData.fieldOfWorkSettings || setting.fieldOfWorkSettings.equals(
                     "Todas"
-                )
+                ) || setting.fieldOfWorkSettings.equals("")
             ) {
                 cont = cont + 1
             }

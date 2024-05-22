@@ -39,8 +39,13 @@ class EditPerfilActivity : AppCompatActivity() {
         val user = UserInfo.getUserInf(this)
         inicializeView(user)
         homeButtonMenu.setOnClickListener {
-            val intent = Intent(this@EditPerfilActivity, MatchScreenMentorActivity::class.java)
-            startActivity(intent)
+            if(user.type.equals("Mentor")) {
+                val intent = Intent(this@EditPerfilActivity, MatchScreenMentorActivity::class.java)
+                startActivity(intent)
+            }else if(user.type.equals("Student")){
+                val intent = Intent(this@EditPerfilActivity, MatchScreenStudentActivity::class.java)
+                startActivity(intent)
+            }
         }
         PerfilButtonMenu.setOnClickListener {
             val intent = Intent(this@EditPerfilActivity, PerfilActivity::class.java)

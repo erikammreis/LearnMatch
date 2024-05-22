@@ -1,5 +1,6 @@
 package br.com.fiap.learnmatch
 
+import UserInfo
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -22,7 +23,7 @@ class NotificationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notification)
         initializeViews()
-
+        val user = UserInfo.getUserInf(this)
         var repository = Repository(this)
         repository.getNotificationsFromApi(object : Callback<List<NotificationData>> {
             override fun onResponse(
@@ -45,8 +46,13 @@ class NotificationActivity : AppCompatActivity() {
         })
 
         homeButtonMenu.setOnClickListener{
-            val intent = Intent(this@NotificationActivity, MatchScreenMentorActivity::class.java)
-            startActivity(intent)
+            if(user.type.equals("Mentor")) {
+                val intent = Intent(this@NotificationActivity, MatchScreenMentorActivity::class.java)
+                startActivity(intent)
+            }else if(user.type.equals("Student")){
+                val intent = Intent(this@NotificationActivity, MatchScreenStudentActivity::class.java)
+                startActivity(intent)
+            }
         }
         PerfilButtonMenu.setOnClickListener{
             val intent = Intent(this@NotificationActivity, PerfilActivity::class.java)

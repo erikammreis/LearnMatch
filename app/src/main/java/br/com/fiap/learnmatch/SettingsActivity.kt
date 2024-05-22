@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.CheckBox
+import android.widget.ImageButton
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -33,6 +34,9 @@ class SettingsActivity : AppCompatActivity() {
     private lateinit var nightCheckBox: CheckBox
     private lateinit var occupationArea: TextView
     private lateinit var typeUser: TextView
+    private lateinit var PerfilButtonMenu: ImageButton
+    private lateinit var chatsButtonMenu: ImageButton
+    private lateinit var homeButtonMenu: ImageButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
@@ -40,19 +44,46 @@ class SettingsActivity : AppCompatActivity() {
         setViewTypeUser()
         setViewStandard()
         visibilityView()
+        val user = UserInfo.getUserInf(this)
 
         buttonApply.setOnClickListener {
             savePeriod()
             setSettings()
             finish()
-            val intent = Intent(this@SettingsActivity, MatchScreenMentorActivity::class.java)
-            startActivity(intent)
-
+            if(user.type.equals("Mentor")) {
+                val intent = Intent(this@SettingsActivity, MatchScreenMentorActivity::class.java)
+                startActivity(intent)
+            }else if(user.type.equals("Student")){
+                val intent = Intent(this@SettingsActivity, MatchScreenStudentActivity::class.java)
+                startActivity(intent)
+            }
         }
         buttonDefault.setOnClickListener {
             default()
             finish()
-            val intent = Intent(this@SettingsActivity, MatchScreenMentorActivity::class.java)
+            if(user.type.equals("Mentor")) {
+                val intent = Intent(this@SettingsActivity, MatchScreenMentorActivity::class.java)
+                startActivity(intent)
+            }else if(user.type.equals("Student")){
+                val intent = Intent(this@SettingsActivity, MatchScreenStudentActivity::class.java)
+                startActivity(intent)
+            }
+        }
+        homeButtonMenu.setOnClickListener{
+            if(user.type.equals("Mentor")) {
+                val intent = Intent(this@SettingsActivity, MatchScreenMentorActivity::class.java)
+                startActivity(intent)
+            }else if(user.type.equals("Student")){
+                val intent = Intent(this@SettingsActivity, MatchScreenStudentActivity::class.java)
+                startActivity(intent)
+            }
+        }
+        PerfilButtonMenu.setOnClickListener{
+            val intent = Intent(this@SettingsActivity, PerfilActivity::class.java)
+            startActivity(intent)
+        }
+        chatsButtonMenu.setOnClickListener{
+            val intent = Intent(this@SettingsActivity, ChatsActivity::class.java)
             startActivity(intent)
         }
 
@@ -67,6 +98,9 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     private fun setupViews() {
+        homeButtonMenu = findViewById(R.id.homeButtonMenu)
+        PerfilButtonMenu = findViewById(R.id.PerfilButtonMenu)
+        chatsButtonMenu = findViewById(R.id.chatsButtonMenu)
         buttonApply = findViewById(R.id.buttonApply)
         buttonDefault = findViewById(R.id.buttonDefault)
         buttonSunday = findViewById(R.id.buttonSunday)
@@ -283,13 +317,19 @@ class SettingsActivity : AppCompatActivity() {
         if(dayOfTheWeek.isEmpty()){
             dayOfTheWeek =  arrayOf("Seg", "Ter", "Qua", "Qui", "Sex", "Sab", "Dom")
         }
+        var settingsSpinnerFieldOfWorkT = ""
+
+        if(settingsSpinnerFieldOfWork.selectedItem.toString() == null){
+            settingsSpinnerFieldOfWorkT = "Todas"
+        }
+
 
         settingsUser.insertSettings(
             period = period,
             dayOfTheWeek = dayOfTheWeek,
             locationSettings = spinnerlocationRegister.selectedItem.toString(),
             sexSettings = settingsSpinnerSexo.selectedItem.toString(),
-            fieldOfWorkSettings = settingsSpinnerFieldOfWork.selectedItem.toString(),
+            fieldOfWorkSettings = settingsSpinnerFieldOfWorkT,
         )
         SettingsManager.setSettings(this, settingsUser)
         var teste = SettingsManager.getSettings(this)

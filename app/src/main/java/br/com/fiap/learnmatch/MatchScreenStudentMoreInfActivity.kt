@@ -96,8 +96,13 @@ class MatchScreenStudentMoreInfActivity : AppCompatActivity() {
         }
 
         homeButtonMenu.setOnClickListener{
-            val intent = Intent(this@MatchScreenStudentMoreInfActivity, MatchScreenStudentActivity::class.java)
-            startActivity(intent)
+            if(user.type.equals("Mentor")) {
+                val intent = Intent(this@MatchScreenStudentMoreInfActivity, MatchScreenMentorActivity::class.java)
+                startActivity(intent)
+            }else if(user.type.equals("Student")){
+                val intent = Intent(this@MatchScreenStudentMoreInfActivity, MatchScreenStudentActivity::class.java)
+                startActivity(intent)
+            }
         }
         PerfilButtonMenu.setOnClickListener{
             val intent = Intent(this@MatchScreenStudentMoreInfActivity, PerfilActivity::class.java)

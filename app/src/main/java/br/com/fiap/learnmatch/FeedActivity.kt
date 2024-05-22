@@ -1,5 +1,6 @@
 package br.com.fiap.learnmatch
 
+import UserInfo
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -25,6 +26,7 @@ class FeedActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_feed)
         initializeViews()
+        val user = UserInfo.getUserInf(this)
 
         var repository = Repository(this)
         repository.getFeed(object : Callback<List<FeedData>> {
@@ -49,8 +51,13 @@ class FeedActivity : AppCompatActivity() {
         })
 
         homeButtonMenu.setOnClickListener{
-            val intent = Intent(this@FeedActivity, MatchScreenMentorActivity::class.java)
-            startActivity(intent)
+            if(user.type.equals("Mentor")) {
+                val intent = Intent(this@FeedActivity, MatchScreenMentorActivity::class.java)
+                startActivity(intent)
+            }else if(user.type.equals("Student")){
+                val intent = Intent(this@FeedActivity, MatchScreenStudentActivity::class.java)
+                startActivity(intent)
+            }
         }
         PerfilButtonMenu.setOnClickListener{
             val intent = Intent(this@FeedActivity, PerfilActivity::class.java)

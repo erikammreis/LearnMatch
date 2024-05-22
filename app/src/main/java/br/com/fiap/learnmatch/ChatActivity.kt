@@ -82,8 +82,13 @@ class ChatActivity : AppCompatActivity() {
             startActivity(intent)
         }
         homeButtonMenu.setOnClickListener {
-            val intent = Intent(this@ChatActivity, MatchScreenMentorActivity::class.java)
-            startActivity(intent)
+            if(user.type.equals("Mentor")) {
+                val intent = Intent(this@ChatActivity, MatchScreenMentorActivity::class.java)
+                startActivity(intent)
+            }else if(user.type.equals("Student")){
+                val intent = Intent(this@ChatActivity, MatchScreenStudentActivity::class.java)
+                startActivity(intent)
+            }
         }
         PerfilButtonMenu.setOnClickListener {
             val intent = Intent(this@ChatActivity, PerfilActivity::class.java)
