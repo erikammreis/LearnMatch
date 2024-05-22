@@ -62,7 +62,7 @@ class MatchScreenMentorActivity : AppCompatActivity() {
                     StaticIndex.currentJsonIndex = 0
                     currentJsonIndex = StaticIndex.currentJsonIndex
                     studentList = response.body() ?: emptyList()
-                    while(currentJsonIndex!! < studentList.size - 1) {
+                    while(currentJsonIndex!! < studentList.size) {
                         Log.i("@erika" ,"Erro interestEquals teste: " + interestEquals(studentList[currentJsonIndex!!], user))
                         Log.i("@erika" ,"Erro displaySettings: " + displaySettings(studentList[currentJsonIndex!!], settingUser, user))
                           if(interestEquals(studentList[currentJsonIndex!!], user) && displaySettings(studentList[currentJsonIndex!!], settingUser, user)){
@@ -73,7 +73,7 @@ class MatchScreenMentorActivity : AppCompatActivity() {
                               StaticIndex.currentJsonIndex = currentJsonIndex
                           }
                     }
-                    if(!(currentJsonIndex!! < studentList.size - 1)){
+                    if(!(currentJsonIndex!! < studentList.size)){
                         clearAndSetCenterText()
                     }
 
@@ -100,7 +100,7 @@ class MatchScreenMentorActivity : AppCompatActivity() {
                 StaticIndex.currentJsonIndex = currentJsonIndex
                 addPotentialMatch()
             }
-            while(currentJsonIndex!! < studentList.size - 1) {
+            while(currentJsonIndex!! < studentList.size) {
                 if(interestEquals(studentList[currentJsonIndex!!], user) && displaySettings(studentList[currentJsonIndex!!], settingUser, user)){
                     displayUserData(studentList[currentJsonIndex!!])
                     currentJsonIndex = currentJsonIndex!! + 1
@@ -110,7 +110,7 @@ class MatchScreenMentorActivity : AppCompatActivity() {
                     StaticIndex.currentJsonIndex = currentJsonIndex
                 }
             }
-            if(!(currentJsonIndex!! < studentList.size - 1)){
+            if(!(currentJsonIndex!! < studentList.size)){
                 clearAndSetCenterText()
             }
         }

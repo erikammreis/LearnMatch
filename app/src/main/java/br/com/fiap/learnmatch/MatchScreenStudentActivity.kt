@@ -59,7 +59,7 @@ class MatchScreenStudentActivity : AppCompatActivity() {
             ) {
                 if (response.isSuccessful) {
                     mentorList = response.body() ?: emptyList()
-                    while(currentJsonIndex!! < mentorList.size - 1) {
+                    while(currentJsonIndex!! < mentorList.size) {
                         Log.i("@erika" ,"Erro interestEquals teste: " + interestEquals(mentorList[currentJsonIndex!!], user))
                         Log.i("@erika" ,"Erro displaySettings: " + displaySettings(mentorList[currentJsonIndex!!], settingUser, user))
                         if(interestEquals(mentorList[currentJsonIndex!!], user) && displaySettings(mentorList[currentJsonIndex!!], settingUser, user)){
@@ -70,7 +70,7 @@ class MatchScreenStudentActivity : AppCompatActivity() {
                             StaticIndex.currentJsonIndex = currentJsonIndex
                         }
                     }
-                    if(!(currentJsonIndex!! < mentorList.size - 1)){
+                    if(!(currentJsonIndex!! < mentorList.size )){
                         clearAndSetCenterText()
                     }
                 } else {
@@ -94,18 +94,19 @@ class MatchScreenStudentActivity : AppCompatActivity() {
             }else{
                 addPotentialMatch()
             }
-            while(currentJsonIndex!! < mentorList.size - 1) {
+            while(currentJsonIndex!! < mentorList.size) {
                 if(interestEquals(mentorList[currentJsonIndex!!], user) && displaySettings(mentorList[currentJsonIndex!!], settingUser, user)){
+                   Log.i("Erika", "teste" )
                     displayUserData(mentorList[currentJsonIndex!!])
-                    currentJsonIndex = currentJsonIndex!! + 1
-                    StaticIndex.currentJsonIndex = currentJsonIndex
                     break
                 }else{
                     currentJsonIndex = currentJsonIndex!! + 1
                     StaticIndex.currentJsonIndex = currentJsonIndex
                 }
             }
-            if(!(currentJsonIndex!! < mentorList.size - 1)){
+            currentJsonIndex = currentJsonIndex!! + 1
+            StaticIndex.currentJsonIndex = currentJsonIndex
+            if(!(currentJsonIndex!! < mentorList.size)){
                 clearAndSetCenterText()
             }
         }
@@ -115,7 +116,7 @@ class MatchScreenStudentActivity : AppCompatActivity() {
                 currentJsonIndex = currentJsonIndex!! + 1
                 StaticIndex.currentJsonIndex = currentJsonIndex
             }
-            if (currentJsonIndex!! < mentorList.size - 1) {
+            if (currentJsonIndex!! < mentorList.size) {
                 displayUserData(mentorList[currentJsonIndex!!])
                 currentJsonIndex = currentJsonIndex!! + 1
                 StaticIndex.currentJsonIndex = currentJsonIndex
@@ -266,9 +267,6 @@ class MatchScreenStudentActivity : AppCompatActivity() {
         }
         Log.i("@erika", "cont fieldOfWorkSettings:  " + setting.fieldOfWorkSettings )
         if (setting.fieldOfWorkSettings != null) {
-            Log.i("@erika", "cont dayOfTheWeek:  " + setting.fieldOfWorkSettings.equals(
-                "Todas"
-            ) + " " + setting.fieldOfWorkSettings.toString() )
             if (setting.fieldOfWorkSettings == userData.fieldOfWorkSettings || setting.fieldOfWorkSettings.equals(
                     "Todas"
                 ) || setting.fieldOfWorkSettings.equals("")
