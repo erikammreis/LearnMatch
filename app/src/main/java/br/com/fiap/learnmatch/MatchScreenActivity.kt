@@ -1,6 +1,7 @@
 package br.com.fiap.learnmatch
 
 import UserInfo
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageButton
@@ -82,10 +83,27 @@ class MatchScreenActivity : AppCompatActivity() {
         }
         ButtonChat.setOnClickListener {
             StaticIndex.idUserDatar = userDataListId
+
             val intent = Intent(this@MatchScreenActivity, ChatActivity::class.java)
             startActivity(intent)
             finish()
         }
+    }
+
+    private fun addChat(context: Context,user: User){
+        val repository = Repository(this)
+        var matchUser = user.match?.toMutableList()
+        var  newpotentialMatchUser = mutableListOf<Long>()
+        if (matchUser != null) {
+            newpotentialMatchUser.addAll(matchUser)
+            newpotentialMatchUser.add(user.id)
+        }
+        val arrayListUser: Array<Long> = newpotentialMatchUser.toTypedArray()
+        user.match = arrayListUser
+
+        repository.UpdateUser(UserInfo.salveAndGetJsonUser(context,user))
+
+
     }
 
     private fun initializeViews() {

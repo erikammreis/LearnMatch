@@ -4,7 +4,6 @@ import UserInfo
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
 import android.widget.Button
 import android.widget.ImageButton
@@ -25,29 +24,57 @@ class ChatsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_chats)
         initializeViews()
         val user = UserInfo.getUserInf(this)
-        Log.i("@erika","ChatsActivity" + user.match!!.joinToString())
-        Log.i("@erika","ChatsActivity" + user.chats!!.joinToString())
+        val mapa = mutableMapOf<Int, String>()
+        val mapaMath = mutableMapOf<Int, String>()
         addImageButtonsToLayout(user.match!!)
         var repository = Repository(this)
-        repository.getStudentsFromApi(object : Callback<List<UserData>> {
-            override fun onResponse(
-                call: Call<List<UserData>>,
-                response: Response<List<UserData>>
-            ) {
-                if (response.isSuccessful) {
-                    var studentLists = response.body() ?: emptyList()
-                    for (studentList in studentLists) {
-                        if(user.chats!!.contains(studentList.id)){
-                            addLayoutsToParent(user.chats!!,studentList)
+        if (user.type.equals("Mentor")) {
+            repository.getStudentsFromApi(object : Callback<List<UserData>> {
+                override fun onResponse(
+                    call: Call<List<UserData>>,
+                    response: Response<List<UserData>>
+                ) {
+                    if (response.isSuccessful) {
+                        var userDataLists = response.body() ?: emptyList()
+                        for (userDataList in userDataLists) {
+                            if(userDataList.chats!!.contains(user.id)) {
+                                mapa.put(userDataList.id.toInt(), userDataList.name.toString())
+                            }
+                            if(userDataList.match!!.contains(user.id)) {
+                                mapaMath.put(userDataList.id.toInt(), userDataList.name.toString())
+                            }
                         }
+                    } else {
                     }
-                } else {
                 }
-            }
 
-            override fun onFailure(call: Call<List<UserData>>, t: Throwable) {
-            }
-        })
+                override fun onFailure(call: Call<List<UserData>>, t: Throwable) {
+                }
+            })
+        } else if (user.type.equals("Student")) {
+            repository.getMentorsFromApi(object : Callback<List<UserData>> {
+                override fun onResponse(
+                    call: Call<List<UserData>>,
+                    response: Response<List<UserData>>
+                ) {
+                    if (response.isSuccessful) {
+                        var userDataLists = response.body() ?: emptyList()
+                        for (userDataList in userDataLists) {
+                            if(userDataList.chats!!.contains(user.id)) {
+                                mapa.put(userDataList.id.toInt(), userDataList.name.toString())
+                            }
+                            if(userDataList.match!!.contains(user.id)) {
+                                mapaMath.put(userDataList.id.toInt(), userDataList.name.toString())
+                            }
+                        }
+                    } else {
+                    }
+                }
+
+                override fun onFailure(call: Call<List<UserData>>, t: Throwable) {
+                }
+            })
+        }
         homeButtonMenu.setOnClickListener {
             val intent = Intent(this@ChatsActivity, MatchScreenMentorActivity::class.java)
             startActivity(intent)
@@ -93,10 +120,10 @@ class ChatsActivity : AppCompatActivity() {
         }
     }
 
-    private fun addLayoutsToParent(ids: Array<Long>,userData: UserData) {
+    private fun addLayoutsToParent(userDataMap: MutableMap<Int, String>) {
         LinearLayoutchats.removeAllViews()
 
-        for (id in ids) {
+        for ((id, name) in userDataMap) {
             // Cria um novo LinearLayout
             val linearLayout = LinearLayout(this).apply {
                 orientation = LinearLayout.VERTICAL
@@ -117,20 +144,22 @@ class ChatsActivity : AppCompatActivity() {
                 }
                 setBackgroundColor(Color.parseColor("#4FFD9E00"))
                 gravity = Gravity.CENTER_VERTICAL
-                text = userData.name
+                text = name
                 setTextColor(Color.parseColor("#272727"))
             }
 
-            button.setOnClickListener{
+            // Define o listener de clique do botão
+            button.setOnClickListener {
                 StaticIndex.idUserDatar = id.toInt()
                 val intent = Intent(this@ChatsActivity, ChatActivity::class.java)
                 startActivity(intent)
             }
-            linearLayout.addView(button)
 
+            linearLayout.addView(button)
             LinearLayoutchats.addView(linearLayout)
         }
     }
+
 
     fun Int.dpToPx(): Int {
         val density = resources.displayMetrics.density

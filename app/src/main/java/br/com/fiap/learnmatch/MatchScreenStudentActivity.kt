@@ -85,6 +85,8 @@ class MatchScreenStudentActivity : AppCompatActivity() {
         buttonMatchMentor.setOnClickListener {
             if(macthChenk(mentorList[currentJsonIndex!!], user)){
                 addMatch()
+                var addUser = mentorList[currentJsonIndex!!]
+                StaticIndex.idUserDatar = addUser.id.toInt()
                 val intent = Intent(this@MatchScreenStudentActivity, MatchScreenActivity::class.java)
                 startActivity(intent)
                 currentJsonIndex = currentJsonIndex!! + 1

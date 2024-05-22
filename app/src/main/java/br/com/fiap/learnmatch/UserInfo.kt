@@ -284,7 +284,7 @@ object UserInfo {
         }
     }
 
-     private  fun writeUserInfoToFile(context: Context, json: String) {
+     fun writeUserInfoToFile(context: Context, json: String) {
         try {
             val file = File(context.filesDir, USER_INFO_FILE_NAME)
             FileWriter(file).use { it.write(json) }
@@ -292,6 +292,48 @@ object UserInfo {
             e.printStackTrace()
         }
     }
+    fun salveAndGetJsonUser(context: Context ,user : User):String {
+        user.insertData(
+            id = valorId(),
+            email = email,
+            password = password,
+            type = type,
+            saveLoginCheckBox = saveLoginCheckBox,
+            name = name,
+            cpf = cpf,
+            dateOfBirth = dateOfBirth,
+            cep = cep,
+            street = street,
+            city = city,
+            state = state,
+            sex = sex,
+            age = age,
+            educationalInstitution = educationalInstitution,
+            course = course,
+            dateStart = dateStart,
+            typeTeaching = typeTeaching,
+            durationCourse = durationCourse,
+            interest = interest,
+            operatingTime = operatingTime,
+            occupationArea = occupationArea,
+            office = office,
+            experience = experience,
+            period = arrayOf(""),
+            dayOfTheWeek = arrayOf(""),
+            locationSettings = "",
+            sexSettings = "",
+            fieldOfWorkSettings = "",
+            evaluationNote = 0 ,
+            potentialMatch = arrayOf(),
+            match = arrayOf(),
+            chats = arrayOf(),
+        )
+        setUserInf(context, user)
+        val gson = GsonBuilder().setPrettyPrinting().create()
+        return gson.toJson(user)
+
+    }
+
 
 
 }

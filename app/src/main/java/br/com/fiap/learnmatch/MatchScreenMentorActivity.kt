@@ -93,20 +93,23 @@ class MatchScreenMentorActivity : AppCompatActivity() {
                 StaticIndex.idUserDatar = addUser.id.toInt()
                 Log.e("@erika" ,"StaticIndex.idUserDatar: " + StaticIndex.idUserDatar + " "+ addUser.id.toInt() +
                         "name " + addUser.name)
+                currentJsonIndex = currentJsonIndex!! + 1
+                StaticIndex.currentJsonIndex = currentJsonIndex
                 val intent = Intent(this@MatchScreenMentorActivity, MatchScreenActivity::class.java)
                 startActivity(intent)
             }else{
+                currentJsonIndex = currentJsonIndex!! + 1
+                StaticIndex.currentJsonIndex = currentJsonIndex
                 addPotentialMatch()
             }
             while(currentJsonIndex!! < studentList.size - 1) {
                 if(interestEquals(studentList[currentJsonIndex!!], user) && displaySettings(studentList[currentJsonIndex!!], settingUser, user)){
                     displayUserData(studentList[currentJsonIndex!!])
-//                    currentJsonIndex = currentJsonIndex!! + 1
-//                    StaticIndex.currentJsonIndex = currentJsonIndex
-                    break
+                    currentJsonIndex = currentJsonIndex!! + 1
+                    StaticIndex.currentJsonIndex = currentJsonIndex
                 }else{
-//                    currentJsonIndex = currentJsonIndex!! + 1
-//                    StaticIndex.currentJsonIndex = currentJsonIndex
+                    currentJsonIndex = currentJsonIndex!! + 1
+                    StaticIndex.currentJsonIndex = currentJsonIndex
                 }
             }
             if(!(currentJsonIndex!! < studentList.size - 1)){
@@ -181,7 +184,10 @@ class MatchScreenMentorActivity : AppCompatActivity() {
         }
         val arrayListUser: Array<Long> = newpotentialMatchUser.toTypedArray()
         user.match = arrayListUser
-        repository.UpdateUser(StaticMethods.getJsonUser(this,user))
+        UserInfo.writeUserInfoToFile(this,UserInfo.salveAndGetJsonUser(this,user))
+        var test = UserInfo.salveAndGetJsonUser(this,user)
+        Log.i("@erika" ,"StaticIndex.idUserDatar: " + test.toString())
+        repository.UpdateUser(UserInfo.salveAndGetJsonUser(this,user))
 
 
     }
@@ -341,7 +347,7 @@ class MatchScreenMentorActivity : AppCompatActivity() {
         constraintLayout.removeAllViews()
         val textView = TextView(this).apply {
             id = View.generateViewId()
-            text = "Não há mais estudantes para o filtro selecionado"
+            text = "Não há mais estudantes com os mesmos interesses para o filtro selecionado"
             setTextColor(resources.getColor(android.R.color.black, theme))
         }
         constraintLayout.addView(textView)
