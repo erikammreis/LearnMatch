@@ -53,3 +53,4 @@ Gradle é um sistema avançado de automação de compilação que é utilizado p
 ### Benefícios para a Aplicação
 
 A combinação dessas tecnologias oferece uma base sólida para o desenvolvimento de aplicativos Android. Kotlin e Java juntos proporcionam um equilíbrio entre modernidade e estabilidade, permitindo que os desenvolvedores construam aplicativos de forma eficiente e segura. Gradle, por sua vez, otimiza o processo de build e gerenciamento de dependências, facilitando a integração de novas funcionalidades e a manutenção do aplicativo. Essas tecnologias, quando utilizadas em conjunto, permitem o desenvolvimento de aplicativos Android que são não apenas poderosos e eficientes, mas também escaláveis e fáceis de manter.
+
