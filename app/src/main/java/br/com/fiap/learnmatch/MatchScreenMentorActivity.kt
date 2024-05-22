@@ -91,8 +91,6 @@ class MatchScreenMentorActivity : AppCompatActivity() {
                 addMatch()
                 var addUser = studentList[currentJsonIndex!!]
                 StaticIndex.idUserDatar = addUser.id.toInt()
-                Log.e("@erika" ,"StaticIndex.idUserDatar: " + StaticIndex.idUserDatar + " "+ addUser.id.toInt() +
-                        "name " + addUser.name)
                 val intent = Intent(this@MatchScreenMentorActivity, MatchScreenActivity::class.java)
                 startActivity(intent)
             }else{
@@ -105,6 +103,7 @@ class MatchScreenMentorActivity : AppCompatActivity() {
                     displayUserData(studentList[currentJsonIndex!!])
                     currentJsonIndex = currentJsonIndex!! + 1
                     StaticIndex.currentJsonIndex = currentJsonIndex
+                    break
                 }else{
                     currentJsonIndex = currentJsonIndex!! + 1
                     StaticIndex.currentJsonIndex = currentJsonIndex
